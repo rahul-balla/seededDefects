@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,11 +13,63 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tindents" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tindents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMW-Dk-dA8">
+                                <rect key="frame" x="84.5" y="150" width="206" height="66"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="55"/>
+                                <color key="textColor" red="0.0" green="0.30980670592534487" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ueU-pC-iEc">
+                                <rect key="frame" x="50" y="276" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agu-QE-mXe">
+                                <rect key="frame" x="50" y="336" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvG-6G-nAH">
+                                <rect key="frame" x="163" y="416" width="49" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Login"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account yet?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-8N-Lcy">
+                                <rect key="frame" x="95" y="482" width="185.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-4p-eeV">
+                                <rect key="frame" x="151.5" y="505" width="72" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Register"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xAh-8N-Lcy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="32l-1r-emi"/>
+                            <constraint firstItem="agu-QE-mXe" firstAttribute="leading" secondItem="ueU-pC-iEc" secondAttribute="leading" id="6P0-os-53r"/>
+                            <constraint firstItem="agu-QE-mXe" firstAttribute="trailing" secondItem="ueU-pC-iEc" secondAttribute="trailing" id="CBA-bc-Qu6"/>
+                            <constraint firstItem="xAh-8N-Lcy" firstAttribute="top" secondItem="lvG-6G-nAH" secondAttribute="bottom" constant="30" id="GI5-A3-7Xf"/>
+                            <constraint firstItem="ueU-pC-iEc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kav-K9-oyl"/>
+                            <constraint firstItem="Bgs-4p-eeV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LMT-Hg-VQh"/>
+                            <constraint firstItem="lvG-6G-nAH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WFd-G4-NAk"/>
+                            <constraint firstItem="nMW-Dk-dA8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="150" id="XSf-hJ-X6p"/>
+                            <constraint firstItem="agu-QE-mXe" firstAttribute="top" secondItem="ueU-pC-iEc" secondAttribute="bottom" constant="30" id="dJl-PW-y4D"/>
+                            <constraint firstItem="lvG-6G-nAH" firstAttribute="top" secondItem="agu-QE-mXe" secondAttribute="bottom" constant="50" id="je3-mD-91N"/>
+                            <constraint firstItem="nMW-Dk-dA8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mFa-QS-LTc"/>
+                            <constraint firstItem="Bgs-4p-eeV" firstAttribute="top" secondItem="xAh-8N-Lcy" secondAttribute="bottom" constant="5" id="qDW-ac-JY5"/>
+                            <constraint firstItem="ueU-pC-iEc" firstAttribute="top" secondItem="nMW-Dk-dA8" secondAttribute="bottom" constant="60" id="wPX-Tp-V3C"/>
+                            <constraint firstItem="ueU-pC-iEc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="yDH-Oq-Rgc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
