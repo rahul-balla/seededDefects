@@ -14,6 +14,7 @@
 		E6337B0822037A000070A9FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6337B0622037A000070A9FF /* LaunchScreen.storyboard */; };
 		E6337B1322037A000070A9FF /* TindentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337B1222037A000070A9FF /* TindentsTests.swift */; };
 		E6337B1E22037A000070A9FF /* TindentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337B1D22037A000070A9FF /* TindentsUITests.swift */; };
+		E6D51CB622079780005D77C7 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D51CB522079780005D77C7 /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		E6337B1922037A000070A9FF /* TindentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TindentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6337B1D22037A000070A9FF /* TindentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindentsUITests.swift; sourceTree = "<group>"; };
 		E6337B1F22037A000070A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6D51CB522079780005D77C7 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				E6337B0422037A000070A9FF /* Assets.xcassets */,
 				E6337B0622037A000070A9FF /* LaunchScreen.storyboard */,
 				E6337B0922037A000070A9FF /* Info.plist */,
+				E6D51CB522079780005D77C7 /* MainTabController.swift */,
 			);
 			path = Tindents;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				E6337B00220379FD0070A9FF /* ViewController.swift in Sources */,
 				E6337AFE220379FD0070A9FF /* AppDelegate.swift in Sources */,
+				E6D51CB622079780005D77C7 /* MainTabController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

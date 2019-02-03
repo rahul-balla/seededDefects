@@ -15,6 +15,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBAction func onLoginPressed(_ sender: Any) {
+        
+        let tabBarControl = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        
+        present(tabBarControl, animated: true, completion: nil)
+    }
+    
 }
 
