@@ -56,6 +56,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YRE-mJ-Yp2"/>
+                                    <segue destination="fZ8-Yk-EDT" kind="presentation" id="5tu-lZ-ZOq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -133,6 +134,7 @@
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nxZ-Q8-RjC"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="8pQ-pe-E5Z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgO-yw-R1z">
