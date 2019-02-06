@@ -159,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBS-ZD-xbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1114.4000000000001" y="868.51574212893559"/>
+            <point key="canvasLocation" x="-1892" y="894"/>
         </scene>
         <!--Profile-->
         <scene sceneID="O77-A8-U81">
@@ -175,17 +175,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaV-f6-lkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="1625"/>
+            <point key="canvasLocation" x="-335" y="1683"/>
         </scene>
         <!--Feed-->
         <scene sceneID="h5T-b9-UBx">
             <objects>
-                <viewController title="Feed" id="3zr-cu-6At" sceneMemberID="viewController">
+                <viewController title="Feed" id="3zr-cu-6At" customClass="SwipingViewController" customModule="Tindents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="to5-Tq-qEf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQX-BS-PXA">
+                                <rect key="frame" x="168" y="40" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetPicture:" destination="3zr-cu-6At" eventType="touchUpInside" id="vWT-8P-orT"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2WK-bn-UpK" userLabel="card">
+                                <rect key="frame" x="67" y="156" width="240" height="354"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1778310746" green="0.23493759619999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Vbk-0B-hEH" appends="YES" id="mxk-mZ-XTC"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KQX-BS-PXA" firstAttribute="centerX" secondItem="to5-Tq-qEf" secondAttribute="centerX" id="df5-ak-b1o"/>
+                            <constraint firstItem="KQX-BS-PXA" firstAttribute="top" secondItem="to5-Tq-qEf" secondAttribute="top" constant="40" id="mhd-SK-g8S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fib-lq-rQp"/>
+                    </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="5F3-HY-8DK"/>
+                    <connections>
+                        <outlet property="card" destination="2WK-bn-UpK" id="gE1-y7-DlN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8V3-sQ-vwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Vbk-0B-hEH">
+                    <connections>
+                        <action selector="onSwipe:" destination="3zr-cu-6At" id="bv9-yI-6ib"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="614" y="869"/>
+            <point key="canvasLocation" x="613.60000000000002" y="868.51574212893559"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ZLe-mA-sJf">
