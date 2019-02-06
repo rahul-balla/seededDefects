@@ -18,6 +18,7 @@
 		E6337B0822037A000070A9FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6337B0622037A000070A9FF /* LaunchScreen.storyboard */; };
 		E6337B1322037A000070A9FF /* TindentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337B1222037A000070A9FF /* TindentsTests.swift */; };
 		E6337B1E22037A000070A9FF /* TindentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337B1D22037A000070A9FF /* TindentsUITests.swift */; };
+		E63ECB4E22087FBC00465723 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63ECB4D22087FBC00465723 /* SwipingViewController.swift */; };
 		E6D51CB622079780005D77C7 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D51CB522079780005D77C7 /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		E6337B1922037A000070A9FF /* TindentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TindentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6337B1D22037A000070A9FF /* TindentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TindentsUITests.swift; sourceTree = "<group>"; };
 		E6337B1F22037A000070A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E63ECB4D22087FBC00465723 /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		E6D51CB522079780005D77C7 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				6D57A3412207B50300EB22FD /* matchesTableViewController.swift */,
 				6D57A3452207B54500EB22FD /* matchesTableViewCell.swift */,
 				7BCAF0C02207BD3C00EE003D /* signupViewController.swift */,
+				E63ECB4D22087FBC00465723 /* SwipingViewController.swift */,
 			);
 			path = Tindents;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				6D57A3442207B51600EB22FD /* profileViewController.swift in Sources */,
 				E6D51CB622079780005D77C7 /* MainTabController.swift in Sources */,
 				7BCAF0C12207BD3C00EE003D /* signupViewController.swift in Sources */,
+				E63ECB4E22087FBC00465723 /* SwipingViewController.swift in Sources */,
 				6D57A3462207B54500EB22FD /* matchesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RahulBalla.Tindents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RahulBalla.Tindents2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,7 +481,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RahulBalla.Tindents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RahulBalla.Tindents2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
