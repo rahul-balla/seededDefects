@@ -50,11 +50,14 @@ class users(UserMixin, db.Model):
 
 
 ################################################ ROUTES ########################################################
-@app.route("/createAccount", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def createAccount():
-    user = users(username = "rahul", password = "balla", email = "rahul@gmail.com", account_type = "student", fullName = "rahul balla")
-    db.session.add(user)
-    db.session.commit()
+	content = request.json
+	print(content)
+
+    	user = users(username = "rahul", password = "balla", email = "rahul@gmail.com", account_type = "student", fullName = "rahul balla")
+    	db.session.add(user)
+    	db.session.commit()
     
     
-    print("accout has been added to database")
+    	print("accout has been added to database")
