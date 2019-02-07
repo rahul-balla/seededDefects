@@ -15,3 +15,11 @@ from oauthlib.oauth2.rfc6749.errors import InvalidClientIdError
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 import re
 from sqlalchemy import func
+
+app = Flask(__name__)
+
+
+@app.route("/", methods=['GET', 'POST'])
+def createAccount():
+    user = users(username = "rahul", password = "balla", email = "rahul@gmail.com", accountType = "student", fullName = "rahul balla")
+    print("accout has been added to database")

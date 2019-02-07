@@ -33,7 +33,7 @@ app.secret_key = "tindents"
 def load_user(user_id):
     return users.query.get(int(user_id))
 
-
+###################################################### TABLES ##############################################
 class users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable = False)
     username = db.Column(db.String(50), nullable=False)
@@ -45,3 +45,16 @@ class users(UserMixin, db.Model):
     def __repr__(self):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
 
+
+
+
+
+################################################ ROUTES ########################################################
+@app.route("/createAccount", methods=['GET', 'POST'])
+def createAccount():
+    user = users(username = "rahul", password = "balla", email = "rahul@gmail.com", account_type = "student", fullName = "rahul balla")
+    db.session.add(user)
+    db.session.commit()
+    
+    
+    print("accout has been added to database")
