@@ -16,6 +16,7 @@ class SwipingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
         self.card.center = self.view.center
         card.alpha = 1
         divisor = view.frame.width / 2 / 0.61
