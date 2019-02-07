@@ -136,6 +136,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
+                                    <action selector="createBtnPressed:" destination="V7I-c4-VB4" eventType="touchUpInside" id="P45-0f-iE6"/>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IN0-fj-QhW"/>
                                 </connections>
                             </button>
@@ -175,6 +176,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ye7-AG-Pu6"/>
                     </view>
+                    <connections>
+                        <outlet property="copyPassLbl" destination="Zxb-Xk-wgJ" id="Fy5-D9-SYJ"/>
+                        <outlet property="emailLbl" destination="acH-i5-Nr2" id="3mh-EX-fvD"/>
+                        <outlet property="nameLbl" destination="SXP-uQ-XqX" id="wWF-RX-Epw"/>
+                        <outlet property="passLbl" destination="pXg-ja-zjh" id="mJQ-fh-XWR"/>
+                        <outlet property="userLbl" destination="oQY-c9-2Ah" id="KOv-Ce-H96"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBS-ZD-xbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

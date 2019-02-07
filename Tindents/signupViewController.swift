@@ -10,14 +10,24 @@ import UIKit
 
 class signupViewController: UIViewController {
 
+    @IBOutlet var emailLbl: UITextField!
+    @IBOutlet var userLbl: UITextField!
+    @IBOutlet var nameLbl: UITextField!
+    @IBOutlet var passLbl: UITextField!
+    @IBOutlet var copyPassLbl: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ 
+        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func createBtnPressed(_ sender: Any) {
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/")! as URL)
         var session = URLSession.shared
         request.httpMethod = "POST"
         
-        var params = ["username":"jameson", "password":"password"] as Dictionary<String, String>
+        var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
@@ -34,7 +44,7 @@ class signupViewController: UIViewController {
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             print("Body: \(strData)")
             var err: NSError?
-        
+            
             do {
                 var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
                 
@@ -44,36 +54,12 @@ class signupViewController: UIViewController {
             } catch {
                 print("???")
             }
-
-            /*
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-            if(err != nil) {
-                println(err!.localizedDescription)
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
-            }
-            else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-                if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
-                    println("Succes: \(success)")
-                }
-                else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println("Error could not parse JSON: \(jsonStr)")
-                }
-            }*/
+            
         })
         
         task.resume()
- 
-        // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
