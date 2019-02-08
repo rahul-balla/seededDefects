@@ -12,6 +12,7 @@ class SwipingViewController: UIViewController {
 
     @IBOutlet weak var card: UIView!
     var divisor: CGFloat!
+    var tutor: Tutor? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ class SwipingViewController: UIViewController {
         self.card.center = self.view.center
         card.alpha = 1
         divisor = view.frame.width / 2 / 0.61
+        
+//        tutor = ["name": "no name", "picture": UIImage(named: "ryan"), "subjects": ["EAPS", "CS"], "tutorEmail": "fucker@fucku.com", "rating": "4.5/5", "description": "fuck u"]
+        
+        
 
         // Do any additional setup after loading the view.
     }
