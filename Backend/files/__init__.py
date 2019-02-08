@@ -55,7 +55,7 @@ def createAccount():
 	content = request.json
 	print(content)
 
-    	user = users(username = "rahul", password = "balla", email = "rahul@gmail.com", account_type = "student", fullName = "rahul balla")
+    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = "student", fullName = content["name"])
     	db.session.add(user)
     	db.session.commit()
     
