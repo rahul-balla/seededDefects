@@ -53,7 +53,6 @@ class users(UserMixin, db.Model):
 @app.route("/createAccount", methods=['GET', 'POST'])
 def createAccount():
 	content = request.json
-	print(content)
 
     	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = "student", fullName = content["name"])
     	db.session.add(user)
@@ -63,6 +62,19 @@ def createAccount():
     	print("accout has been added to database")
 
     	return jsonify({'success' : 1})
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    content = request.json
+        
+    user = users.query.filter_by(email=form.content["email"]).first()
+    if user.password == content["password"]:
+        return jsonify({'success' : 1})
+    else:
+        return jsonify({'success' : 0})
+
+
+
 
 
 
