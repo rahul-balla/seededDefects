@@ -42,13 +42,20 @@ class signupViewController: UIViewController {
             print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             print("Body: \(strData)")
+            //print("Value: \(strData["message"])")
             var err: NSError?
             
             do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
+                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
                 
-                var success = json as? Int
-                print("Succes: \(success)")
+                var success = json?["success"] as? Int
+                if success == 1 {
+                    print("Succes: \(success)")
+                    
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "createSuccess", sender: self)
+                    }
+                }
                 
             } catch {
                 print("???")
@@ -59,14 +66,15 @@ class signupViewController: UIViewController {
         task.resume()
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        //let viewController = segue.destination
     }
-    */
+ 
 
 }

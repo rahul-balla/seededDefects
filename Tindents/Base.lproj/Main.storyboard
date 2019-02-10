@@ -136,7 +136,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
-                                    <action selector="createBtnPressed:" destination="V7I-c4-VB4" eventType="touchUpInside" id="P45-0f-iE6"/>
+                                    <action selector="createBtnPressed:" destination="V7I-c4-VB4" eventType="touchUpInside" id="1pJ-zC-Eb3"/>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IN0-fj-QhW"/>
                                 </connections>
                             </button>
@@ -182,6 +182,7 @@
                         <outlet property="nameLbl" destination="SXP-uQ-XqX" id="wWF-RX-Epw"/>
                         <outlet property="passLbl" destination="pXg-ja-zjh" id="mJQ-fh-XWR"/>
                         <outlet property="userLbl" destination="oQY-c9-2Ah" id="KOv-Ce-H96"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="createSuccess" id="I6n-zO-PAd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBS-ZD-xbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -670,4 +671,7 @@
     <resources>
         <image name="settings" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="I6n-zO-PAd"/>
+    </inferredMetricsTieBreakers>
 </document>

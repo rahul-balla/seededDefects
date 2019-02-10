@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Index, func
 from flask_bootstrap import Bootstrap
@@ -61,3 +61,8 @@ def createAccount():
     
     
     	print("accout has been added to database")
+
+    	return jsonify({'success' : 1})
+
+
+
