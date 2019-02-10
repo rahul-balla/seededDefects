@@ -23,7 +23,7 @@ class signupViewController: UIViewController {
     }
     
     @IBAction func createBtnPressed(_ sender: Any) {
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/")! as URL)
+        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
         var session = URLSession.shared
         request.httpMethod = "POST"
         
@@ -31,7 +31,6 @@ class signupViewController: UIViewController {
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-            
             print(request.httpBody)
         } catch {
             print("???")

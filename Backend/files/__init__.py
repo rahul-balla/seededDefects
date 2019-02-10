@@ -50,7 +50,7 @@ class users(UserMixin, db.Model):
 
 
 ################################################ ROUTES ########################################################
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/createAccount", methods=['GET', 'POST'])
 def createAccount():
 	content = request.json
 	print(content)
