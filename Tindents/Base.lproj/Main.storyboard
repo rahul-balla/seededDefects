@@ -56,7 +56,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YRE-mJ-Yp2"/>
-                                    <segue destination="fZ8-Yk-EDT" kind="presentation" id="5tu-lZ-ZOq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -79,6 +78,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTxt" destination="ueU-pC-iEc" id="uYB-vQ-669"/>
+                        <outlet property="passTxt" destination="agu-QE-mXe" id="XRg-dJ-zpC"/>
+                        <segue destination="fZ8-Yk-EDT" kind="presentation" identifier="loginSuccess" id="dOU-PC-L2u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

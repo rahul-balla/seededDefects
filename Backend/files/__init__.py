@@ -67,7 +67,7 @@ def createAccount():
 def login():
     content = request.json
         
-    user = users.query.filter_by(email=form.content["email"]).first()
+    user = users.query.filter_by(email=content["email"]).first()
     if user.password == content["password"]:
         return jsonify({'success' : 1})
     else:
