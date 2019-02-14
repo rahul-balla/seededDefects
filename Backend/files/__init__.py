@@ -27,6 +27,8 @@ login_manager.init_app(app)
 login_manager.login_view = '/'
 
 
+userid = 0
+
 app.secret_key = "tindents"
 
 @login_manager.user_loader
@@ -69,6 +71,8 @@ def login():
         
     user = users.query.filter_by(email=content["email"]).first()
     if user.password == content["password"]:
+    	global userid
+    	userid = user.id
         return jsonify({'success' : 1})
     else:
         return jsonify({'success' : 0})
@@ -80,4 +84,6 @@ def login():
 def profile():
     user = users.query.filter_by(id = userid).first()
 
-    return jsonify(data)
+
+
+    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName})

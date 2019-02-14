@@ -10,6 +10,7 @@
 		6D57A3422207B50300EB22FD /* matchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D57A3412207B50300EB22FD /* matchesTableViewController.swift */; };
 		6D57A3442207B51600EB22FD /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D57A3432207B51600EB22FD /* profileViewController.swift */; };
 		6D57A3462207B54500EB22FD /* matchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D57A3452207B54500EB22FD /* matchesTableViewCell.swift */; };
+		6D7113C62215010700669AEB /* mainProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7113C52215010700669AEB /* mainProfileViewController.swift */; };
 		7BCAF0C12207BD3C00EE003D /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAF0C02207BD3C00EE003D /* signupViewController.swift */; };
 		91E34061220BBEFF000E2F55 /* settingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E34060220BBEFF000E2F55 /* settingsController.swift */; };
 		E6337AFE220379FD0070A9FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337AFD220379FD0070A9FF /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		6D57A3412207B50300EB22FD /* matchesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matchesTableViewController.swift; sourceTree = "<group>"; };
 		6D57A3432207B51600EB22FD /* profileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewController.swift; sourceTree = "<group>"; };
 		6D57A3452207B54500EB22FD /* matchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matchesTableViewCell.swift; sourceTree = "<group>"; };
+		6D7113C52215010700669AEB /* mainProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainProfileViewController.swift; sourceTree = "<group>"; };
 		7BCAF0C02207BD3C00EE003D /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		91E34060220BBEFF000E2F55 /* settingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsController.swift; sourceTree = "<group>"; };
 		E6337AFA220379FD0070A9FF /* Tindents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tindents.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				E6D51CB522079780005D77C7 /* MainTabController.swift */,
 				91E34060220BBEFF000E2F55 /* settingsController.swift */,
 				6D57A3432207B51600EB22FD /* profileViewController.swift */,
+				6D7113C52215010700669AEB /* mainProfileViewController.swift */,
 				6D57A3412207B50300EB22FD /* matchesTableViewController.swift */,
 				6D57A3452207B54500EB22FD /* matchesTableViewCell.swift */,
 				7BCAF0C02207BD3C00EE003D /* signupViewController.swift */,
@@ -282,6 +285,7 @@
 				6D57A3422207B50300EB22FD /* matchesTableViewController.swift in Sources */,
 				6D57A3442207B51600EB22FD /* profileViewController.swift in Sources */,
 				E6D51CB622079780005D77C7 /* MainTabController.swift in Sources */,
+				6D7113C62215010700669AEB /* mainProfileViewController.swift in Sources */,
 				91E34061220BBEFF000E2F55 /* settingsController.swift in Sources */,
 				7BCAF0C12207BD3C00EE003D /* signupViewController.swift in Sources */,
 				E63ECB4E22087FBC00465723 /* SwipingViewController.swift in Sources */,
