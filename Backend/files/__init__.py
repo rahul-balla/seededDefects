@@ -76,5 +76,8 @@ def login():
 
 
 
+@app.route("/profile", methods=['GET', 'POST'])
+def profile():
+    user = users.query.filter_by(id = userid).first()
 
-
+    return jsonify(data)
