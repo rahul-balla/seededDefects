@@ -224,7 +224,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EO2-Ui-JVt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="X9a-na-WAh"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" selectedImage="Profile" id="X9a-na-WAh"/>
                     <connections>
                         <outlet property="fullNameLbl" destination="DNZ-mA-5nu" id="OXG-XV-r4v"/>
                         <outlet property="usernameLbl" destination="U2S-IO-wk4" id="IgO-R6-KGo"/>
@@ -266,7 +266,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fib-lq-rQp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" id="5F3-HY-8DK"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="Feed" selectedImage="Feed" id="5F3-HY-8DK"/>
                     <connections>
                         <outlet property="card" destination="2WK-bn-UpK" id="gE1-y7-DlN"/>
                     </connections>
@@ -549,7 +549,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Msx-Fm-Cgd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="3D0-Ey-b2d"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" landscapeImage="Settings" largeContentSizeImage="Settings" selectedImage="Settings" id="3D0-Ey-b2d">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mT5-vs-H3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -679,7 +681,7 @@
         <scene sceneID="eXQ-v9-Vyh">
             <objects>
                 <navigationController id="Kc0-Tz-6QU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Matches" id="hIG-pG-cWF"/>
+                    <tabBarItem key="tabBarItem" title="Matches" image="Matches" selectedImage="Matches" id="hIG-pG-cWF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XLA-2E-z5G">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -698,7 +700,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="settings" width="16" height="16"/>
+        <image name="Feed" width="25" height="25"/>
+        <image name="Matches" width="25" height="25"/>
+        <image name="Profile" width="25" height="25"/>
+        <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="I6n-zO-PAd"/>
