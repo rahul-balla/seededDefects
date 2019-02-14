@@ -201,11 +201,35 @@
                                     <outletCollection property="gestureRecognizers" destination="Vbk-0B-hEH" appends="YES" id="mxk-mZ-XTC"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y59-fq-eXM">
+                                <rect key="frame" x="30" y="536" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subjects:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9s-31-ouu">
+                                <rect key="frame" x="30" y="588" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaN-i2-TVE">
+                                <rect key="frame" x="30" y="562" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="110" id="3Qa-Rj-xV1"/>
+                            <constraint firstItem="B9s-31-ouu" firstAttribute="top" secondItem="oaN-i2-TVE" secondAttribute="bottom" constant="5" id="4qH-5F-sBm"/>
+                            <constraint firstItem="oaN-i2-TVE" firstAttribute="leading" secondItem="y59-fq-eXM" secondAttribute="leading" id="FKf-UT-nQe"/>
+                            <constraint firstItem="oaN-i2-TVE" firstAttribute="top" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="5" id="M2K-v2-fKb"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="centerX" secondItem="to5-Tq-qEf" secondAttribute="centerX" id="df5-ak-b1o"/>
+                            <constraint firstItem="y59-fq-eXM" firstAttribute="leading" secondItem="to5-Tq-qEf" secondAttribute="leading" constant="30" id="gcb-GE-IwT"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="top" secondItem="to5-Tq-qEf" secondAttribute="top" constant="40" id="mhd-SK-g8S"/>
+                            <constraint firstItem="B9s-31-ouu" firstAttribute="leading" secondItem="oaN-i2-TVE" secondAttribute="leading" id="zbj-eS-qFA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fib-lq-rQp"/>
                     </view>
