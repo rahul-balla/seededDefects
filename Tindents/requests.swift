@@ -13,8 +13,8 @@ class requests {
     
     func loginRequest(email:String, password:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/login")! as URL)
-        var session = URLSession.shared
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/login")! as URL)
+        let session = URLSession.shared
         request.httpMethod = "POST"
         
         var params = ["email":email, "password":password] as! Dictionary<String, String>
@@ -29,7 +29,7 @@ class requests {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error in
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error in
             //print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("Body: \(strData)")
@@ -47,7 +47,7 @@ class requests {
             }
             
             do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
                 completionBlock(json)
                 
             } catch {
@@ -62,8 +62,8 @@ class requests {
     
     func signupRequest(email:String, username:String, password:String, name:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
-        var session = URLSession.shared
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
+        let session = URLSession.shared
         request.httpMethod = "POST"
         
         var params = ["email":email, "username":username, "password":password, "name":name] as! Dictionary<String, String>
@@ -77,7 +77,7 @@ class requests {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             //print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("Body: \(strData)")
@@ -95,7 +95,7 @@ class requests {
             }
             
             do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
                 completionBlock(json)
                 
             } catch {
@@ -109,8 +109,8 @@ class requests {
     
     func updateSettingsRequest(dict:Dictionary<String,Int>, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/settings")! as URL)
-        var session = URLSession.shared
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/settings")! as URL)
+        let session = URLSession.shared
         request.httpMethod = "POST"
         
         do {
@@ -122,7 +122,7 @@ class requests {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             //print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("Body: \(strData)")
@@ -141,7 +141,7 @@ class requests {
             }
             
             do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
                 completionBlock(json)
                 
             } catch {
