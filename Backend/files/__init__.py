@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Index, func
 from flask_bootstrap import Bootstrap
@@ -27,13 +27,15 @@ login_manager.init_app(app)
 login_manager.login_view = '/'
 
 
+userid = 0
+
 app.secret_key = "tindents"
 
 @login_manager.user_loader
 def load_user(user_id):
     return users.query.get(int(user_id))
 
-
+###################################################### TABLES ##############################################
 class users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable = False)
     username = db.Column(db.String(50), nullable=False)
@@ -45,3 +47,43 @@ class users(UserMixin, db.Model):
     def __repr__(self):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
 
+
+
+
+
+################################################ ROUTES ########################################################
+@app.route("/createAccount", methods=['GET', 'POST'])
+def createAccount():
+	content = request.json
+
+    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = "student", fullName = content["name"])
+    	db.session.add(user)
+    	db.session.commit()
+    
+    
+    	print("accout has been added to database")
+
+    	return jsonify({'success' : 1})
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    content = request.json
+        
+    user = users.query.filter_by(email=content["email"]).first()
+    if user.password == content["password"]:
+    	global userid
+    	userid = user.id
+        return jsonify({'success' : 1})
+    else:
+        return jsonify({'success' : 0})
+
+
+
+
+@app.route("/profile", methods=['GET', 'POST'])
+def profile():
+    user = users.query.filter_by(id = userid).first()
+
+
+
+    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName})

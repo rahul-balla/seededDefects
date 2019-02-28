@@ -15,3 +15,7 @@ from oauthlib.oauth2.rfc6749.errors import InvalidClientIdError
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 import re
 from sqlalchemy import func
+
+app = Flask(__name__)
+
+

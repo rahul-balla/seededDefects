@@ -9,16 +9,16 @@
 import UIKit
 
 class SwipingViewController: UIViewController {
-
-//    var name: String!
-//    var subjects: [String]!
-//    var tutorEmail: String!
-//    var rating: String?
-//    var picture: UIImage?
-//    var description: String?
-//
-//
     
+    //    var name: String!
+    //    var subjects: [String]!
+    //    var tutorEmail: String!
+    //    var rating: String?
+    //    var picture: UIImage?
+    //    var description: String?
+    //
+    //
+
     @IBOutlet weak var card: UIView!
     var i = 0
     var divisor: CGFloat!
@@ -49,8 +49,9 @@ class SwipingViewController: UIViewController {
         "picture" : UIImage(named: "willSmith")!
     ]
 
+    
     var tutors: [Tutor] = []
-//        = Tutor(dictionary: dictionary1)
+    //        = Tutor(dictionary: dictionary1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,15 +73,13 @@ class SwipingViewController: UIViewController {
         self.tutors.append(tutor1)
         self.tutors.append(tutor2)
         self.tutors.append(tutor3)
-        
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func onSwipe(_ sender: UIPanGestureRecognizer) {
-        
         if i < tutors.count - 1 {
-        
+            
             let card = sender.view!
             let translation = sender.translation(in: view)
             let xFromCenter = card.center.x - view.center.x
@@ -101,7 +100,6 @@ class SwipingViewController: UIViewController {
                         self.card.center = self.view.center
                         self.card.transform = .identity
                         card.alpha = 1
-//                        self.i = self.i + 1
                         card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
                     }
                     print(i)
@@ -147,13 +145,13 @@ class SwipingViewController: UIViewController {
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
