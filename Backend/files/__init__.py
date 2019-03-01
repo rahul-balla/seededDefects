@@ -97,6 +97,7 @@ def profile():
 # For checking whether there a student has any available matches: 
 # SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(userid) AND student_swipe=1 AND tutor_swipe=1;
 #
+#
 #For checking whether a match exists (on swipe request)
 #
 #SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(sid) AND tutor_id=tid
@@ -119,11 +120,13 @@ def profile():
 #On check for matches:
 #
 # if(check_matches.exists()){
-#   send list of responses ordered first-last. 
+#   send list of tutor IDs ordered first-last.
+#   make an arraylist to return with all matching tutor entries 
  #  }
 # else{
 #       do nothing
 #    }
+#
 #
 #
 # On swiping:
