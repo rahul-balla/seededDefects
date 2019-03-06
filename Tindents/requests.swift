@@ -125,7 +125,7 @@ class requests {
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             //print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            //print("Body: \(strData)")
+            print("Body: \(strData)")
             //print("Value: \(strData["message"])")
             
             if let error = error {

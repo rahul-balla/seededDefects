@@ -699,6 +699,14 @@
                                     <action selector="medSwitchWithSender:" destination="ROP-YX-6FQ" eventType="valueChanged" id="emy-gZ-oca"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DED-1J-EW1">
+                                <rect key="frame" x="232" y="69" width="127" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="updateBtn:" destination="ROP-YX-6FQ" eventType="touchUpInside" id="lbj-R1-5dh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -715,7 +723,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mT5-vs-H3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="-778"/>
+            <point key="canvasLocation" x="613.60000000000002" y="-778.56071964017997"/>
         </scene>
         <!--Main Tab Controller-->
         <scene sceneID="UHj-cO-FUX">
