@@ -66,6 +66,12 @@ class SwipingViewController: UIViewController {
         card.alpha = 1
         divisor = view.frame.width / 2 / 0.61
         
+        requests().feedRequest { (response) in
+            if let response = response {
+                print(response)
+            }
+        }
+        
         let tutor1 = Tutor(dictionary: firstName)
         let tutor2 = Tutor(dictionary: secondName)
         let tutor3 = Tutor(dictionary: thirdName)
