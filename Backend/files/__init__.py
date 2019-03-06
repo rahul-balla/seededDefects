@@ -87,3 +87,62 @@ def profile():
 
 
     return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName})
+
+
+@app.route("/settings", methods=['GET', 'POST'])
+def settings():
+    content = request.json
+
+    db.engine.execute("UPDATE users SET settings = %s WHERE id = %s", content, userid)
+    
+
+
+
+
+# SQL Queries
+# 
+# For checking whether there a student has any available matches: 
+# SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(userid) AND student_swipe=1 AND tutor_swipe=1;
+#
+#
+#For checking whether a match exists (on swipe request)
+#
+#SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(sid) AND tutor_id=tid
+#
+#For inserting a match into the Matches table (if a match did not exist)
+#
+# 
+# INSERT INTO `casinoroyale`.`matches` (id,student_id,tutor_id,student_swipe,tutor_swipe)
+# VALUES (Match ID,Student ID, Tutor ID,1,0);
+# (swap the 1 and 0 if the tutor is the one who swiped right)
+#
+#
+# For updating an existing match into the matches table (if the match already does exist)
+#
+# Assuming student swipe, if tutor swipe change the SET statement to tutor_swipe
+# UPDATE `casinoroyale`.`matches` SET student_swipe =1 WHERE student_id=sid AND tutor_id=tid;
+#
+#Prospective command flow (pseudo-code)
+#
+#On check for matches:
+#
+# if(check_matches.exists()){
+#   send list of tutor IDs ordered first-last.
+#   make an arraylist to return with all matching tutor entries 
+ #  }
+# else{
+#       do nothing
+#    }
+#
+#
+#
+# On swiping:
+# check type of originating account (student or tutor)
+# Assign student_id and tutor_id (sid and tid)
+# if(match-exists){
+#       run update;
+#   }
+# else{
+#       run create_match;  
+# }
+#
