@@ -93,7 +93,9 @@ def profile():
 def settings():
     content = request.json
 
-    db.engine.execute("UPDATE users SET settings = %s WHERE id = %s", content, userid)
+    db.engine.execute("UPDATE users SET settings = %s WHERE id = %s", str(content), userid)
+
+    return jsonify({'success' : 1})
     
 
 
