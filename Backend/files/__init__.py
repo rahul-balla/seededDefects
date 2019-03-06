@@ -98,6 +98,19 @@ def settings():
     return jsonify({'success' : 1})
     
 
+@app.route("/feed", methods=['GET', 'POST'])
+def feed():
+    feed = users.query.filter_by(account_type = "student")
+
+    userDict = []
+
+    for x in feed:
+        userDict.append(x)
+    
+
+    return jsonify(userDict)
+
+
 
 
 
