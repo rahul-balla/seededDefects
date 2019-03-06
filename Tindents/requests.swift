@@ -166,11 +166,12 @@ class requests {
         } catch {
             print("???")
         }
-        
+ 
+ 
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         */
-        
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+ 
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             //print("Response: \(response)")
             //var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
@@ -179,12 +180,14 @@ class requests {
             
             if let error = error {
                 // handle the transport error
+                print("transport error")
                 completionBlock(nil)
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 // handle the server error
+                print("server error")
                 completionBlock(nil)
                 return
             }
@@ -194,6 +197,7 @@ class requests {
                 completionBlock(json)
                 
             } catch {
+                print("json error")
                 completionBlock(nil)
             }
             
