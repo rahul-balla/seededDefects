@@ -89,6 +89,13 @@ def profile():
     return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName})
 
 
+@app.route("/settings", methods=['GET', 'POST'])
+def settings():
+    content = request.json
+
+    db.engine.execute("UPDATE users SET settings = %s WHERE id = %s", content, userid)
+    
+
 
 
 
