@@ -12,6 +12,7 @@ import UIKit
 class Tutor {
     
     var name: String!
+    var age: Int!
     var subjects: [String]!
     var tutorEmail: String!
     var rating: String?
@@ -20,6 +21,7 @@ class Tutor {
     
     init (dictionary: [String: Any]) {
         name = dictionary["name"] as? String ?? "Creepy Tutor"
+        age = dictionary["age"] as? Int ?? nil
         subjects = dictionary["subjects"] as? [String] ?? []
         tutorEmail = dictionary["tutorEmail"] as? String ?? "No email"
         rating = dictionary["rating"] as? String ?? "No Rating"
