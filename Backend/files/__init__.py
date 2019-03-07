@@ -105,8 +105,9 @@ def feed():
     userDict = []
 
     for x in feed:
-        userDict.append(x.username)
-    # print("tgfgyhujbjhbujhbvhygf",jsonify(userDict))
+        dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
+
+        userDict.append(dd)
 
     return jsonify({'feed': userDict})
 
