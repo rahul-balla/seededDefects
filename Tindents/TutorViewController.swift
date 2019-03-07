@@ -11,11 +11,17 @@ import UIKit
 
 
 class TutorViewController: UIViewController {
-   
-    @IBOutlet weak var tutorDescription: UITextField!
     var frameRect: CGRect!
     
+    @IBOutlet weak var tutorEmail: UITextField!
+    @IBOutlet weak var tutorDescription: UITextField!
+    @IBOutlet weak var fullName: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var retypePassword: UITextField!
+    @IBOutlet weak var subjects: UITextField!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         frameRect = tutorDescription.frame
         frameRect.size.height = 100
@@ -23,7 +29,62 @@ class TutorViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func onCreateTutor(_ sender: Any) {
+        
+        if (tutorEmail.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (fullName.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Full Name", message: "Please enter a non-empty name", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (password.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Password", message: "Please enter a non-empty password", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (retypePassword.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Password", message: "Please retype your password", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (tutorDescription.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Description", message: "Please enter a non-empty description", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (subjects.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Subjects", message: "Please enter the subjects you can tutor", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (password.text != retypePassword.text) {
+            
+            let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter the same password in both fields", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

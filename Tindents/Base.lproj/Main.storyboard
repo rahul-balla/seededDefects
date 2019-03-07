@@ -80,6 +80,7 @@
                                 <state key="normal" title="Create Tutor Account"/>
                                 <connections>
                                     <action selector="createBtnPressed:" destination="V7I-c4-VB4" eventType="touchUpInside" id="x4D-rI-Bl6"/>
+                                    <action selector="onCreateTutor:" destination="jo0-Ui-ggY" eventType="touchUpInside" id="veu-Sn-6kW"/>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LNq-IE-nGp"/>
                                 </connections>
                             </button>
@@ -121,7 +122,12 @@
                         <viewLayoutGuide key="safeArea" id="BED-aE-4ye"/>
                     </view>
                     <connections>
-                        <outlet property="tutorDescription" destination="cJe-Vt-YHL" id="UPi-2N-t3D"/>
+                        <outlet property="fullName" destination="8qK-eS-6Em" id="uxS-cP-fJm"/>
+                        <outlet property="password" destination="vnv-id-V3A" id="XEC-I5-HoL"/>
+                        <outlet property="retypePassword" destination="HzN-v2-iuv" id="i2K-AI-Vx2"/>
+                        <outlet property="subjects" destination="7mK-T9-eSZ" id="OLk-Zj-L0c"/>
+                        <outlet property="tutorDescription" destination="cJe-Vt-YHL" id="55I-vR-xOk"/>
+                        <outlet property="tutorEmail" destination="HSe-aZ-oBh" id="yHl-56-Jif"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bim-Ga-Pmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -189,7 +195,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Register as Tutor"/>
                                 <connections>
-                                    <segue destination="jo0-Ui-ggY" kind="show" id="6en-9V-RJQ"/>
+                                    <segue destination="jo0-Ui-ggY" kind="show" id="ZW5-Uh-NwD"/>
                                 </connections>
                             </button>
                         </subviews>
