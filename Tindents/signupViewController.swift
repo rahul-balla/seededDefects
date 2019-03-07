@@ -23,47 +23,92 @@ class signupViewController: UIViewController {
     }
     
     @IBAction func createBtnPressed(_ sender: Any) {
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
-        var session = URLSession.shared
-        request.httpMethod = "POST"
         
-        var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
-        
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-            print(request.httpBody)
-        } catch {
-            print("???")
-        }
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-            print("Response: \(response)")
-            var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("Body: \(strData)")
-            //print("Value: \(strData["message"])")
-            var err: NSError?
+        if (emailLbl.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (userLbl.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Username", message: "Please enter a non-empty username", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (nameLbl.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Name", message: "Please enter a non-empty name", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (passLbl.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid password", message: "Please enter a non-empty password", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (copyPassLbl.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid password", message: "Please retype your password", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (passLbl.text != copyPassLbl.text) {
+            
+            let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter same passwords in both fields", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
+            var session = URLSession.shared
+            request.httpMethod = "POST"
+            
+            var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
             
             do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
-                
-                var success = json?["success"] as? Int
-                if success == 1 {
-                    print("Succes: \(success)")
-                    
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "createSuccess", sender: self)
-                    }
-                }
-                
+                try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+                print(request.httpBody)
             } catch {
                 print("???")
             }
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
             
-        })
-        
-        task.resume()
+            var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+                print("Response: \(response)")
+                var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                print("Body: \(strData)")
+                //print("Value: \(strData["message"])")
+                var err: NSError?
+                
+                do {
+                    var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                    
+                    var success = json?["success"] as? Int
+                    if success == 1 {
+                        print("Succes: \(success)")
+                        
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "createSuccess", sender: self)
+                        }
+                    }
+                    
+                } catch {
+                    print("???")
+                }
+                
+            })
+            
+            task.resume()
+        }
     }
     
     
