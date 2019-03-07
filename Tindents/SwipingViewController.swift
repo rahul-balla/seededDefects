@@ -76,7 +76,24 @@ class SwipingViewController: UIViewController {
         requests().feedRequest { (response) in
             if let response = response {
                 //list of users to be added
-                print(response)
+                var user_arr = response["feed"]
+                for user in user_arr as! [AnyObject] {
+                    print("\(user["username"])")
+                    
+                    var oneUser : [String: Any] = [
+                        "name" : user["fullName"],
+                        "age" : 69,
+                        "subjects" : ["STAT", "CS"],
+                        "tutorEmail" : user["email"],
+                        "rating" : "4.5/5",
+                        "description" : "lets have fun",
+                        "picture" : UIImage(named: "Harsha")!,
+                        "userId" : user["userid"]
+                    ]
+                    
+                    let oneTutor = Tutor(dictionary: oneUser)
+                    self.tutors.append(oneTutor)
+                }
             }
         }
         
