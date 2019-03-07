@@ -417,6 +417,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPu-iJ-LK9">
+                                <rect key="frame" x="90" y="536" width="75.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subjects:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9s-31-ouu">
                                 <rect key="frame" x="30" y="588" width="72" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -429,23 +435,44 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AgeNum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaa-PN-ULj">
+                                <rect key="frame" x="75" y="562" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SubjectsArray" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-ti-GU4">
+                                <rect key="frame" x="112" y="588" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="rF9-ti-GU4" firstAttribute="bottom" secondItem="B9s-31-ouu" secondAttribute="bottom" id="0mM-VL-jBg"/>
+                            <constraint firstItem="lPu-iJ-LK9" firstAttribute="bottom" secondItem="y59-fq-eXM" secondAttribute="bottom" id="1kJ-5I-F3N"/>
                             <constraint firstAttribute="bottom" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="110" id="3Qa-Rj-xV1"/>
                             <constraint firstItem="B9s-31-ouu" firstAttribute="top" secondItem="oaN-i2-TVE" secondAttribute="bottom" constant="5" id="4qH-5F-sBm"/>
+                            <constraint firstItem="rF9-ti-GU4" firstAttribute="leading" secondItem="B9s-31-ouu" secondAttribute="trailing" constant="10" id="82r-9C-P0e"/>
                             <constraint firstItem="oaN-i2-TVE" firstAttribute="leading" secondItem="y59-fq-eXM" secondAttribute="leading" id="FKf-UT-nQe"/>
                             <constraint firstItem="oaN-i2-TVE" firstAttribute="top" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="5" id="M2K-v2-fKb"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="centerX" secondItem="to5-Tq-qEf" secondAttribute="centerX" id="df5-ak-b1o"/>
                             <constraint firstItem="y59-fq-eXM" firstAttribute="leading" secondItem="to5-Tq-qEf" secondAttribute="leading" constant="30" id="gcb-GE-IwT"/>
+                            <constraint firstItem="vaa-PN-ULj" firstAttribute="bottom" secondItem="oaN-i2-TVE" secondAttribute="bottom" id="h7W-4W-ovO"/>
+                            <constraint firstItem="lPu-iJ-LK9" firstAttribute="leading" secondItem="y59-fq-eXM" secondAttribute="trailing" constant="10" id="iYX-mf-5ll"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="top" secondItem="to5-Tq-qEf" secondAttribute="top" constant="40" id="mhd-SK-g8S"/>
+                            <constraint firstItem="vaa-PN-ULj" firstAttribute="leading" secondItem="oaN-i2-TVE" secondAttribute="trailing" constant="10" id="rse-7X-PoL"/>
                             <constraint firstItem="B9s-31-ouu" firstAttribute="leading" secondItem="oaN-i2-TVE" secondAttribute="leading" id="zbj-eS-qFA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fib-lq-rQp"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" image="Feed" selectedImage="Feed" id="5F3-HY-8DK"/>
                     <connections>
+                        <outlet property="ageNum" destination="vaa-PN-ULj" id="XtK-hv-GsZ"/>
                         <outlet property="card" destination="2WK-bn-UpK" id="gE1-y7-DlN"/>
+                        <outlet property="nameText" destination="lPu-iJ-LK9" id="AI9-68-7aR"/>
+                        <outlet property="subjectArray" destination="rF9-ti-GU4" id="kgR-IN-XBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8V3-sQ-vwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
