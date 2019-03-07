@@ -20,11 +20,16 @@ class SwipingViewController: UIViewController {
     //
 
     @IBOutlet weak var card: UIView!
+    @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var ageNum: UILabel!
+    @IBOutlet weak var subjectArray: UILabel!
+    
     var i = 0
     var divisor: CGFloat!
     var firstName : [String: Any] = [
         "name" : "Ryan Gosling",
-        "subjects" : ["CS"],
+        "age" : 23,
+        "subjects" : ["CS", "MATH"],
         "tutorEmail" : "hello@hello.com",
         "rating" : "4.5/5",
         "description" : "hello",
@@ -33,7 +38,8 @@ class SwipingViewController: UIViewController {
     
     var secondName : [String: Any] = [
         "name" : "Tom Cruise",
-        "subjects" : ["CS"],
+        "age" : 60,
+        "subjects" : ["PHIL", "CS"],
         "tutorEmail" : "hello@hello.com",
         "rating" : "4.5/5",
         "description" : "hello",
@@ -42,7 +48,8 @@ class SwipingViewController: UIViewController {
     
     var thirdName : [String: Any] = [
         "name" : "Will Smith",
-        "subjects" : ["CS"],
+        "age" : 89,
+        "subjects" : ["STAT", "CS"],
         "tutorEmail" : "hello@hello.com",
         "rating" : "4.5/5",
         "description" : "hello",
@@ -80,6 +87,9 @@ class SwipingViewController: UIViewController {
         self.tutors.append(tutor1)
         self.tutors.append(tutor2)
         self.tutors.append(tutor3)
+        
+        setImageDetails(index: i)
+        i = i + 1
 
         // Do any additional setup after loading the view.
     }
@@ -93,7 +103,8 @@ class SwipingViewController: UIViewController {
             
             card.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
             card.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor)
-            card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
+            
+            setImageDetails(index: i)
             
             if sender.state == .ended {
                 
@@ -107,7 +118,8 @@ class SwipingViewController: UIViewController {
                         self.card.center = self.view.center
                         self.card.transform = .identity
                         card.alpha = 1
-                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
+                        self.setImageDetails(index: self.i)
+//                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
                     }
                     print(i)
                     return
@@ -123,15 +135,11 @@ class SwipingViewController: UIViewController {
                         self.card.transform = .identity
                         card.alpha = 1
                         //                        self.i = self.i + 1
-                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
+                        self.setImageDetails(index: self.i)
+//                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
                     }
                     print(i)
                     return
-                }
-                
-                UIView.animate(withDuration: 0.2) {
-                    card.center = self.view.center
-                    self.card.transform = .identity
                 }
             }
         }
@@ -150,6 +158,23 @@ class SwipingViewController: UIViewController {
             print(self.i)
             self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
         }
+        setImageDetails(index: i)
+    }
+    
+    func setImageDetails(index: Int) {
+        card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
+        nameText.text = tutors[index].name
+        ageNum.text = String(tutors[index].age)
+        let arr : [String] = tutors[index].subjects
+        var subString : String = ""
+        for j in arr.indices {
+            if (j == arr.count - 1) {
+                subString += arr[j]
+            } else {
+                subString += (arr[j] + ", ")
+            }
+        }
+        subjectArray.text = subString
     }
     /*
      // MARK: - Navigation
