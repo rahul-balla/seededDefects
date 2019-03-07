@@ -19,7 +19,11 @@ class TutorViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var retypePassword: UITextField!
     @IBOutlet weak var subjects: UITextField!
+<<<<<<< HEAD
     @IBOutlet var username: UITextField!
+=======
+    @IBOutlet weak var rate: UITextField!
+>>>>>>> c8b2cd1e9f77f39dc5d38073028237ce362a3496
     
     override func viewDidLoad() {
         
@@ -76,6 +80,20 @@ class TutorViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
+        } else if (rate.text == "") {
+
+            let alertController = UIAlertController(title: "Invalid Rate", message: "Please enter a non-empty rate", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if (Int(rate.text!)! <= 0) {
+
+            let alertController = UIAlertController(title: "Invalid Rate", message: "Please enter a valid number greater than 0", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+
         } else if (password.text != retypePassword.text) {
             
             let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter the same password in both fields", preferredStyle: .alert)
