@@ -128,6 +128,7 @@
                         <outlet property="subjects" destination="7mK-T9-eSZ" id="OLk-Zj-L0c"/>
                         <outlet property="tutorDescription" destination="cJe-Vt-YHL" id="55I-vR-xOk"/>
                         <outlet property="tutorEmail" destination="HSe-aZ-oBh" id="yHl-56-Jif"/>
+                        <outlet property="username" destination="b5h-5D-hUQ" id="GKL-7O-bwj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bim-Ga-Pmm" userLabel="First Responder" sceneMemberID="firstResponder"/>

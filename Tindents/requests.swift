@@ -13,7 +13,7 @@ class requests {
     
     func loginRequest(email:String, password:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
-        let request = NSMutableURLRequest(url: NSURL(string: "http://0.0.0.0:5000/login")! as URL)
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/login")! as URL)
         let session = URLSession.shared
         request.httpMethod = "POST"
         
@@ -66,7 +66,7 @@ class requests {
         let session = URLSession.shared
         request.httpMethod = "POST"
         
-        var params = ["email":email, "username":username, "password":password, "name":name] as! Dictionary<String, String>
+        var params = ["email":email, "username":username, "password":password, "name":name, "account_type":"student"] as! Dictionary<String, String>
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
