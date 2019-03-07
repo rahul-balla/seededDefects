@@ -21,16 +21,21 @@ class TutorViewController: UIViewController {
     @IBOutlet weak var subjects: UITextField!
     
     override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        frameRect = tutorDescription.frame
+        frameRect.size.height = 100
+        tutorDescription.frame = frameRect
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func onCreateTutor(_ sender: Any) {
+        
         if (tutorEmail.text == "") {
             
             let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-        } else if (tutorDescription.text == "") {
-            
-            let alertController = UIAlertController(title: "Invalid Description", message: "Please enter a non-empty description", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
@@ -56,6 +61,13 @@ class TutorViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
+        } else if (tutorDescription.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Description", message: "Please enter a non-empty description", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
         } else if (subjects.text == "") {
             
             let alertController = UIAlertController(title: "Invalid Subjects", message: "Please enter the subjects you can tutor", preferredStyle: .alert)
@@ -71,14 +83,8 @@ class TutorViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             
         }
-        super.viewDidLoad()
-        frameRect = tutorDescription.frame
-        frameRect.size.height = 100
-        tutorDescription.frame = frameRect
-        
-        // Do any additional setup after loading the view.
     }
-
+    
     /*
     // MARK: - Navigation
 

@@ -80,6 +80,7 @@
                                 <state key="normal" title="Create Tutor Account"/>
                                 <connections>
                                     <action selector="createBtnPressed:" destination="V7I-c4-VB4" eventType="touchUpInside" id="x4D-rI-Bl6"/>
+                                    <action selector="onCreateTutor:" destination="jo0-Ui-ggY" eventType="touchUpInside" id="veu-Sn-6kW"/>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LNq-IE-nGp"/>
                                 </connections>
                             </button>
