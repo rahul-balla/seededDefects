@@ -895,10 +895,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="37.5" height="37.5"/>
-        <image name="Matches" width="37.5" height="37.5"/>
-        <image name="Profile" width="37.5" height="37.5"/>
-        <image name="Settings" width="37.5" height="37.5"/>
+        <image name="Feed" width="25" height="25"/>
+        <image name="Matches" width="25" height="25"/>
+        <image name="Profile" width="25" height="25"/>
+        <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="l7v-G6-cLm"/>
