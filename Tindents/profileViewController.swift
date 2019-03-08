@@ -10,13 +10,39 @@ import UIKit
 
 class profileViewController: UIViewController {
 
+    @IBOutlet weak var rating: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func onRate(_ sender: Any) {
+        if (rating.text == "") {
+            
+            let alertController = UIAlertController(title: "Invalid Rating", message: "Please enter a non-empty rating", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (Int(rating.text!) == nil) {
+            
+            let alertController = UIAlertController(title: "Invalid Rating", message: "Please enter a valid number containing only numbers", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else if (Int(rating.text!)! > 5 || Int(rating.text!)! < 0) {
+            
+            let alertController = UIAlertController(title: "Invalid Rating", message: "Please enter a valid rating between 0 and 5", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
