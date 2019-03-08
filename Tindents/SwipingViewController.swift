@@ -26,7 +26,7 @@ class SwipingViewController: UIViewController {
     
     var i = 0
     var divisor: CGFloat!
-    var firstName : [String: Any] = [
+    /*var firstName : [String: Any] = [
         "name" : "Ryan Gosling",
         "age" : 23,
         "subjects" : ["CS", "MATH"],
@@ -54,7 +54,7 @@ class SwipingViewController: UIViewController {
         "rating" : "4.5/5",
         "description" : "hello",
         "picture" : UIImage(named: "willSmith")!
-    ]
+    ]*/
 
     
     var tutors: [Tutor] = []
@@ -66,16 +66,18 @@ class SwipingViewController: UIViewController {
         self.card.frame.size.width = self.view.bounds.width * 0.8
         self.card.frame.size.height = self.view.bounds.height * 0.6
         self.card.layer.cornerRadius = 10
-        self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
+        //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
         self.card.center.x = self.view.center.x
         self.card.center.y = self.view.center.y - 20
         
         card.alpha = 1
         divisor = view.frame.width / 2 / 0.61
         
+        var num_user = 0
         requests().feedRequest { (response) in
             if let response = response {
                 //list of users to be added
+        
                 var user_arr = response["feed"]
                 for user in user_arr as! [AnyObject] {
                     
@@ -90,22 +92,29 @@ class SwipingViewController: UIViewController {
                         "userId" : user["userid"]
                     ]
                     
+                    num_user += 1
+                    
                     let oneTutor = Tutor(dictionary: oneUser)
                     self.tutors.append(oneTutor)
                 }
             }
         }
         
-        let tutor1 = Tutor(dictionary: firstName)
+        /*let tutor1 = Tutor(dictionary: firstName)
         let tutor2 = Tutor(dictionary: secondName)
         let tutor3 = Tutor(dictionary: thirdName)
         
         self.tutors.append(tutor1)
         self.tutors.append(tutor2)
-        self.tutors.append(tutor3)
+        self.tutors.append(tutor3)*/
+        print("number of swipable ppls: \(num_user)")
         
-        setImageDetails(index: i)
-        i = i + 1
+        if (num_user > 0) {
+            setImageDetails(index: i)
+            i = i + 1
+        } else {
+            print("No one to swipe on")
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -186,13 +195,14 @@ class SwipingViewController: UIViewController {
             self.card.transform = .identity
             self.i = 0
             print(self.i)
-            self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
+            //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
         }
         setImageDetails(index: i)
     }
     
     func setImageDetails(index: Int) {
-        card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
+        //SET PIC HERE!!!!
+        //card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
         nameText.text = tutors[index].name
         ageNum.text = String(tutors[index].age)
         let arr : [String] = tutors[index].subjects

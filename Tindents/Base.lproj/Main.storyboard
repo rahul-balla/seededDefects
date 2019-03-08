@@ -140,11 +140,12 @@
                         <outlet property="tutorDescription" destination="cJe-Vt-YHL" id="55I-vR-xOk"/>
                         <outlet property="tutorEmail" destination="HSe-aZ-oBh" id="yHl-56-Jif"/>
                         <outlet property="username" destination="b5h-5D-hUQ" id="GKL-7O-bwj"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="createTutorSuccess" id="Nbm-JB-Nv7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bim-Ga-Pmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1114" y="-628"/>
+            <point key="canvasLocation" x="-1114" y="-860"/>
         </scene>
         <!--Storyboard Reference-->
         <scene sceneID="lZY-1a-lxQ">
@@ -966,6 +967,6 @@
         <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I6n-zO-PAd"/>
+        <segue reference="Nbm-JB-Nv7"/>
     </inferredMetricsTieBreakers>
 </document>

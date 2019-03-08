@@ -116,19 +116,26 @@ def feed():
     if accountType == "student" :
         feed = users.query.filter_by(account_type = "tutor")
         for x in feed:
-            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,x.id)
+            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,x.id).scalar()
+            #             matchCheck = matches.query.filter_by(student_id = userid, tutor_id = x.id).count()
+
+
+            print("marchChefck = ", matchCheck)
             if matchCheck == 0:
                 dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
                 userDict.append(dd)
     else:
         feed = users.query.filter_by(account_type = "student")
         for x in feed:
-            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", x.id, userid)
+            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", x.id, userid).scalar()
             if matchCheck == 0:
                 dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
                 userDict.append(dd)
         
+    print("userDict : ",userDict)
+
     return jsonify({'feed': userDict})
+
 
 
 @app.route("/rightSwipe", methods=['GET', 'POST'])
@@ -136,8 +143,8 @@ def rightSwipe():
     content = request.json
 
 
-    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"])
-    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"])
+    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"]).scalar()
+    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"]).scalar()
 
 
     if matchCheck == 0 and matchCheck2 == 0:
@@ -167,8 +174,8 @@ def leftSwipe():
     content = request.json
 
 
-    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"])
-    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"])
+    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"]).scalar()
+    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"]).scalar()
 
 
     if matchCheck == 0 and matchCheck2 == 0:
