@@ -113,7 +113,7 @@ def feed():
     
     userDict = []
 
-    if accountType = "student":
+    if accountType == "student" :
         feed = users.query.filter_by(account_type = "tutor")
         for x in feed:
             matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,x.id)
@@ -199,7 +199,7 @@ def matches():
     matchData = []
 
 
-    if accountType == "student"
+    if accountType == "student" :
         mm = matches.query.filter_by(student_id = userid, tutor_swipe = 1, student_swipe = 1)
 
         for x in mm:
