@@ -19,6 +19,8 @@ class TutorViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var retypePassword: UITextField!
     @IBOutlet weak var subjects: UITextField!
+    @IBOutlet var username: UITextField!
+    @IBOutlet weak var rate: UITextField!
     
     override func viewDidLoad() {
         
@@ -75,6 +77,20 @@ class TutorViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
+        } else if (rate.text == "") {
+
+            let alertController = UIAlertController(title: "Invalid Rate", message: "Please enter a non-empty rate", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if (Int(rate.text!)! <= 0) {
+
+            let alertController = UIAlertController(title: "Invalid Rate", message: "Please enter a valid number greater than 0", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+
         } else if (password.text != retypePassword.text) {
             
             let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter the same password in both fields", preferredStyle: .alert)
@@ -82,6 +98,49 @@ class TutorViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
+        } else {
+            var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
+            var session = URLSession.shared
+            request.httpMethod = "POST"
+            
+            var params = ["email":tutorEmail.text, "username":username.text, "password":password.text, "name":fullName.text] as! Dictionary<String, String>
+            params["account_type"] = "tutor"
+            
+            do {
+                try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+                print(request.httpBody)
+            } catch {
+                print("???")
+            }
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+                print("Response: \(response)")
+                var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                print("Body: \(strData)")
+                //print("Value: \(strData["message"])")
+                var err: NSError?
+                
+                do {
+                    var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                    
+                    var success = json?["success"] as? Int
+                    if success == 1 {
+                        print("Succes: \(success)")
+                        
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "createSuccess", sender: self)
+                        }
+                    }
+                    
+                } catch {
+                    print("???")
+                }
+                
+            })
+            
+            task.resume()
         }
     }
     

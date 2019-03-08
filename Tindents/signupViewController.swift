@@ -72,6 +72,7 @@ class signupViewController: UIViewController {
             request.httpMethod = "POST"
             
             var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
+            params["account_type"] = "student"
             
             do {
                 try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])

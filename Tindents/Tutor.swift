@@ -18,6 +18,7 @@ class Tutor {
     var rating: String?
     var picture: UIImage?
     var description: String?
+    var id: String?
     
     init (dictionary: [String: Any]) {
         name = dictionary["name"] as? String ?? "Creepy Tutor"
@@ -27,5 +28,6 @@ class Tutor {
         rating = dictionary["rating"] as? String ?? "No Rating"
         picture = dictionary["picture"] as? UIImage ?? nil
         description = dictionary["description"] as? String ?? "No Description"
+        id = dictionary["userId"] as? String ?? "0"
     }
 }

@@ -42,11 +42,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subjects to Tutor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mK-T9-eSZ">
-                                <rect key="frame" x="50" y="424" width="275" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subjects to Tutor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mK-T9-eSZ">
+                                <rect key="frame" x="50" y="402" width="275" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Vt-YHL">
                                 <rect key="frame" x="50" y="357" width="275" height="30"/>
@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAQ-OU-tUk">
-                                <rect key="frame" x="157" y="518" width="61" height="36"/>
+                                <rect key="frame" x="157" y="548" width="61" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -75,7 +75,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ref-Ii-5FQ">
-                                <rect key="frame" x="95.5" y="462" width="184" height="36"/>
+                                <rect key="frame" x="95.5" y="492" width="184" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Create Tutor Account"/>
                                 <connections>
@@ -84,6 +84,12 @@
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LNq-IE-nGp"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rate ($)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-xL-IYL">
+                                <rect key="frame" x="50" y="447" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -101,22 +107,26 @@
                             <constraint firstItem="ref-Ii-5FQ" firstAttribute="centerX" secondItem="fJz-4Z-Ikb" secondAttribute="centerX" id="J4f-NA-DJE"/>
                             <constraint firstItem="HSe-aZ-oBh" firstAttribute="leading" secondItem="fJz-4Z-Ikb" secondAttribute="leading" constant="50" id="LRh-ap-1G8"/>
                             <constraint firstItem="b5h-5D-hUQ" firstAttribute="top" secondItem="HSe-aZ-oBh" secondAttribute="bottom" constant="15" id="M2U-wi-U4S"/>
+                            <constraint firstItem="bYe-xL-IYL" firstAttribute="top" secondItem="7mK-T9-eSZ" secondAttribute="bottom" constant="15" id="Or5-6h-Rrs"/>
                             <constraint firstItem="4rn-u5-C9o" firstAttribute="centerX" secondItem="HSe-aZ-oBh" secondAttribute="centerX" id="QsM-iF-sr1"/>
                             <constraint firstItem="HzN-v2-iuv" firstAttribute="trailing" secondItem="vnv-id-V3A" secondAttribute="trailing" id="TQl-2e-7aV"/>
-                            <constraint firstItem="ref-Ii-5FQ" firstAttribute="top" secondItem="7mK-T9-eSZ" secondAttribute="bottom" constant="30" id="TWc-JE-3xP"/>
+                            <constraint firstItem="ref-Ii-5FQ" firstAttribute="top" secondItem="bYe-xL-IYL" secondAttribute="bottom" constant="15" id="U3x-5Z-6nf"/>
                             <constraint firstItem="cJe-Vt-YHL" firstAttribute="top" secondItem="HzN-v2-iuv" secondAttribute="bottom" constant="15" id="W9a-EM-IV6"/>
                             <constraint firstItem="vnv-id-V3A" firstAttribute="top" secondItem="8qK-eS-6Em" secondAttribute="bottom" constant="15" id="XIM-fp-j7p"/>
                             <constraint firstItem="8qK-eS-6Em" firstAttribute="centerX" secondItem="b5h-5D-hUQ" secondAttribute="centerX" id="YyT-Do-bjO"/>
                             <constraint firstItem="8qK-eS-6Em" firstAttribute="leading" secondItem="b5h-5D-hUQ" secondAttribute="leading" id="bcV-KV-I3d"/>
+                            <constraint firstItem="bYe-xL-IYL" firstAttribute="leading" secondItem="7mK-T9-eSZ" secondAttribute="leading" id="cKw-ah-KkU"/>
                             <constraint firstItem="HzN-v2-iuv" firstAttribute="centerX" secondItem="vnv-id-V3A" secondAttribute="centerX" id="dHd-a8-XSN"/>
                             <constraint firstItem="4rn-u5-C9o" firstAttribute="top" secondItem="fJz-4Z-Ikb" secondAttribute="top" constant="60" id="gBm-Eq-MLa"/>
                             <constraint firstItem="cJe-Vt-YHL" firstAttribute="centerX" secondItem="fJz-4Z-Ikb" secondAttribute="centerX" id="gT5-45-t03"/>
                             <constraint firstItem="HzN-v2-iuv" firstAttribute="leading" secondItem="vnv-id-V3A" secondAttribute="leading" id="i8V-MF-m0j"/>
                             <constraint firstItem="cJe-Vt-YHL" firstAttribute="leading" secondItem="HzN-v2-iuv" secondAttribute="leading" id="iBs-kc-abc"/>
+                            <constraint firstItem="ref-Ii-5FQ" firstAttribute="centerX" secondItem="fJz-4Z-Ikb" secondAttribute="centerX" id="k2H-xS-WKJ"/>
                             <constraint firstItem="vnv-id-V3A" firstAttribute="leading" secondItem="8qK-eS-6Em" secondAttribute="leading" id="kh4-Xm-kVg"/>
                             <constraint firstItem="7mK-T9-eSZ" firstAttribute="top" secondItem="cJe-Vt-YHL" secondAttribute="bottom" constant="15" id="ktt-3D-ulP"/>
                             <constraint firstItem="xAQ-OU-tUk" firstAttribute="top" secondItem="ref-Ii-5FQ" secondAttribute="bottom" constant="20" id="prQ-T0-Iry"/>
                             <constraint firstItem="vnv-id-V3A" firstAttribute="trailing" secondItem="8qK-eS-6Em" secondAttribute="trailing" id="rza-Ga-xEV"/>
+                            <constraint firstItem="bYe-xL-IYL" firstAttribute="trailing" secondItem="7mK-T9-eSZ" secondAttribute="trailing" id="t7U-WK-HL9"/>
                             <constraint firstItem="b5h-5D-hUQ" firstAttribute="centerX" secondItem="HSe-aZ-oBh" secondAttribute="centerX" id="wlf-De-1YP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BED-aE-4ye"/>
@@ -124,10 +134,12 @@
                     <connections>
                         <outlet property="fullName" destination="8qK-eS-6Em" id="uxS-cP-fJm"/>
                         <outlet property="password" destination="vnv-id-V3A" id="XEC-I5-HoL"/>
+                        <outlet property="rate" destination="bYe-xL-IYL" id="r9a-0Q-Fpz"/>
                         <outlet property="retypePassword" destination="HzN-v2-iuv" id="i2K-AI-Vx2"/>
                         <outlet property="subjects" destination="7mK-T9-eSZ" id="OLk-Zj-L0c"/>
                         <outlet property="tutorDescription" destination="cJe-Vt-YHL" id="55I-vR-xOk"/>
                         <outlet property="tutorEmail" destination="HSe-aZ-oBh" id="yHl-56-Jif"/>
+                        <outlet property="username" destination="b5h-5D-hUQ" id="GKL-7O-bwj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bim-Ga-Pmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBS-ZD-xbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1892" y="894"/>
+            <point key="canvasLocation" x="-1938" y="905"/>
         </scene>
         <!--Profile-->
         <scene sceneID="O77-A8-U81">
@@ -803,13 +815,13 @@
                                                 <constraint firstAttribute="height" constant="76" id="h4N-3g-FHc"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harsha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdY-5w-BFG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Harsha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdY-5w-BFG">
                                             <rect key="frame" x="100" y="11" width="59" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ9-df-OAs">
-                                            <rect key="frame" x="100" y="39.5" width="259" height="62.5"/>
+                                            <rect key="frame" x="100" y="39.5" width="259" height="47.5"/>
                                             <string key="text">Likes long walks by the beach, works at expedia, lives in jubilee hills with shahrukh khan his best friend as well as his long time wife disha patani.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
@@ -817,6 +829,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MdY-5w-BFG" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="G5K-Lh-oO1"/>
+                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="PKu-Mv-Lu8"/>
                                         <constraint firstItem="gha-XW-EFr" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="SLM-9K-m1Q"/>
                                         <constraint firstItem="gha-XW-EFr" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="VLq-B9-sPW"/>
                                         <constraint firstAttribute="trailing" secondItem="vQ9-df-OAs" secondAttribute="trailing" constant="16" id="eCx-Wx-FMN"/>
@@ -841,7 +854,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldi-ev-f06" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="87"/>
+            <point key="canvasLocation" x="1381.5999999999999" y="86.806596701649184"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="4nM-3F-EDt">
@@ -901,12 +914,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="37.5" height="37.5"/>
-        <image name="Matches" width="37.5" height="37.5"/>
-        <image name="Profile" width="37.5" height="37.5"/>
-        <image name="Settings" width="37.5" height="37.5"/>
+        <image name="Feed" width="25" height="25"/>
+        <image name="Matches" width="25" height="25"/>
+        <image name="Profile" width="25" height="25"/>
+        <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7v-G6-cLm"/>
+        <segue reference="I6n-zO-PAd"/>
     </inferredMetricsTieBreakers>
 </document>
