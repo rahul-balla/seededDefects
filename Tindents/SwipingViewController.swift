@@ -78,7 +78,6 @@ class SwipingViewController: UIViewController {
                 //list of users to be added
                 var user_arr = response["feed"]
                 for user in user_arr as! [AnyObject] {
-                    print("\(user["username"])")
                     
                     var oneUser : [String: Any] = [
                         "name" : user["fullName"],
@@ -126,6 +125,13 @@ class SwipingViewController: UIViewController {
             if sender.state == .ended {
                 
                 if (card.center.x < 75) {
+                    //left swipe
+                    
+                    //sending info to server
+                    requests().leftSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                        print("left swipe request response: \(response)")
+                    }
+                    
                     UIView.animate(withDuration: 0.3) {
                         card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 75)
                         card.alpha = 0
@@ -142,6 +148,13 @@ class SwipingViewController: UIViewController {
                     return
                 }
                 else if (card.center.x > (view.frame.width - 75)) {
+                    //right swipe
+                    
+                    //sending info to server
+                    requests().rightSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                        print("right swipe request response: \(response)")
+                    }
+                    
                     UIView.animate(withDuration: 0.3) {
                         card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 75)
                         card.alpha = 0

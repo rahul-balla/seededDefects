@@ -345,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBS-ZD-xbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1892" y="894"/>
+            <point key="canvasLocation" x="-1938" y="905"/>
         </scene>
         <!--Profile-->
         <scene sceneID="O77-A8-U81">
@@ -815,13 +815,13 @@
                                                 <constraint firstAttribute="height" constant="76" id="h4N-3g-FHc"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harsha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdY-5w-BFG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Harsha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdY-5w-BFG">
                                             <rect key="frame" x="100" y="11" width="59" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ9-df-OAs">
-                                            <rect key="frame" x="100" y="39.5" width="259" height="62.5"/>
+                                            <rect key="frame" x="100" y="39.5" width="259" height="47.5"/>
                                             <string key="text">Likes long walks by the beach, works at expedia, lives in jubilee hills with shahrukh khan his best friend as well as his long time wife disha patani.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
@@ -829,6 +829,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MdY-5w-BFG" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="G5K-Lh-oO1"/>
+                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="PKu-Mv-Lu8"/>
                                         <constraint firstItem="gha-XW-EFr" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="SLM-9K-m1Q"/>
                                         <constraint firstItem="gha-XW-EFr" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="VLq-B9-sPW"/>
                                         <constraint firstAttribute="trailing" secondItem="vQ9-df-OAs" secondAttribute="trailing" constant="16" id="eCx-Wx-FMN"/>
@@ -853,7 +854,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldi-ev-f06" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="87"/>
+            <point key="canvasLocation" x="1381.5999999999999" y="86.806596701649184"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="4nM-3F-EDt">
@@ -919,6 +920,6 @@
         <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7v-G6-cLm"/>
+        <segue reference="I6n-zO-PAd"/>
     </inferredMetricsTieBreakers>
 </document>

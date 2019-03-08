@@ -19,11 +19,8 @@ class TutorViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var retypePassword: UITextField!
     @IBOutlet weak var subjects: UITextField!
-<<<<<<< HEAD
     @IBOutlet var username: UITextField!
-=======
     @IBOutlet weak var rate: UITextField!
->>>>>>> c8b2cd1e9f77f39dc5d38073028237ce362a3496
     
     override func viewDidLoad() {
         
