@@ -28,6 +28,7 @@ login_manager.login_view = '/'
 
 
 userid = 0
+accountType = ""
 
 app.secret_key = "tindents"
 
@@ -48,7 +49,12 @@ class users(UserMixin, db.Model):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
 
 
-
+class matches(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable = False)
+    student_id = db.Column(db.Integer)
+    tutor_id = db.Column(db.Integer)
+    student_swipe = db.Column(db.Integer)
+    tutor_swipe = db.Column(db.Integer)
 
 
 ################################################ ROUTES ########################################################
@@ -56,7 +62,7 @@ class users(UserMixin, db.Model):
 def createAccount():
 	content = request.json
 
-    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = "student", fullName = content["name"])
+    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"])
     	db.session.add(user)
     	db.session.commit()
     
@@ -73,6 +79,10 @@ def login():
     if user.password == content["password"]:
     	global userid
     	userid = user.id
+
+        global accountType
+        accountType = user.account_type
+
         return jsonify({'success' : 1})
     else:
         return jsonify({'success' : 0})
@@ -100,18 +110,113 @@ def settings():
 
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():
-    feed = users.query.filter_by(account_type = "student")
-
+    
     userDict = []
 
-    for x in feed:
-        dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
-
-        userDict.append(dd)
-
+    if accountType == "student" :
+        feed = users.query.filter_by(account_type = "tutor")
+        for x in feed:
+            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,x.id)
+            if matchCheck == 0:
+                dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
+                userDict.append(dd)
+    else:
+        feed = users.query.filter_by(account_type = "student")
+        for x in feed:
+            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", x.id, userid)
+            if matchCheck == 0:
+                dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
+                userDict.append(dd)
+        
     return jsonify({'feed': userDict})
 
 
+@app.route("/rightSwipe", methods=['GET', 'POST'])
+def rightSwipe():
+    content = request.json
+
+
+    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"])
+    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"])
+
+
+    if matchCheck == 0 and matchCheck2 == 0:
+        print("no entry in table")
+        if accountType == "student":
+            newEnt = matches(student_id = userid, tutor_id = content["swipedId"],student_swipe = 1, tutor_swipe = 0)
+            db.session.add(newEnt)
+    	    db.session.commit()
+        
+        else:
+            newEnt = matches(student_id = content["swipedId"], tutor_id = userid, student_swipe = 0, tutor_swipe = 1)
+            db.session.add(newEnt)
+    	    db.session.commit()
+    else:
+        if accountType == "student":
+            db.engine.execute("UPDATE matches SET student_swipe = %s WHERE student_id = %s AND tutor_id = %s", 1, userid, content["swipedId"] )
+        else:
+            db.engine.execute("UPDATE matches SET tutor_swipe = %s WHERE tutor_id = %s AND student_id = %s", 1, userid, content["swipedId"] )
+
+    return jsonify({'success' : 1})
+
+
+
+
+@app.route("/leftSwipe", methods=['GET', 'POST'])
+def leftSwipe():
+    content = request.json
+
+
+    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,content["swipedId"])
+    matchCheck2 = db.engine.execute("SELECT COUNT(id) FROM matches WHERE tutor_id = %s and student_id = %s", userid,content["swipedId"])
+
+
+    if matchCheck == 0 and matchCheck2 == 0:
+        print("no entry in table")
+        if accountType == "student":
+            newEnt = matches(student_id = userid, tutor_id = content["swipedId"],student_swipe = 2, tutor_swipe = 0)
+            db.session.add(newEnt)
+    	    db.session.commit()
+        
+        else:
+            newEnt = matches(student_id = content["swipedId"], tutor_id = userid, student_swipe = 0, tutor_swipe = 2)
+            db.session.add(newEnt)
+    	    db.session.commit()
+    else:
+        if accountType == "student":
+            db.engine.execute("UPDATE matches SET student_swipe = %s WHERE student_id = %s AND tutor_id = %s", 2, userid, content["swipedId"] )
+        else:
+            db.engine.execute("UPDATE matches SET tutor_swipe = %s WHERE tutor_id = %s AND student_id = %s", 2, userid, content["swipedId"] )
+    
+    return jsonify({'success' : 1})
+
+
+@app.route("/matches", methods=['GET', 'POST'])
+def matches():
+    content = request.json
+
+
+    matchData = []
+
+
+    if accountType == "student" :
+        mm = matches.query.filter_by(student_id = userid, tutor_swipe = 1, student_swipe = 1)
+
+        for x in mm:
+            user = users.query.filter_by(id = x.tutor_id).first
+            dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
+            matchData.append(dd)
+
+    else:
+        mm = matches.query.filter_by(tutor_id = userid, tutor_swipe = 1, student_swipe = 1)
+        for x in mm:
+            user = users.query.filter_by(id = x.student_id).first
+            dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
+            matchData.append(dd)
+
+
+    return jsonify({'matches' : matchData})
+    
 
 
 

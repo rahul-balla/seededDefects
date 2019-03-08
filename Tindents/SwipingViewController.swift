@@ -76,7 +76,23 @@ class SwipingViewController: UIViewController {
         requests().feedRequest { (response) in
             if let response = response {
                 //list of users to be added
-                print(response)
+                var user_arr = response["feed"]
+                for user in user_arr as! [AnyObject] {
+                    
+                    var oneUser : [String: Any] = [
+                        "name" : user["fullName"],
+                        "age" : 69,
+                        "subjects" : ["STAT", "CS"],
+                        "tutorEmail" : user["email"],
+                        "rating" : "4.5/5",
+                        "description" : "lets have fun",
+                        "picture" : UIImage(named: "Harsha")!,
+                        "userId" : user["userid"]
+                    ]
+                    
+                    let oneTutor = Tutor(dictionary: oneUser)
+                    self.tutors.append(oneTutor)
+                }
             }
         }
         
@@ -109,6 +125,13 @@ class SwipingViewController: UIViewController {
             if sender.state == .ended {
                 
                 if (card.center.x < 75) {
+                    //left swipe
+                    
+                    //sending info to server
+                    requests().leftSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                        print("left swipe request response: \(response)")
+                    }
+                    
                     UIView.animate(withDuration: 0.3) {
                         card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 75)
                         card.alpha = 0
@@ -125,6 +148,13 @@ class SwipingViewController: UIViewController {
                     return
                 }
                 else if (card.center.x > (view.frame.width - 75)) {
+                    //right swipe
+                    
+                    //sending info to server
+                    requests().rightSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                        print("right swipe request response: \(response)")
+                    }
+                    
                     UIView.animate(withDuration: 0.3) {
                         card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 75)
                         card.alpha = 0
