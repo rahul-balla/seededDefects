@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wXp-6u-GOM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -579,6 +579,7 @@
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="finishSched:" destination="wXp-6u-GOM" eventType="touchUpInside" id="Xc6-TE-zcg"/>
+                                    <segue destination="y1Y-8r-qag" kind="show" id="Ns4-hA-KYy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1138,6 +1139,7 @@
         <image name="Settings" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ns4-hA-KYy"/>
         <segue reference="Nbm-JB-Nv7"/>
     </inferredMetricsTieBreakers>
 </document>
