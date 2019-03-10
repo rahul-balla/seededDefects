@@ -14,6 +14,7 @@
 		6D7113C62215010700669AEB /* mainProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7113C52215010700669AEB /* mainProfileViewController.swift */; };
 		6D7113E62219F59B00669AEB /* requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7113E52219F59B00669AEB /* requests.swift */; };
 		7BCAF0C12207BD3C00EE003D /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAF0C02207BD3C00EE003D /* signupViewController.swift */; };
+		91D1225022357A42006972E0 /* schedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1224F22357A42006972E0 /* schedViewController.swift */; };
 		91E34061220BBEFF000E2F55 /* settingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E34060220BBEFF000E2F55 /* settingsController.swift */; };
 		E6337AFE220379FD0070A9FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337AFD220379FD0070A9FF /* AppDelegate.swift */; };
 		E6337B00220379FD0070A9FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6337AFF220379FD0070A9FF /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 		6D7113C52215010700669AEB /* mainProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainProfileViewController.swift; sourceTree = "<group>"; };
 		6D7113E52219F59B00669AEB /* requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requests.swift; sourceTree = "<group>"; };
 		7BCAF0C02207BD3C00EE003D /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
+		91D1224F22357A42006972E0 /* schedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schedViewController.swift; sourceTree = "<group>"; };
 		91E34060220BBEFF000E2F55 /* settingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsController.swift; sourceTree = "<group>"; };
 		E6337AFA220379FD0070A9FF /* Tindents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tindents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6337AFD220379FD0070A9FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				E6337AFD220379FD0070A9FF /* AppDelegate.swift */,
 				E6337AFF220379FD0070A9FF /* ViewController.swift */,
 				E6337B01220379FD0070A9FF /* Main.storyboard */,
+				91D1224F22357A42006972E0 /* schedViewController.swift */,
 				6D6B892C2232002800D87A9C /* matches.storyboard */,
 				E6337B0422037A000070A9FF /* Assets.xcassets */,
 				E6337B0622037A000070A9FF /* LaunchScreen.storyboard */,
@@ -305,6 +308,7 @@
 				91E34061220BBEFF000E2F55 /* settingsController.swift in Sources */,
 				7BCAF0C12207BD3C00EE003D /* signupViewController.swift in Sources */,
 				E63ECB4E22087FBC00465723 /* SwipingViewController.swift in Sources */,
+				91D1225022357A42006972E0 /* schedViewController.swift in Sources */,
 				6D57A3462207B54500EB22FD /* matchesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
