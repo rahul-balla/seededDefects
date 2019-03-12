@@ -193,13 +193,13 @@ class requests {
         
     }
     
-    func rightSwipe(swipedUserId:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+    func rightSwipe(swipedUserId:Int, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
         let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/rightSwipe")! as URL)
         let session = URLSession.shared
         request.httpMethod = "POST"
         
-        var params = ["swipedId":swipedUserId] as! Dictionary<String, String>
+        var params = ["swipedId":swipedUserId] as! Dictionary<String, Int>
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
@@ -243,13 +243,63 @@ class requests {
         task.resume()
     }
     
-    func leftSwipe(swipedUserId:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+    func leftSwipe(swipedUserId:Int, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         
         let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/leftSwipe")! as URL)
         let session = URLSession.shared
         request.httpMethod = "POST"
         
-        var params = ["swipedId":swipedUserId] as! Dictionary<String, String>
+        var params = ["swipedId":swipedUserId] as! Dictionary<String, Int>
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            print(request.httpBody)
+        } catch {
+            print("???")
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            //print("Response: \(response)")
+            var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("Body: \(strData)")
+            //print("Value: \(strData["message"])")
+            
+            if let error = error {
+                // handle the transport error
+                print("transport error")
+                completionBlock(nil)
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                // handle the server error
+                print("server error")
+                completionBlock(nil)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                completionBlock(json)
+                
+            } catch {
+                print("json error")
+                completionBlock(nil)
+            }
+            
+        })
+        
+        task.resume()
+    }
+    
+    func schedulerRequest(schedulerString:String, completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/schedule")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
+        
+        var params = ["string":schedulerString] as! Dictionary<String, String>
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])

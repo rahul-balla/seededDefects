@@ -73,11 +73,14 @@ class SwipingViewController: UIViewController {
         card.alpha = 1
         divisor = view.frame.width / 2 / 0.61
         
+        let group = DispatchGroup()
+        
         var num_user = 0
+        group.enter()
         requests().feedRequest { (response) in
             if let response = response {
                 //list of users to be added
-        
+                
                 var user_arr = response["feed"]
                 for user in user_arr as! [AnyObject] {
                     
@@ -97,30 +100,27 @@ class SwipingViewController: UIViewController {
                     let oneTutor = Tutor(dictionary: oneUser)
                     self.tutors.append(oneTutor)
                 }
+                
+                group.leave()
+            
             }
         }
         
-        /*let tutor1 = Tutor(dictionary: firstName)
-        let tutor2 = Tutor(dictionary: secondName)
-        let tutor3 = Tutor(dictionary: thirdName)
+        group.wait()
         
-        self.tutors.append(tutor1)
-        self.tutors.append(tutor2)
-        self.tutors.append(tutor3)*/
         print("number of swipable ppls: \(num_user)")
         
         if (num_user > 0) {
-            setImageDetails(index: i)
+            setImageDetails(index: self.i)
             i = i + 1
         } else {
             print("No one to swipe on")
         }
-
         // Do any additional setup after loading the view.
     }
     
     @IBAction func onSwipe(_ sender: UIPanGestureRecognizer) {
-        if i < tutors.count - 1 {
+        if i < tutors.count {
             
             let card = sender.view!
             let translation = sender.translation(in: view)
@@ -160,7 +160,8 @@ class SwipingViewController: UIViewController {
                     //right swipe
                     
                     //sending info to server
-                    requests().rightSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                    print("id: \(self.tutors[i].id)")
+                    requests().rightSwipe(swipedUserId: self.tutors[i].id) { (response) in
                         print("right swipe request response: \(response)")
                     }
                     
