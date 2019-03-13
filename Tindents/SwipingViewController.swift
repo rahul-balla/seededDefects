@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Foundation
+import MessageUI
 
-class SwipingViewController: UIViewController {
+class SwipingViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     //    var name: String!
     //    var subjects: [String]!
@@ -226,5 +228,39 @@ class SwipingViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    @IBAction func sendEmailButtonTapped(_ sender: Any) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail(){
+            self.present(mailComposeViewController, animated: true, completion: nil)
+            
+        }
+        else{
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController{
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients([nameText.text!])
+        mailComposerVC.setSubject("Intrest in Tutoring Services from Tindents")
+        
+        return mailComposerVC
+        
+    }
+    
+    
+    func showSendMailErrorAlert(){
+        let sendMailErrorAlert = UIAlertController(title: "Could not send email", message:"Your device must have an active email account", preferredStyle: UIAlertController.Style.alert)
+        sendMailErrorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        sendMailErrorAlert.show(self, sender: sendMailErrorAlert)
+        
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
     
 }
