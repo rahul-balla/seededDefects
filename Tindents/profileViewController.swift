@@ -11,9 +11,24 @@ import UIKit
 class profileViewController: UIViewController {
 
     @IBOutlet weak var rating: UITextField!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var userDescription: UILabel!
+    @IBOutlet weak var charge: UILabel!
+    @IBOutlet weak var userRating: UILabel!
+    
+    var tutor: Tutor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let tutor = tutor {
+            name.text = tutor.name
+            email.text = tutor.tutorEmail
+            userDescription.text = tutor.description
+            charge.text = String(tutor.charge)
+            userRating.text = tutor.rating
+        }
         
         // Do any additional setup after loading the view.
     }
