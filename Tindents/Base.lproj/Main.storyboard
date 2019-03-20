@@ -383,19 +383,31 @@
                                     <segue destination="wXp-6u-GOM" kind="show" id="9SA-gu-MB8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7R-QM-2CB">
+                                <rect key="frame" x="291" y="20" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutBtnPressed:" destination="y1Y-8r-qag" eventType="touchUpInside" id="UAH-S4-84Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EO2-Ui-JVt"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" selectedImage="Profile" id="X9a-na-WAh"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="fullNameLbl" destination="DNZ-mA-5nu" id="OXG-XV-r4v"/>
+                        <outlet property="logoutBtn" destination="y7R-QM-2CB" id="h30-oL-vda"/>
                         <outlet property="usernameLbl" destination="U2S-IO-wk4" id="IgO-R6-KGo"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutSegue" id="4qD-hP-08X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaV-f6-lkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335" y="894"/>
+            <point key="canvasLocation" x="-335.19999999999999" y="893.70314842578716"/>
         </scene>
         <!--Sched View Controller-->
         <scene sceneID="nWs-DN-xI7">
@@ -801,7 +813,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="613.60000000000002" y="868.51574212893559"/>
+            <point key="canvasLocation" x="614" y="904"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ZLe-mA-sJf">
@@ -1141,13 +1153,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="37.5" height="37.5"/>
-        <image name="Matches" width="37.5" height="37.5"/>
-        <image name="Profile" width="37.5" height="37.5"/>
-        <image name="Settings" width="37.5" height="37.5"/>
+        <image name="Feed" width="25" height="25"/>
+        <image name="Matches" width="25" height="25"/>
+        <image name="Profile" width="25" height="25"/>
+        <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9SA-gu-MB8"/>
         <segue reference="Ns4-hA-KYy"/>
-        <segue reference="Nbm-JB-Nv7"/>
+        <segue reference="4qD-hP-08X"/>
     </inferredMetricsTieBreakers>
 </document>

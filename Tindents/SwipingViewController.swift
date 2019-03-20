@@ -28,36 +28,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
     
     var i = 0
     var divisor: CGFloat!
-    /*var firstName : [String: Any] = [
-        "name" : "Ryan Gosling",
-        "age" : 23,
-        "subjects" : ["CS", "MATH"],
-        "tutorEmail" : "hello@hello.com",
-        "rating" : "4.5/5",
-        "description" : "hello",
-        "picture" : UIImage(named: "ryan")!
-    ]
-    
-    var secondName : [String: Any] = [
-        "name" : "Tom Cruise",
-        "age" : 60,
-        "subjects" : ["PHIL", "CS"],
-        "tutorEmail" : "hello@hello.com",
-        "rating" : "4.5/5",
-        "description" : "hello",
-        "picture" : UIImage(named: "tomCruise")!
-    ]
-    
-    var thirdName : [String: Any] = [
-        "name" : "Will Smith",
-        "age" : 89,
-        "subjects" : ["STAT", "CS"],
-        "tutorEmail" : "hello@hello.com",
-        "rating" : "4.5/5",
-        "description" : "hello",
-        "picture" : UIImage(named: "willSmith")!
-    ]*/
-
     
     var tutors: [Tutor] = []
     //        = Tutor(dictionary: dictionary1)
@@ -77,7 +47,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         
         let group = DispatchGroup()
         
-        var num_user = 0
         group.enter()
         requests().feedRequest { (response) in
             if let response = response {
@@ -96,9 +65,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         "picture" : UIImage(named: "Harsha")!,
                         "userId" : user["userid"]
                     ]
-                    
-                    num_user += 1
-                    
+                    print(user)
                     let oneTutor = Tutor(dictionary: oneUser)
                     self.tutors.append(oneTutor)
                 }
@@ -110,11 +77,10 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         
         group.wait()
         
-        print("number of swipable ppls: \(num_user)")
+        print("number of swipable ppls: \(tutors.count)")
         
-        if (num_user > 0) {
+        if (tutors.count > 0) {
             setImageDetails(index: self.i)
-            i = i + 1
         } else {
             print("No one to swipe on")
         }
@@ -152,10 +118,16 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         self.card.center = self.view.center
                         self.card.transform = .identity
                         card.alpha = 1
-                        self.setImageDetails(index: self.i)
-//                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
+                        
+                        if (self.i == self.tutors.count) {
+                            //last card
+                            self.setDefaultImageDetails()
+                        } else {
+                            self.setImageDetails(index: self.i)
+                        }
+
                     }
-                    print(i)
+                    print("i = \(i)")
                     return
                 }
                 else if (card.center.x > (view.frame.width - 75)) {
@@ -176,11 +148,15 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         self.card.center = self.view.center
                         self.card.transform = .identity
                         card.alpha = 1
-                        //                        self.i = self.i + 1
-                        self.setImageDetails(index: self.i)
-//                        card.backgroundColor = UIColor(patternImage: self.tutors[self.i].picture!)
+    
+                        if (self.i == self.tutors.count) {
+                            //last card
+                            self.setDefaultImageDetails()
+                        } else {
+                            self.setImageDetails(index: self.i)
+                        }
                     }
-                    print(i)
+                    print("i = \(i)")
                     return
                 }
             }
@@ -188,7 +164,8 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     @IBAction func resetPicture(_ sender: UIButton) {
-        resetCard()
+        print("I commented out the function bc reset is not supposed to exist")
+        //resetCard()
     }
     
     func resetCard() {
@@ -201,6 +178,12 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
             //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
         }
         setImageDetails(index: i)
+    }
+    
+    func setDefaultImageDetails() {
+        nameText.text = ""
+        ageNum.text = ""
+        subjectArray.text = ""
     }
     
     func setImageDetails(index: Int) {

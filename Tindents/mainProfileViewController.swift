@@ -12,11 +12,10 @@ class mainProfileViewController: UIViewController {
 
     @IBOutlet var fullNameLbl: UILabel!
     @IBOutlet var usernameLbl: UILabel!
+    @IBOutlet var logoutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("WHAT THE FUCK")
         
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
@@ -27,11 +26,8 @@ class mainProfileViewController: UIViewController {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {(data, response, error) in
-            //guard let data = data else { return }
             
             do {
-                print("hello")
-                
                 var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 print("Body: \(strData)")
                 
@@ -53,7 +49,13 @@ class mainProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        /*requests().logoutRequest(username:self.usernameLbl.text!) { (response) in
+            print("logout btn response: \(response)")
+        }*/
+        performSegue(withIdentifier: "logoutSegue", sender: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
