@@ -12,15 +12,26 @@ class mainProfileViewController: UIViewController {
 
     @IBOutlet var fullNameLbl: UILabel!
     @IBOutlet var usernameLbl: UILabel!
-    @IBOutlet var logoutBtn: UIButton!
+    @IBOutlet var emailLbl: UILabel!
+    @IBOutlet var accountTypeLbl: UILabel!
+    @IBOutlet var editBtn: UIButton!
+    
+    @IBOutlet var fullNameTxtField: UITextField!
+    @IBOutlet var usernameTxtField: UITextField!
+    @IBOutlet var emailTxtField: UITextField!
+    
+    var editToggle = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hide text fields until edit is pressed
+        fullNameTxtField.isHidden = true
+        usernameTxtField.isHidden = true
+        emailTxtField.isHidden = true
+        
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
-        
-        //var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -28,14 +39,19 @@ class mainProfileViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: request as URLRequest) {(data, response, error) in
             
             do {
-                var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                print("Body: \(strData)")
-                
+                //var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                //print("BODY: \(strData)")
                 var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
                 
                 DispatchQueue.main.async {
                     self.fullNameLbl.text = json!["fullName"] as? String
                     self.usernameLbl.text = json!["username"] as? String
+                    self.emailLbl.text = json!["email"] as? String
+                    self.accountTypeLbl.text = json!["account_type"] as? String
+                    
+                    self.fullNameTxtField.text = json!["fullName"] as? String
+                    self.usernameTxtField.text = json!["username"] as? String
+                    self.emailTxtField.text = json!["email"] as? String
                 }
             
                 print(json)
@@ -46,7 +62,37 @@ class mainProfileViewController: UIViewController {
         }
         
         task.resume()
-        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func editBtnPressed(_ sender: Any) {
+        if (editToggle == 0) {
+            //edit mode
+            editBtn.setTitle("Done", for: .normal)
+            editBtn.setTitleColor(UIColor.red, for: .normal)
+            
+            //fullNameLbl.layer.borderColor = UIColor.black.cgColor
+            fullNameLbl.isHidden = true
+            usernameLbl.isHidden = true
+            emailLbl.isHidden = true
+            fullNameTxtField.isHidden = false
+            usernameTxtField.isHidden = false
+            emailTxtField.isHidden = false
+            
+            editToggle = 1
+        } else {
+            //Done with editing
+            editBtn.setTitle("Edit", for: .normal)
+            editBtn.setTitleColor(self.view.tintColor, for: .normal)
+            
+            fullNameLbl.isHidden = false
+            usernameLbl.isHidden = false
+            emailLbl.isHidden = false
+            fullNameTxtField.isHidden = true
+            usernameTxtField.isHidden = true
+            emailTxtField.isHidden = true
+            
+            editToggle = 0
+        }
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
@@ -56,14 +102,4 @@ class mainProfileViewController: UIViewController {
         performSegue(withIdentifier: "logoutSegue", sender: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

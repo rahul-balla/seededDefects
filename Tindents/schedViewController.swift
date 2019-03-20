@@ -373,18 +373,24 @@ class schedViewController: UIViewController, UITextFieldDelegate{
             availabile.append(",")
             
         }
-        availabile.remove(at: availabile.lastIndex(of: ",")!)
-        print(availabile!)
-        requests().schedulerRequest(schedulerString: availabile) { (response) in
-            if let response = response {
-                print("scheduler response: \(response)")
-                /*var success = response["success"] as? Int
-                if success == 1 {
-                    print("SUCCESS")
-                } else {
-                    print("FAILURE")
-                }*/
+        
+        if (availabile.count > 0) {
+            availabile.remove(at: availabile.lastIndex(of: ",")!)
+            
+            print(availabile!)
+            requests().schedulerRequest(schedulerString: availabile) { (response) in
+                if let response = response {
+                    print("scheduler response: \(response)")
+                    /*var success = response["success"] as? Int
+                     if success == 1 {
+                     print("SUCCESS")
+                     } else {
+                     print("FAILURE")
+                     }*/
+                }
             }
+        } else {
+            print("Nothing updated")
         }
         
     }
