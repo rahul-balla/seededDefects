@@ -868,9 +868,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-kY-BAj">
-                                <rect key="frame" x="269" y="532" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-kY-BAj">
+                                <rect key="frame" x="259" y="531.5" width="76" height="30"/>
                                 <state key="normal" title="Send Email"/>
                                 <connections>
                                     <action selector="sendEmailButtonTapped:" destination="3zr-cu-6At" eventType="touchUpInside" id="cRD-bG-rUH"/>
@@ -884,12 +883,14 @@
                             <constraint firstAttribute="bottom" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="110" id="3Qa-Rj-xV1"/>
                             <constraint firstItem="B9s-31-ouu" firstAttribute="top" secondItem="oaN-i2-TVE" secondAttribute="bottom" constant="5" id="4qH-5F-sBm"/>
                             <constraint firstItem="rF9-ti-GU4" firstAttribute="leading" secondItem="B9s-31-ouu" secondAttribute="trailing" constant="10" id="82r-9C-P0e"/>
+                            <constraint firstItem="5ZG-kY-BAj" firstAttribute="centerY" secondItem="lPu-iJ-LK9" secondAttribute="centerY" id="CDp-pk-7zf"/>
                             <constraint firstItem="oaN-i2-TVE" firstAttribute="leading" secondItem="y59-fq-eXM" secondAttribute="leading" id="FKf-UT-nQe"/>
                             <constraint firstItem="oaN-i2-TVE" firstAttribute="top" secondItem="y59-fq-eXM" secondAttribute="bottom" constant="5" id="M2K-v2-fKb"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="centerX" secondItem="to5-Tq-qEf" secondAttribute="centerX" id="df5-ak-b1o"/>
                             <constraint firstItem="y59-fq-eXM" firstAttribute="leading" secondItem="to5-Tq-qEf" secondAttribute="leading" constant="30" id="gcb-GE-IwT"/>
                             <constraint firstItem="vaa-PN-ULj" firstAttribute="bottom" secondItem="oaN-i2-TVE" secondAttribute="bottom" id="h7W-4W-ovO"/>
                             <constraint firstItem="lPu-iJ-LK9" firstAttribute="leading" secondItem="y59-fq-eXM" secondAttribute="trailing" constant="10" id="iYX-mf-5ll"/>
+                            <constraint firstAttribute="trailing" secondItem="5ZG-kY-BAj" secondAttribute="trailing" constant="40" id="jVv-cG-FR9"/>
                             <constraint firstItem="KQX-BS-PXA" firstAttribute="top" secondItem="to5-Tq-qEf" secondAttribute="top" constant="40" id="mhd-SK-g8S"/>
                             <constraint firstItem="vaa-PN-ULj" firstAttribute="leading" secondItem="oaN-i2-TVE" secondAttribute="trailing" constant="10" id="rse-7X-PoL"/>
                             <constraint firstItem="B9s-31-ouu" firstAttribute="leading" secondItem="oaN-i2-TVE" secondAttribute="leading" id="zbj-eS-qFA"/>
@@ -1251,14 +1252,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="25" height="25"/>
-        <image name="Matches" width="25" height="25"/>
-        <image name="Profile" width="25" height="25"/>
-        <image name="Settings" width="25" height="25"/>
-        <image name="editImage" width="160" height="160"/>
+        <image name="Feed" width="37.5" height="37.5"/>
+        <image name="Matches" width="37.5" height="37.5"/>
+        <image name="Profile" width="37.5" height="37.5"/>
+        <image name="Settings" width="37.5" height="37.5"/>
+        <image name="editImage" width="360" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9SA-gu-MB8"/>
         <segue reference="Ns4-hA-KYy"/>
         <segue reference="4qD-hP-08X"/>
     </inferredMetricsTieBreakers>
