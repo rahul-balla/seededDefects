@@ -159,6 +159,12 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     print("i = \(i)")
                     return
                 }
+                else {
+//                    UIView.animate(withDuration: 0.3) {
+//                        card.center = self.view.center
+//                    }
+                    resetCard()
+                }
             }
         }
     }
