@@ -466,6 +466,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl5-12-OkD" userLabel="editImageBtn">
+                                <rect key="frame" x="250" y="92" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="editImage"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="editImageBtnPressed:" destination="y1Y-8r-qag" eventType="touchUpInside" id="ufy-fq-QWK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EO2-Ui-JVt"/>
@@ -476,10 +492,12 @@
                     <connections>
                         <outlet property="accountTypeLbl" destination="Ci5-PP-jwN" id="9Ow-2H-1GI"/>
                         <outlet property="editBtn" destination="WJQ-U9-wWf" id="L2g-Zb-XUR"/>
+                        <outlet property="editImageBtn" destination="Jl5-12-OkD" id="vj3-7U-CEM"/>
                         <outlet property="emailLbl" destination="uGj-vY-mAo" id="XQf-K6-wdw"/>
                         <outlet property="emailTxtField" destination="crk-9w-2XL" id="8uu-nU-Qtr"/>
                         <outlet property="fullNameLbl" destination="DNZ-mA-5nu" id="OXG-XV-r4v"/>
                         <outlet property="fullNameTxtField" destination="LZJ-ic-606" id="681-1c-tmO"/>
+                        <outlet property="profileImage" destination="0m5-91-yPy" id="3c1-mI-z66"/>
                         <outlet property="usernameLbl" destination="U2S-IO-wk4" id="IgO-R6-KGo"/>
                         <outlet property="usernameTxtField" destination="OO2-Zl-DUo" id="O0K-vf-QSo"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutSegue" id="4qD-hP-08X"/>
@@ -1237,6 +1255,7 @@
         <image name="Matches" width="25" height="25"/>
         <image name="Profile" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
+        <image name="editImage" width="160" height="160"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9SA-gu-MB8"/>

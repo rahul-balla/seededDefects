@@ -8,13 +8,15 @@
 
 import UIKit
 
-class mainProfileViewController: UIViewController {
+class mainProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet var fullNameLbl: UILabel!
     @IBOutlet var usernameLbl: UILabel!
     @IBOutlet var emailLbl: UILabel!
     @IBOutlet var accountTypeLbl: UILabel!
     @IBOutlet var editBtn: UIButton!
+    @IBOutlet var editImageBtn: UIButton!
+    @IBOutlet var profileImage: UIImageView!
     
     @IBOutlet var fullNameTxtField: UITextField!
     @IBOutlet var usernameTxtField: UITextField!
@@ -29,6 +31,7 @@ class mainProfileViewController: UIViewController {
         fullNameTxtField.isHidden = true
         usernameTxtField.isHidden = true
         emailTxtField.isHidden = true
+        editImageBtn.isHidden = true
         
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
@@ -77,6 +80,7 @@ class mainProfileViewController: UIViewController {
             fullNameTxtField.isHidden = false
             usernameTxtField.isHidden = false
             emailTxtField.isHidden = false
+            editImageBtn.isHidden = false
             
             editToggle = 1
         } else {
@@ -90,9 +94,34 @@ class mainProfileViewController: UIViewController {
             fullNameTxtField.isHidden = true
             usernameTxtField.isHidden = true
             emailTxtField.isHidden = true
+            editImageBtn.isHidden = true
             
             editToggle = 0
         }
+    }
+    
+    @IBAction func editImageBtnPressed(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        
+        image.sourceType = UIImagePickerController.SourceType.photoLibrary
+        image.allowsEditing = false
+        
+        self.present(image, animated: true) {
+            //after it is complete
+        }
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImage.image = image
+        } else {
+            // error message
+            print("ERROR with uploading image")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
