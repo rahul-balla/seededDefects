@@ -61,6 +61,8 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
+                                    <outlet property="name" destination="MdY-5w-BFG" id="wOw-i7-NKG"/>
+                                    <outlet property="userDescription" destination="vQ9-df-OAs" id="1w3-7g-nW6"/>
                                     <segue destination="wag-S7-mOk" kind="show" id="bSm-qJ-YjG"/>
                                 </connections>
                             </tableViewCell>
@@ -71,6 +73,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Matches" id="gc0-WY-OFo"/>
+                    <connections>
+                        <outlet property="matchesTable" destination="vs3-yg-kcY" id="L5G-Hc-kbx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldi-ev-f06" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
