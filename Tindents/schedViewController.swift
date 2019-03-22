@@ -377,7 +377,7 @@ class schedViewController: UIViewController, UITextFieldDelegate{
         if (availabile.count > 0) {
             availabile.remove(at: availabile.lastIndex(of: ",")!)
             
-            print(availabile!)
+            print("the schedule is " + availabile!)
             requests().schedulerRequest(schedulerString: availabile) { (response) in
                 if let response = response {
                     print("scheduler response: \(response)")
