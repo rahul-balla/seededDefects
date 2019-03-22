@@ -18,7 +18,8 @@ class matchesTableViewController: UITableViewController {
         "rating" : "4.5/5",
         "description" : "hello",
         "picture" : UIImage(named: "ryan")!,
-        "charge" : 23.5
+        "charge" : 23.5,
+        "schedule": "SUN 7:00 PM to 8:00 PM,TUES 9:00 PM to 10:00 PM"
     ]
     
     var secondName : [String: Any] = [
@@ -29,7 +30,8 @@ class matchesTableViewController: UITableViewController {
         "rating" : "3.8/5",
         "description" : "my name is Tom Cruise",
         "picture" : UIImage(named: "tomCruise")!,
-        "charge" : 30.98
+        "charge" : 30.98,
+        "schedule": "MON 10:00 AM to 12:00 PM,WED 6:00 PM to 11:00 PM"
     ]
     
     var thirdName : [String: Any] = [
@@ -40,7 +42,8 @@ class matchesTableViewController: UITableViewController {
         "rating" : "2.1/5",
         "description" : "CS 354 (OS) sucks!",
         "picture" : UIImage(named: "willSmith")!,
-        "charge" : 45.98
+        "charge" : 45.98,
+        "schedule": "FRI 11:00 AM to 1:00 PM,THURS 6:00 PM to 11:00 PM"
     ]
     
     var tutors: [Tutor] = []

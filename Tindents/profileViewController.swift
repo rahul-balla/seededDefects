@@ -16,8 +16,11 @@ class profileViewController: UIViewController {
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var charge: UILabel!
     @IBOutlet weak var userRating: UILabel!
+    @IBOutlet weak var schedule: UILabel!
     
     var tutor: Tutor?
+    var rawSchedule: [String] = []
+    var parsedSched: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,20 @@ class profileViewController: UIViewController {
             userDescription.text = tutor.description
             charge.text = String(tutor.charge)
             userRating.text = tutor.rating
+            rawSchedule = tutor.schedule.components(separatedBy: ",")
+
+            
+            for i in rawSchedule.indices {
+                if (i == rawSchedule.count - 1){
+                    parsedSched = parsedSched + rawSchedule[i]
+                } else {
+                    parsedSched = parsedSched + rawSchedule[i] + "\n"
+                }
+            }
+            
+            print("the parsed schedule is " + parsedSched)
+            schedule.numberOfLines = rawSchedule.count
+            schedule.text = parsedSched
         }
         
         // Do any additional setup after loading the view.

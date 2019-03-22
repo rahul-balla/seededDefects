@@ -20,6 +20,7 @@ class Tutor {
     var description: String?
     var id: Int!
     var charge: Double!
+    var schedule: String!
     
     init (dictionary: [String: Any]) {
         name = dictionary["name"] as? String ?? "Creepy Tutor"
@@ -31,5 +32,6 @@ class Tutor {
         description = dictionary["description"] as? String ?? "No Description"
         id = dictionary["userId"] as? Int ?? nil
         charge = dictionary["charge"] as? Double
+        schedule = dictionary["schedule"] as? String ?? "no schedule"
     }
 }

@@ -180,17 +180,31 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQM-ab-Uah">
+                                <rect key="frame" x="15" y="444.5" width="68.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="scheduleText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8l-sm-dl0">
+                                <rect key="frame" x="83.5" y="472.5" width="89.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OZW-jh-0Bp" firstAttribute="top" secondItem="QOC-OQ-Qej" secondAttribute="top" constant="50" id="1oV-4I-zif"/>
+                            <constraint firstItem="u8l-sm-dl0" firstAttribute="top" secondItem="aQM-ab-Uah" secondAttribute="bottom" constant="10" id="4WV-Np-pu7"/>
+                            <constraint firstItem="poY-z9-oew" firstAttribute="centerX" secondItem="QOC-OQ-Qej" secondAttribute="centerX" id="5kw-8q-c2f"/>
                             <constraint firstItem="f81-2L-6oz" firstAttribute="centerY" secondItem="ZSa-fs-oEd" secondAttribute="centerY" id="8OV-iX-NBC"/>
                             <constraint firstItem="nK3-B1-f9d" firstAttribute="centerX" secondItem="y03-wI-ZH1" secondAttribute="centerX" id="8b3-Ij-TKG"/>
                             <constraint firstItem="ZSa-fs-oEd" firstAttribute="centerX" secondItem="QOC-OQ-Qej" secondAttribute="centerX" id="8bV-f1-tcu"/>
                             <constraint firstItem="y03-wI-ZH1" firstAttribute="top" secondItem="OZW-jh-0Bp" secondAttribute="bottom" constant="30" id="MZ8-eM-ig1"/>
                             <constraint firstItem="QOC-OQ-Qej" firstAttribute="bottom" secondItem="OZW-jh-0Bp" secondAttribute="bottom" constant="400" id="SHH-Gd-DOk"/>
-                            <constraint firstItem="poY-z9-oew" firstAttribute="centerX" secondItem="aFv-4E-i4B" secondAttribute="centerX" id="Tcz-Ao-Qj1"/>
+                            <constraint firstItem="aQM-ab-Uah" firstAttribute="top" secondItem="485-vC-RBl" secondAttribute="bottom" constant="10" id="Sej-mt-Mdp"/>
                             <constraint firstItem="y03-wI-ZH1" firstAttribute="centerX" secondItem="OZW-jh-0Bp" secondAttribute="centerX" id="XMb-gt-36u"/>
                             <constraint firstItem="poY-z9-oew" firstAttribute="top" secondItem="nK3-B1-f9d" secondAttribute="bottom" constant="10" id="aM1-j0-Bnh"/>
                             <constraint firstItem="485-vC-RBl" firstAttribute="centerX" secondItem="QOC-OQ-Qej" secondAttribute="centerX" id="bOh-dJ-aV4"/>
@@ -200,8 +214,11 @@
                             <constraint firstItem="nK3-B1-f9d" firstAttribute="top" secondItem="y03-wI-ZH1" secondAttribute="bottom" constant="15" id="ktc-n2-3pR"/>
                             <constraint firstItem="f81-2L-6oz" firstAttribute="leading" secondItem="ZSa-fs-oEd" secondAttribute="trailing" constant="30" id="lLV-F1-mqG"/>
                             <constraint firstItem="ZSa-fs-oEd" firstAttribute="bottom" secondItem="QOC-OQ-Qej" secondAttribute="bottom" constant="-50" id="nJd-7E-boD"/>
+                            <constraint firstItem="ZSa-fs-oEd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="u8l-sm-dl0" secondAttribute="bottom" constant="10" id="rii-9x-ro3"/>
                             <constraint firstItem="fiL-I2-iLk" firstAttribute="top" secondItem="poY-z9-oew" secondAttribute="bottom" constant="10" id="tdE-ZY-JD5"/>
+                            <constraint firstItem="u8l-sm-dl0" firstAttribute="leading" secondItem="aQM-ab-Uah" secondAttribute="trailing" id="vaV-hN-xb4"/>
                             <constraint firstItem="OZW-jh-0Bp" firstAttribute="leading" secondItem="QOC-OQ-Qej" secondAttribute="leading" constant="116" id="xfG-QO-UdO"/>
+                            <constraint firstItem="aQM-ab-Uah" firstAttribute="leading" secondItem="QOC-OQ-Qej" secondAttribute="leading" constant="15" id="yHY-ix-RnO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QOC-OQ-Qej"/>
                     </view>
@@ -210,6 +227,7 @@
                         <outlet property="email" destination="Cr6-TC-gDL" id="bTo-ye-k3X"/>
                         <outlet property="name" destination="y03-wI-ZH1" id="OxH-Vt-DrH"/>
                         <outlet property="rating" destination="YwF-E3-t8Y" id="0zY-cq-hYU"/>
+                        <outlet property="schedule" destination="u8l-sm-dl0" id="2Aw-qY-P8C"/>
                         <outlet property="userDescription" destination="nK3-B1-f9d" id="l1x-A1-Xag"/>
                         <outlet property="userRating" destination="YwF-E3-t8Y" id="i3X-mR-ilm"/>
                     </connections>
