@@ -47,6 +47,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         
         let group = DispatchGroup()
         
+        print("the users are: ")
         group.enter()
         requests().feedRequest { (response) in
             if let response = response {
@@ -163,7 +164,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
 //                    UIView.animate(withDuration: 0.3) {
 //                        card.center = self.view.center
 //                    }
-                    resetCard()
+                    
                 }
             }
         }

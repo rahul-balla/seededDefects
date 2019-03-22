@@ -131,19 +131,23 @@ def settings():
 def feed():
     userDict = []
 
-    print("jfneononjovjnotnojn")
     
     if accountType == "student" :
+
         currUser = users.query.filter_by(id = userid).first()
 
         feed = users.query.filter_by(account_type = "tutor")
+
 
         for x in feed:
             matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s and (student_swipe = 1 or student_swipe = 2)", userid,x.id).scalar()
             #             matchCheck = matches.query.filter_by(student_id = userid, tutor_id = x.id).count()
 
+            print("match check = ", matchCheck)
 
             if matchCheck == 0:
+                print("feed = ihbuhbuhbuibub")
+
                 if currUser.settings == None:
                     dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName}
                     userDict.append(dd)
@@ -247,31 +251,31 @@ def leftSwipe():
     return jsonify({'success' : 1})
 
 
-@app.route("/matches", methods=['GET', 'POST'])
-def matches():
-    content = request.json
+# @app.route("/matches", methods=['GET', 'POST'])
+# def matches():
+#     content = request.json
 
 
-    matchData = []
+#     matchData = []
 
 
-    if accountType == "student" :
-        mm = matches.query.filter_by(student_id = userid, tutor_swipe = 1, student_swipe = 1)
+#     if accountType == "student" :
+#         mm = matches.query.filter_by(student_id = userid, tutor_swipe = 1, student_swipe = 1).first
 
-        for x in mm:
-            user = users.query.filter_by(id = x.tutor_id).first
-            dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
-            matchData.append(dd)
+#         for x in mm:
+#             user = users.query.filter_by(id = x.tutor_id).first
+#             dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
+#             matchData.append(dd)
 
-    else:
-        mm = matches.query.filter_by(tutor_id = userid, tutor_swipe = 1, student_swipe = 1)
-        for x in mm:
-            user = users.query.filter_by(id = x.student_id).first
-            dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
-            matchData.append(dd)
+#     else:
+#         mm = matches.query.filter_by(tutor_id = userid, tutor_swipe = 1, student_swipe = 1)
+#         for x in mm:
+#             user = users.query.filter_by(id = x.student_id).first
+#             dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
+#             matchData.append(dd)
 
 
-    return jsonify({'matches' : matchData})
+#     return jsonify({'matches' : matchData})
     
 
 
@@ -289,17 +293,19 @@ def matchesPage():
     matchesDict = []
 
     if accountType == "student" : 
-        matches = matches.query.filter_by(student_id = userid, student_swipe = 1, tutor_swipe = 1)
-        if matches != None:
-            for x in matches:
-                matchInfo = users.query.filter_by(id = x.tutor_id)
+        print("hello : ", userid)
+        matchess = matches.query.filter_by(student_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matchess != None:
+            for x in matchess:
+                matchInfo = users.query.filter_by(id = x.tutor_id).first()
+                print("match info = ", x.tutor_id)
                 dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName}
                 matchesDict.append(dd)
     else:
-        matches = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
-        if matches != None:
-            for x in matches:
-                matchInfo = users.query.filter_by(id = x.student_id)
+        matchess = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matchess != None:
+            for x in matchess:
+                matchInfo = users.query.filter_by(id = x.student_id).first()
                 dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName}
                 matchesDict.append(dd)
 

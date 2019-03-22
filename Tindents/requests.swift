@@ -392,4 +392,80 @@ class requests {
         
         task.resume()
     }
+    
+   func getMatches(completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/matchesPage")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
+    
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+    
+            if let error = error {
+                // handle the transport error
+                print("transport error")
+                completionBlock(nil)
+                return
+            }
+    
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                // handle the server error
+                print("server error")
+                completionBlock(nil)
+                return
+            }
+    
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                completionBlock(json)
+    
+            } catch {
+                print("json error")
+                completionBlock(nil)
+            }
+    
+        })
+    
+        task.resume()
+    }
 }
+
+//func feedRequest(completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+//
+//    let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/feed")! as URL)
+//    let session = URLSession.shared
+//    request.httpMethod = "POST"
+//
+//    request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//    let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+//
+//        if let error = error {
+//            // handle the transport error
+//            print("transport error")
+//            completionBlock(nil)
+//            return
+//        }
+//
+//        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+//            // handle the server error
+//            print("server error")
+//            completionBlock(nil)
+//            return
+//        }
+//
+//        do {
+//            let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+//            completionBlock(json)
+//
+//        } catch {
+//            print("json error")
+//            completionBlock(nil)
+//        }
+//
+//    })
+//
+//    task.resume()
+//
+//}
