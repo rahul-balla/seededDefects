@@ -286,6 +286,33 @@ def schedule():
     return jsonify({'success' : 1})
 
 
+@app.route("/matchesPage", methods=['GET', 'POST'])
+def matchesPage():
+    matchesDict = []
+
+    if accountType == "student" : 
+        matches = matches.query.filter_by(student_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matches != None:
+            for x in matches:
+                matchInfo = users.query.filter_by(id = x.tutor_id)
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName}
+                matchesDict.append(dd)
+    else:
+        matches = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matches != None:
+            for x in matches:
+                matchInfo = users.query.filter_by(id = x.student_id)
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName}
+                matchesDict.append(dd)
+
+    print("matchesDics = ", matchesDict)
+
+    return jsonify({'matches': matchesDict})
+
+
+
+
+
 
 # SQL Queries
 # 
