@@ -37,8 +37,9 @@ class profileViewController: UIViewController {
             userDescription.text = tutor.description
             charge.text = String(tutor.charge)
             userRating.text = tutor.rating
+            print("the schedule is \(tutor.schedule)")
+            
             rawSchedule = tutor.schedule.components(separatedBy: ",")
-
             
             for i in rawSchedule.indices {
                 if (i == rawSchedule.count - 1){
@@ -51,6 +52,7 @@ class profileViewController: UIViewController {
             print("the parsed schedule is " + parsedSched)
             schedule.numberOfLines = rawSchedule.count
             schedule.text = parsedSched
+            
         }
         
         // Do any additional setup after loading the view.

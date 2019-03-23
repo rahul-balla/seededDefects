@@ -299,7 +299,7 @@ class requests {
         let session = URLSession.shared
         request.httpMethod = "POST"
         
-        var params = ["string":schedulerString] as! Dictionary<String, String>
+        var params = ["schedule":schedulerString] as! Dictionary<String, String>
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])

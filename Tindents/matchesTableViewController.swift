@@ -74,11 +74,11 @@ class matchesTableViewController: UITableViewController {
                         "subjects" : ["STAT", "CS"],
                         "tutorEmail" : user["email"],
                         "rating" : user["rating"],
-                        "description" : "lets have fun",
+                        "description" : user["description"],
                         "picture" : UIImage(named: "Harsha")!,
                         "userid" : user["userid"],
-                        "charge" : 45.98,
-                        "schedule": "FRI 11:00 AM to 1:00 PM,THURS 6:00 PM to 11:00 PM"
+                        "charge" : user["rating"],
+                        "schedule": user["schedule"]
                     ]
                     let match = Tutor(dictionary: oneUser)
                     self.matches.append(match)

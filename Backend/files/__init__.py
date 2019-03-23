@@ -300,7 +300,7 @@ def leftSwipe():
 def schedule():
     content = request.json
 
-    db.engine.execute("UPDATE users SET schedule = %s WHERE id = %s", str(content), userid)
+    db.engine.execute("UPDATE users SET schedule = %s WHERE id = %s", content['schedule'], userid)
 
     return jsonify({'success' : 1})
 
