@@ -103,7 +103,7 @@ class TutorViewController: UIViewController {
             var session = URLSession.shared
             request.httpMethod = "POST"
             
-            var params = ["email":tutorEmail.text, "username":username.text, "password":password.text, "name":fullName.text] as! Dictionary<String, String>
+            var params = ["email":tutorEmail.text, "username":username.text, "password":password.text, "name":fullName.text, "charge": rate.text, "description": tutorDescription.text] as! Dictionary<String, String>
             params["account_type"] = "tutor"
             
             do {

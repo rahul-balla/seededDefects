@@ -71,10 +71,9 @@ class matchesTableViewController: UITableViewController {
                 for user in user_arr as! [AnyObject] {
                     var oneUser : [String: Any] = [
                         "name" : user["fullName"],
-                        "age" : 69,
                         "subjects" : ["STAT", "CS"],
                         "tutorEmail" : user["email"],
-                        "rating" : "4.5/5",
+                        "rating" : user["rating"],
                         "description" : "lets have fun",
                         "picture" : UIImage(named: "Harsha")!,
                         "userid" : user["userid"],
