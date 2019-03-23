@@ -128,7 +128,7 @@ def profile():
     else :
         userRat = (float(user.totalRating)/float(user.numRatings))
     
-    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'schedule' : user.schedule, 'rating' : userRat })
+    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'schedule' : user.schedule, 'rating' : userRat, 'description':user.description, 'charge': user.price })
 
 
 @app.route("/settings", methods=['GET', 'POST'])
@@ -171,7 +171,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat}
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
                     print("In the first if statement\n")   
                 elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
@@ -186,7 +186,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat}
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
 
     else:
@@ -205,7 +205,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
     
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat}
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
                 
                 elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
@@ -219,7 +219,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
     
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat}
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
 
     print("userDict : ",userDict)
@@ -325,7 +325,7 @@ def matchesPage():
                 else :
                     userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
     
-                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat}
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat, 'description':matchInfo.description, 'charge': matchInfo.price }
                 matchesDict.append(dd)
     else:
         matchess = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
@@ -340,7 +340,7 @@ def matchesPage():
                 else :
                     userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
     
-                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat}
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat, 'description':matchInfo.description, 'charge': matchInfo.price }
                 matchesDict.append(dd)
 
     print("matchesDics = ", matchesDict)
