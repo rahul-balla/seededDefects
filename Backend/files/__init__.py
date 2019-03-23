@@ -241,15 +241,10 @@ def rightSwipe():
 
     if matchCheck == 0 and matchCheck2 == 0:
         if accountType == "student":
-            # newEnt = matches(student_id = userid, tutor_id = content["swipedId"],student_swipe = 1, tutor_swipe = 0)
-            # db.session.add(newEnt)
-    	    # db.session.commit()
-       
+
         	db.engine.execute("INSERT INTO matches (student_id, tutor_id, student_swipe, tutor_swipe)VALUES (%s, %s,%s,%s)", userid, content["swipedId"], 1,0)
         else:
-         #    newEnt = matches(student_id = content["swipedId"], tutor_id = userid, student_swipe = 0, tutor_swipe = 1)
-         #    db.session.add(newEnt)
-    	    # db.session.commit()
+
     	    db.engine.execute("INSERT INTO matches (student_id, tutor_id, student_swipe, tutor_swipe)VALUES (%s, %s,%s,%s)", content["swipedId"], userid, 0,1)
 
     else:
@@ -257,6 +252,16 @@ def rightSwipe():
             db.engine.execute("UPDATE matches SET student_swipe = %s WHERE student_id = %s AND tutor_id = %s", 1, userid, content["swipedId"] )
         else:
             db.engine.execute("UPDATE matches SET tutor_swipe = %s WHERE tutor_id = %s AND student_id = %s", 1, userid, content["swipedId"] )
+
+
+    if accountType == "student" : 
+        justMatched = matches.query.filter_by(student_id = user_id, tutor_id = content["swipedId"])
+        if(justMatched.tutor_swipe == 1 and justMatched.student_swipe == 1):
+                return jsonify({'success' : 5})
+    else:
+        justMatched = matches.query.filter_by(student_id = content["swipedId"], tutor_id = userid)
+        if(justMatched.tutor_swipe == 1 and justMatched.student_swipe == 1):
+                return jsonify({'success' : 5})
 
     return jsonify({'success' : 1})
 
