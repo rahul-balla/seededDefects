@@ -77,7 +77,7 @@ class matchesTableViewController: UITableViewController {
                         "rating" : "4.5/5",
                         "description" : "lets have fun",
                         "picture" : UIImage(named: "Harsha")!,
-                        "userId" : user["userid"],
+                        "userid" : user["userid"],
                         "charge" : 45.98,
                         "schedule": "FRI 11:00 AM to 1:00 PM,THURS 6:00 PM to 11:00 PM"
                     ]

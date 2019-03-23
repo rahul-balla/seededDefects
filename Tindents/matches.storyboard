@@ -225,6 +225,7 @@
                     <connections>
                         <outlet property="charge" destination="SqI-G9-YTO" id="9Ks-1Q-JEH"/>
                         <outlet property="email" destination="Cr6-TC-gDL" id="bTo-ye-k3X"/>
+                        <outlet property="enteredRating" destination="FBz-QZ-d7T" id="jsU-zM-vGU"/>
                         <outlet property="name" destination="y03-wI-ZH1" id="OxH-Vt-DrH"/>
                         <outlet property="rating" destination="YwF-E3-t8Y" id="0zY-cq-hYU"/>
                         <outlet property="schedule" destination="u8l-sm-dl0" id="2Aw-qY-P8C"/>

@@ -11,6 +11,7 @@ import UIKit
 
 class Tutor {
     
+    var userid: Int!
     var name: String!
     var age: Int!
     var subjects: [String]!
@@ -23,6 +24,7 @@ class Tutor {
     var schedule: String!
     
     init (dictionary: [String: Any]) {
+        userid = dictionary["userid"] as? Int ?? nil
         name = dictionary["name"] as? String ?? "Creepy Tutor"
         age = dictionary["age"] as? Int ?? nil
         subjects = dictionary["subjects"] as? [String] ?? []

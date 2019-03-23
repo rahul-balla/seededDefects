@@ -64,6 +64,8 @@ class users(UserMixin, db.Model):
     description = db.Column(db.String(500))
     price = db.Column(db.Integer)
     schedule = db.Column(db.String(500))
+    numRatings = db.Column(db.Integer)
+    totalRating = db.Column(db.Integer)
 
     def __repr__(self):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
@@ -296,12 +298,12 @@ def matchesPage():
 def rateUser():
     content = request.json
 
-    rat = rating(rater_id = userid, rated_id = content["ratedId"])
+    rat = ratings(rater_id = userid, rated_id = content["ratedId"])
     db.session.add(rat)
     db.session.commit()
     
     
-    rated = user.query.filter_by(id = content["ratedId"]).first()
+    rated = users.query.filter_by(id = content["ratedId"]).first()
 
     num = 0
     rating = 0
@@ -316,6 +318,6 @@ def rateUser():
     else :
         rating = rated.totalRating + content["rating"]
 
-    db.engine.execute("UPDATE users SET numRatings = %s, totalRating = %s WHERE id = %s", num, rating, ratedId)
+    db.engine.execute("UPDATE users SET numRatings = %s, totalRating = %s WHERE id = %s", num, rating, content["ratedId"])
 
     return jsonify({'rating' : 1})

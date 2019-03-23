@@ -11,15 +11,7 @@ import Foundation
 import MessageUI
 
 class SwipingViewController: UIViewController, MFMailComposeViewControllerDelegate {
-    
-    //    var name: String!
-    //    var subjects: [String]!
-    //    var tutorEmail: String!
-    //    var rating: String?
-    //    var picture: UIImage?
-    //    var description: String?
-    //
-    //
+
 
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var nameText: UILabel!
@@ -64,7 +56,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         "rating" : "4.5/5",
                         "description" : "lets have fun",
                         "picture" : UIImage(named: "Harsha")!,
-                        "userId" : user["userid"]
+                        "userid" : user["userid"]
                     ]
                     print(user)
                     let oneTutor = Tutor(dictionary: oneUser)
