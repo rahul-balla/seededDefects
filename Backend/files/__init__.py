@@ -61,6 +61,9 @@ class users(UserMixin, db.Model):
     english = db.Column(db.Integer)
     physics = db.Column(db.Integer)
     math = db.Column(db.Integer)
+    description = db.Column(db.String(500))
+    price = db.Column(db.Integer)
+    schedule = db.Column(db.String(500))
 
     def __repr__(self):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
@@ -76,6 +79,11 @@ class matches(UserMixin, db.Model):
 
     def __repr__(self):
         return "matches('{self.student_id}', {self.tutor_id}', {self.student_swipe}', {self.tutor_swipe}')"
+
+class ratings(UserMixin,db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable = False)
+    rater_id = db.Column(db.Integer)
+    rated_id = db.Column(db.Integer)
 
 ################################################ ROUTES ########################################################
 @app.route("/createAccount", methods=['GET', 'POST'])
@@ -251,34 +259,6 @@ def leftSwipe():
     return jsonify({'success' : 1})
 
 
-# @app.route("/matches", methods=['GET', 'POST'])
-# def matches():
-#     content = request.json
-
-
-#     matchData = []
-
-
-#     if accountType == "student" :
-#         mm = matches.query.filter_by(student_id = userid, tutor_swipe = 1, student_swipe = 1).first
-
-#         for x in mm:
-#             user = users.query.filter_by(id = x.tutor_id).first
-#             dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
-#             matchData.append(dd)
-
-#     else:
-#         mm = matches.query.filter_by(tutor_id = userid, tutor_swipe = 1, student_swipe = 1)
-#         for x in mm:
-#             user = users.query.filter_by(id = x.student_id).first
-#             dd = {'username' : user.username, 'userid' : user.id, 'email':user.email, 'fullName':user.fullName}
-#             matchData.append(dd)
-
-
-#     return jsonify({'matches' : matchData})
-    
-
-
 @app.route("/schedule", methods=['GET', 'POST'])
 def schedule():
     content = request.json
@@ -314,54 +294,30 @@ def matchesPage():
     return jsonify({'matches': matchesDict})
 
 
+@app.route("/rateUser", methods=['GET', 'POST'])
+def rateUser():
+    content = request.json
 
+    rat = rating(rater_id = userid, rated_id = content["ratedId"])
+    db.session.add(rat)
+    db.session.commit()
+    
+    
+    rated = user.query.filter_by(id = content["ratedId"]).first()
 
+    num = 0
+    rating = 0
 
+    if rated.numRatings is None :
+        num = 1
+    else :
+        num = rated.numRatings + 1
 
-# SQL Queries
-# 
-# For checking whether there a student has any available matches: 
-# SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(userid) AND student_swipe=1 AND tutor_swipe=1;
-#
-#
-#For checking whether a match exists (on swipe request)
-#
-#SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(sid) AND tutor_id=tid
-#
-#For inserting a match into the Matches table (if a match did not exist)
-#
-# 
-# INSERT INTO `casinoroyale`.`matches` (id,student_id,tutor_id,student_swipe,tutor_swipe)
-# VALUES (Match ID,Student ID, Tutor ID,1,0);
-# (swap the 1 and 0 if the tutor is the one who swiped right)
-#
-#
-# For updating an existing match into the matches table (if the match already does exist)
-#
-# Assuming student swipe, if tutor swipe change the SET statement to tutor_swipe
-# UPDATE `casinoroyale`.`matches` SET student_swipe =1 WHERE student_id=sid AND tutor_id=tid;
-#
-#Prospective command flow (pseudo-code)
-#
-#On check for matches:
-#
-# if(check_matches.exists()){
-#   send list of tutor IDs ordered first-last.
-#   make an arraylist to return with all matching tutor entries 
- #  }
-# else{
-#       do nothing
-#    }
-#
-#
-#
-# On swiping:
-# check type of originating account (student or tutor)
-# Assign student_id and tutor_id (sid and tid)
-# if(match-exists){
-#       run update;
-#   }
-# else{
-#       run create_match;  
-# }
-#
+    if rated.totalRating is None :
+        rating = content["rating"]
+    else :
+        rating = rated.totalRating + content["rating"]
+
+    db.engine.execute("UPDATE users SET numRatings = %s, totalRating = %s WHERE id = %s", num, rating, ratedId)
+
+    return jsonify({'rating' : 1})
