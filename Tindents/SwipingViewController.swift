@@ -98,7 +98,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     //left swipe
                     
                     //sending info to server
-                    requests().leftSwipe(swipedUserId: self.tutors[i].id!) { (response) in
+                    requests().leftSwipe(swipedUserId: self.tutors[i].userid!) { (response) in
                         print("left swipe request response: \(response)")
                     }
                     
@@ -127,8 +127,18 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     //right swipe
                     
                     //sending info to server
-                    print("id: \(self.tutors[i].id)")
-                    requests().rightSwipe(swipedUserId: self.tutors[i].id) { (response) in
+                    print("value of i \(i)")
+                    print("id: \(self.tutors[i].userid)")
+                    requests().rightSwipe(swipedUserId: self.tutors[i].userid) { (response) in
+                        let success = response?["success"] as? Int
+                        
+                        if (success == 5) {
+                            let alertController = UIAlertController(title: "Match!", message: "You have a new match!!", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alertController.addAction(alertAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        
                         print("right swipe request response: \(response)")
                     }
                     
