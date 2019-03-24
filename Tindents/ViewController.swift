@@ -52,9 +52,9 @@ class ViewController: UIViewController {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
             let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-                print("Response: \(response)")
-                let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                print("Body: \(strData)")
+                //print("Response: \(response)")
+                //let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                //print("Body: \(strData)")
                 //print("Value: \(strData["message"])")
                 var err: NSError?
                 

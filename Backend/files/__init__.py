@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, json
+from flask import Flask, jsonify, json, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Index, func
 from flask_bootstrap import Bootstrap
@@ -9,6 +9,9 @@ import time
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from PIL import Image
+from io import BytesIO
+import zipfile
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
@@ -44,6 +47,10 @@ class users(UserMixin, db.Model):
     password = db.Column(db.String(50), nullable=False)
     account_type = db.Column(db.String(10), nullable = False)
     fullName = db.Column(db.String(50))
+
+    #pictureName = db.Column(db.String(50))
+    picture = db.Column(db.VARBINARY(1000000))
+
 
     def __repr__(self):
         return "users('{self.username}', {self.email}', {self.password}', {self.fullName}')"
@@ -98,8 +105,7 @@ def profile():
     user = users.query.filter_by(id = userid).first()
 
 
-
-    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName})
+    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'userid' : userid})
 
 
 @app.route("/settings", methods=['GET', 'POST'])
@@ -110,6 +116,44 @@ def settings():
 
     return jsonify({'success' : 1})
     
+@app.route("/picFeed", methods=['GET', 'POST'])
+def picFeed():
+    
+    print("THIS AINT BEING CALLED")
+    memory_file = BytesIO()
+
+    if accountType == "student" :
+        feed = users.query.filter_by(account_type = "tutor")
+
+        with zipfile.ZipFile(memory_file, 'w') as zf:
+	        for x in feed:
+	            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s", userid,x.id).scalar()
+
+	            if matchCheck == 0 and x.picture is not None:
+
+	            	#write blob into file
+	            	eachFileName = str(x.id) + ".jpg"
+	            	eachFile = open(eachFileName,'wb')
+	            	eachFile.write(x.picture)
+	            	#eachFile.write(x.picture.decode('base64'))
+	            	eachFile.close()
+
+	            	#putting files into zip
+	            	f=open(eachFileName, "r")
+	            	# img = Image.open(BytesIO(f.read()))
+	            	# img.show()
+	            	print("one file name: ", eachFileName)
+	            	data = zipfile.ZipInfo(eachFileName)
+	            	#data.date_time = time.localtime(time.time())[:6]
+	            	data.compress_type = zipfile.ZIP_DEFLATED
+	            	zf.writestr(data, f.read())
+	            	f.close()
+	    
+
+
+    #print("THIS THE DICTIONARY length : ", len(fileDict))
+    memory_file.seek(0)
+    return send_file(memory_file, attachment_filename='pictures.zip', as_attachment=True)
 
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():
@@ -233,9 +277,30 @@ def matches():
 
 
     return jsonify({'matches' : matchData})
-    
 
 
+
+@app.route("/updateProfile", methods=['GET', 'POST'])
+def updateProfile():
+	file = request.files['file']
+	print("hmmm:", request.files['file'])
+
+	if file:
+		#img = Image.open(file)
+		print("file name:", file.filename)
+ 		#img.show()
+
+ 	db.engine.execute("UPDATE users SET picture = %s where id = %s", file.read(), userid )
+ 	
+ 	print("userid: ", userid)
+ 	print("database call worked!")
+ 	pic = users.query.filter_by(id = userid).first()
+
+ 	img = Image.open(BytesIO(pic.picture))
+ 	print("PLEASE WORK D:")
+ 	print("image: ", img)
+
+	return jsonify({'updateProfile Success' : ':D'})
 
 # SQL Queries
 # 

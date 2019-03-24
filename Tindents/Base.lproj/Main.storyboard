@@ -1258,7 +1258,6 @@
         <image name="editImage" width="160" height="160"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9SA-gu-MB8"/>
         <segue reference="Ns4-hA-KYy"/>
         <segue reference="4qD-hP-08X"/>
     </inferredMetricsTieBreakers>

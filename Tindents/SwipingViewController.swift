@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import MessageUI
+import ZIPFoundation
 
 class SwipingViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -46,6 +47,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         divisor = view.frame.width / 2 / 0.61
         
         let group = DispatchGroup()
+        let group_cpy = DispatchGroup()
         
         group.enter()
         requests().feedRequest { (response) in
@@ -64,6 +66,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         "description" : "lets have fun",
                         "picture" : UIImage(named: "Harsha")!,
                         "userId" : user["userid"]
+
                     ]
                     print(user)
                     let oneTutor = Tutor(dictionary: oneUser)
@@ -74,8 +77,88 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
             
             }
         }
-        
         group.wait()
+        
+        group_cpy.enter()
+        //request for getting profile pictures
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/picFeed")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
+        
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            
+            if let error = error {
+                // handle the transport error
+                print("transport error")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                // handle the server error
+                print("server error")
+                return
+            }
+            
+            var destPath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            destPath.appendPathComponent("pictures")
+            
+            var srcPath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            srcPath.appendPathComponent("pictures.zip")
+            
+            //Write the zip file to the Documents folder of simulator
+            do {
+                try data?.write(to: srcPath)
+            } catch {
+                print("error writing zip file to simulator directory")
+            }
+            
+            let fm = FileManager()
+            
+            //unzip file
+            do {
+                try fm.createDirectory(at: destPath, withIntermediateDirectories: true, attributes: nil)
+                try fm.unzipItem(at: srcPath, to: destPath)
+            } catch {
+                print("error unzipping file")
+            }
+            
+            //update all the tutors with profile pics
+            do {
+                let directoryContents = try fm.contentsOfDirectory(at: destPath, includingPropertiesForKeys: nil, options: [])
+                
+                for imageurl in directoryContents {
+                    var fileName = imageurl.lastPathComponent
+                    let index = fileName.index(of: ".")!
+                    fileName = String(fileName[..<index])
+                    
+                    let imagedata = try! Data(contentsOf: imageurl)
+                    let thisimage = UIImage(data: imagedata)
+                    
+                    if let obj = self.tutors.first(where: {$0.id == Int(fileName)}) {
+                        print("name: \(obj.name)")
+                        obj.picture = thisimage
+                    }
+                }
+                group_cpy.leave()
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            //remove the zip file from that place
+            do {
+                try fm.removeItem(at: destPath)
+                try fm.removeItem(at: srcPath)
+            } catch let error as NSError {
+                print("error deleting zip file: \(error)")
+            }
+            
+        })
+        task.resume()
+        
+        group_cpy.wait()
         
         print("number of swipable ppls: \(tutors.count)")
         
@@ -188,7 +271,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func setImageDetails(index: Int) {
         //SET PIC HERE!!!!
-        //card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
+        card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
         nameText.text = tutors[index].name
         ageNum.text = String(tutors[index].age)
         let arr : [String] = tutors[index].subjects
@@ -231,7 +314,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         return mailComposerVC
         
     }
-    
     
     func showSendMailErrorAlert(){
         let sendMailErrorAlert = UIAlertController(title: "Could not send email", message:"Your device must have an active email account", preferredStyle: UIAlertController.Style.alert)
