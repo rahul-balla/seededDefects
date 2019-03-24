@@ -24,10 +24,14 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var editBtn: UIButton!
     @IBOutlet var editImageBtn: UIButton!
     @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var chargeTitleLbl: UILabel!
+    @IBOutlet var chargeLbl: UILabel!
     
     @IBOutlet var fullNameTxtField: UITextField!
     @IBOutlet var usernameTxtField: UITextField!
     @IBOutlet var emailTxtField: UITextField!
+    @IBOutlet var chargeTxtField: UITextField!
+    @IBOutlet var descriptionTxtView: UITextView!
     
     var currUserId = 0
     var editToggle = 0
@@ -41,6 +45,11 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
         emailTxtField.isHidden = true
         editImageBtn.isHidden = true
         
+        chargeTxtField.isHidden = true
+        chargeTitleLbl.isHidden = true
+        chargeLbl.isHidden = true
+        descriptionTxtView.isHidden = true
+        
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
         
@@ -53,8 +62,23 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
                 //var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 //print("BODY: \(strData)")
                 var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                print("JSON: \(json)")
                 
                 DispatchQueue.main.async {
+                    var account_type = json!["account_type"] as? String
+                    if (account_type == "tutor") {
+                        self.chargeTitleLbl.isHidden = false
+                        self.chargeLbl.isHidden = false
+                        self.descriptionTxtView.isHidden = false
+                    }
+                    
+                    //Only for tutors
+                    let chargeInt: Int = (json!["charge"] as? Int)!
+                    self.chargeLbl.text = String(chargeInt) as! String
+                    self.chargeTxtField.text = String(chargeInt) as! String
+                    self.descriptionTxtView.text = json!["description"] as? String
+                    
+                    //For everyone
                     self.fullNameLbl.text = json!["fullName"] as? String
                     self.usernameLbl.text = json!["username"] as? String
                     self.emailLbl.text = json!["email"] as? String
@@ -123,6 +147,11 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             emailTxtField.isHidden = false
             editImageBtn.isHidden = false
             
+            chargeLbl.isHidden = true
+            if (accountTypeLbl.text == "tutor") {
+                chargeTxtField.isHidden = false
+            }
+            
             editToggle = 1
         } else {
             //Done with editing
@@ -138,10 +167,27 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             emailTxtField.isHidden = true
             editImageBtn.isHidden = true
             
+            
+            if (accountTypeLbl.text == "tutor") {
+                chargeTxtField.isHidden = false
+            }
+            chargeTxtField.isHidden = true
+            
             editToggle = 0
             
             /********** SEND STUFF TO SERVER ************/
             
+            let group = DispatchGroup()
+            
+            group.enter()
+            //For updating text information
+            requests().updateProfileInfoRequest(email: self.emailTxtField.text!, name: self.fullNameTxtField.text!, username: self.usernameTxtField.text!, charge: Int(self.chargeTxtField!.text!)!, description: self.descriptionTxtView.text) { (response) in
+                print("update profile info request response: \(response)")
+                group.wait()
+            }
+            group.leave()
+            
+            //For updating profile pic
             let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/updateProfile")! as URL)
             let session = URLSession.shared
             
@@ -197,6 +243,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             task.resume()
         
         }
+        
     }
     
     @IBAction func editImageBtnPressed(_ sender: Any) {

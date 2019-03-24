@@ -98,10 +98,30 @@ class ratings(UserMixin,db.Model):
 @app.route("/createAccount", methods=['GET', 'POST'])
 def createAccount():
 	content = request.json
+        
+        usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
+        emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
 
-    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0, description = content["description"], price = content["charge"])
-    	db.session.add(user)
-    	db.session.commit()
+        if usernameCheck > 0 :
+            return jsonify({'success' : 2})
+        
+        if emailCheck > 0 :
+            return jsonify({'success' : 3})
+<<<<<<< HEAD
+
+
+=======
+
+
+>>>>>>> efb5eded0fca72d92936263d912cecb52588e62b
+        if content["account_type"] == "student":
+            user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0)
+            db.session.add(user)
+    	    db.session.commit()
+        else :
+            user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0, description = content["description"], price = content["charge"])
+    	    db.session.add(user)
+    	    db.session.commit()
 
     	return jsonify({'success' : 1})
 
@@ -130,17 +150,12 @@ def profile():
     
     userRat = 0
 
-<<<<<<< HEAD
-
-    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'userid' : userid})
-=======
     if user.numRatings == 0 : 
         userRat = 0
     else :
         userRat = (float(user.totalRating)/float(user.numRatings))
     
-    return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'schedule' : user.schedule, 'rating' : userRat, 'description':user.description, 'charge': user.price })
->>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
+    	return jsonify({'username' : user.username, 'email' : user.email, 'account_type' : user.account_type, 'fullName' : user.fullName, 'schedule' : user.schedule, 'rating' : userRat, 'description':user.description, 'charge': user.price, 'userid' : userid })
 
 
 @app.route("/settings", methods=['GET', 'POST'])
@@ -156,7 +171,6 @@ def settings():
 @app.route("/picFeed", methods=['GET', 'POST'])
 def picFeed():
     
-    print("THIS AINT BEING CALLED")
     memory_file = BytesIO()
 
     if accountType == "student" :
@@ -194,87 +208,94 @@ def picFeed():
 
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():
-    userDict = []
+	userDict = []
 
-    
-    if accountType == "student" :
+	if accountType == "student" :
 
-        currUser = users.query.filter_by(id = userid).first()
+		currUser = users.query.filter_by(id = userid).first()
 
-        feed = users.query.filter_by(account_type = "tutor")
+		feed = users.query.filter_by(account_type = "tutor")
 
 
-        for x in feed:
-            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s and (student_swipe = 1 or student_swipe = 2)", userid,x.id).scalar()
-            #             matchCheck = matches.query.filter_by(student_id = userid, tutor_id = x.id).count()
+		for x in feed:
+		    matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s and (student_swipe = 1 or student_swipe = 2)", userid,x.id).scalar()
+		    #             matchCheck = matches.query.filter_by(student_id = userid, tutor_id = x.id).count()
 
-            print("match check = ", matchCheck)
+		    print("match check = ", matchCheck)
 
-            if matchCheck == 0:
-                print("feed = ihbuhbuhbuibub")
+		    if matchCheck == 0:
+		        print("feed = ihbuhbuhbuibub")
 
-                if currUser.settings == None:
-                    userRat = 0
+		        if currUser.settings == None:
+		            userRat = 0
 
+<<<<<<< HEAD
+		            if x.numRatings == 0 : 
+		                userRat = 0
+		            else :
+		                userRat = (float(x.totalRating)/float(x.numRatings))
+=======
                     if x.numRatings == 0 : 
                         userRat = 0
                     else :
+                        print("hello : ", type(x.totalRating))
                         userRat = (float(x.totalRating)/float(x.numRatings))
+>>>>>>> efb5eded0fca72d92936263d912cecb52588e62b
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
-                    userDict.append(dd)
-                    print("In the first if statement\n")   
-                elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
-                    print("In the second if statement\n")
-                else:
-                    print("in the else statement")
+		            dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
+		            userDict.append(dd)
+		            print("In the first if statement\n")   
+		        elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
+		            print("In the second if statement\n")
+		        else:
+		            print("in the else statement")
 
-                    userRat = 0
+		            userRat = 0
 
-                    if x.numRatings == 0 : 
-                        userRat = 0
-                    else :
-                        userRat = (float(x.totalRating)/float(x.numRatings))
+		            if x.numRatings == 0 : 
+		                userRat = 0
+		            else :
+		                userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
-                    userDict.append(dd)
+		            dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
+		            userDict.append(dd)
 
-    else:
-        currUser = users.query.filter_by(id = userid).first()
+	else:
+	    currUser = users.query.filter_by(id = userid).first()
 
-        feed = users.query.filter_by(account_type = "student")
-        
-        for x in feed:
-            matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s and (tutor_swipe = 1 or tutor_swipe = 2)", x.id, userid).scalar()
-            if matchCheck == 0:
-                if currUser.settings == None:
-                    userRat = 0
+	    feed = users.query.filter_by(account_type = "student")
+	    
+	    for x in feed:
+	        matchCheck = db.engine.execute("SELECT COUNT(id) FROM matches WHERE student_id = %s and tutor_id = %s and (tutor_swipe = 1 or tutor_swipe = 2)", x.id, userid).scalar()
+	        if matchCheck == 0:
+	            if currUser.settings == None:
+	                userRat = 0
 
-                    if x.numRatings == 0 : 
-                        userRat = 0
-                    else :
-                        userRat = (float(x.totalRating)/float(x.numRatings))
-    
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
-                    userDict.append(dd)
-                
-                elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
-                    print("In the if statement\n")
-                else:
+	                if x.numRatings == 0 : 
+	                    userRat = 0
+	                else :
+	                    userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    userRat = 0
+	                dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
+	                userDict.append(dd)
+	            
+	            elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
+	                print("In the if statement\n")
+	            else:
 
-                    if x.numRatings == 0 : 
-                        userRat = 0
-                    else :
-                        userRat = (float(x.totalRating)/float(x.numRatings))
-    
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
-                    userDict.append(dd)
+	                userRat = 0
 
-    print("userDict : ",userDict)
+	                if x.numRatings == 0 : 
+	                    userRat = 0
+	                else :
+	                    userRat = (float(x.totalRating)/float(x.numRatings))
 
-    return jsonify({'feed': userDict})
+	                dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
+	                userDict.append(dd)
+
+	print("userDict : ",userDict)
+
+	return jsonify({'feed': userDict})
 
 
 
@@ -400,9 +421,6 @@ def matchesPage():
 
     print("matchesDics = ", matchesDict)
 
-<<<<<<< HEAD
-    return jsonify({'matches' : matchData})
-=======
     return jsonify({'matches': matchesDict})
 
 
@@ -424,7 +442,6 @@ def rateUser():
         num = 1
     else :
         num = rated.numRatings + 1
->>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
 
     if rated.totalRating is None :
         rating = content["rating"]
@@ -433,76 +450,26 @@ def rateUser():
 
     db.engine.execute("UPDATE users SET numRatings = %s, totalRating = %s WHERE id = %s", num, rating, content["ratedId"])
 
-<<<<<<< HEAD
+    return jsonify({'rating' : 1})
+
 @app.route("/updateProfile", methods=['GET', 'POST'])
 def updateProfile():
-	file = request.files['file']
-	print("hmmm:", request.files['file'])
-
-	if file:
-		#img = Image.open(file)
-		print("file name:", file.filename)
- 		#img.show()
-
- 	db.engine.execute("UPDATE users SET picture = %s where id = %s", file.read(), userid )
- 	
- 	print("userid: ", userid)
- 	print("database call worked!")
- 	pic = users.query.filter_by(id = userid).first()
-
- 	img = Image.open(BytesIO(pic.picture))
- 	print("PLEASE WORK D:")
- 	print("image: ", img)
-
-	return jsonify({'updateProfile Success' : ':D'})
-
-# SQL Queries
-# 
-# For checking whether there a student has any available matches: 
-# SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(userid) AND student_swipe=1 AND tutor_swipe=1;
-#
-#
-#For checking whether a match exists (on swipe request)
-#
-#SELECT * FROM `casinoroyale`.`matches` WHERE student_id=(sid) AND tutor_id=tid
-#
-#For inserting a match into the Matches table (if a match did not exist)
-#
-# 
-# INSERT INTO `casinoroyale`.`matches` (id,student_id,tutor_id,student_swipe,tutor_swipe)
-# VALUES (Match ID,Student ID, Tutor ID,1,0);
-# (swap the 1 and 0 if the tutor is the one who swiped right)
-#
-#
-# For updating an existing match into the matches table (if the match already does exist)
-#
-# Assuming student swipe, if tutor swipe change the SET statement to tutor_swipe
-# UPDATE `casinoroyale`.`matches` SET student_swipe =1 WHERE student_id=sid AND tutor_id=tid;
-#
-#Prospective command flow (pseudo-code)
-#
-#On check for matches:
-#
-# if(check_matches.exists()){
-#   send list of tutor IDs ordered first-last.
-#   make an arraylist to return with all matching tutor entries 
- #  }
-# else{
-#       do nothing
-#    }
-#
-#
-#
-# On swiping:
-# check type of originating account (student or tutor)
-# Assign student_id and tutor_id (sid and tid)
-# if(match-exists){
-#       run update;
-#   }
-# else{
-#       run create_match;  
-# }
-#
-=======
-    return jsonify({'rating' : 1})
->>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
+    file = request.files['file']
+	#print("hmmm:", request.files['file'])
+        
+    if file:
+        #img = Image.open(file)
+        print("file name:", file.filename)
+    #img.show()
+    
+    db.engine.execute("UPDATE users SET picture = %s where id = %s", file.read(), userid )
+    
+    print("userid: ", userid)
+    print("database call worked!")
+    pic = users.query.filter_by(id = userid).first()
+    
+    img = Image.open(BytesIO(pic.picture))
+    print("PLEASE WORK D:")
+    print("image: ", img)
+        
+    return jsonify({'updateProfile Success' : ':D'})
