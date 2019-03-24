@@ -178,6 +178,7 @@ def feed():
                     if x.numRatings == 0 : 
                         userRat = 0
                     else :
+                        print("hello : ", type(x.totalRating))
                         userRat = (float(x.totalRating)/float(x.numRatings))
 
                     dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
