@@ -91,8 +91,17 @@ class ratings(UserMixin,db.Model):
 @app.route("/createAccount", methods=['GET', 'POST'])
 def createAccount():
 	content = request.json
+        
+        usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
+        emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
 
-    	user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0, description = content["description"], price = content["charge"])
+        if usernameCheck > 0 :
+            return jsonify({'success' : 2})
+        
+        if emailCheck > 0 :
+            return jsonify({'success' : 3})
+
+        user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0, description = content["description"], price = content["charge"])
     	db.session.add(user)
     	db.session.commit()
 
