@@ -264,11 +264,11 @@ def rightSwipe():
 
 
     if accountType == "student" : 
-        justMatched = matches.query.filter_by(student_id = user_id, tutor_id = content["swipedId"])
+        justMatched = matches.query.filter_by(student_id = userid, tutor_id = content["swipedId"]).first()
         if(justMatched.tutor_swipe == 1 and justMatched.student_swipe == 1):
                 return jsonify({'success' : 5})
     else:
-        justMatched = matches.query.filter_by(student_id = content["swipedId"], tutor_id = userid)
+        justMatched = matches.query.filter_by(student_id = content["swipedId"], tutor_id = userid).first()
         if(justMatched.tutor_swipe == 1 and justMatched.student_swipe == 1):
                 return jsonify({'success' : 5})
 
@@ -314,7 +314,7 @@ def leftSwipe():
 def schedule():
     content = request.json
 
-    db.engine.execute("UPDATE users SET schedule = %s WHERE id = %s", str(content), userid)
+    db.engine.execute("UPDATE users SET schedule = %s WHERE id = %s", content['schedule'], userid)
 
     return jsonify({'success' : 1})
 

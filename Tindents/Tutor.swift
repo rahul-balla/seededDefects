@@ -34,6 +34,6 @@ class Tutor {
         description = dictionary["description"] as? String ?? "No Description"
         id = dictionary["userId"] as? Int ?? nil
         charge = dictionary["charge"] as? Double
-        schedule = dictionary["schedule"] as? String ?? "no schedule"
+        schedule = dictionary["schedule"] as? String ?? "No schedule posted by user"
     }
 }

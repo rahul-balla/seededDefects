@@ -71,15 +71,14 @@ class matchesTableViewController: UITableViewController {
                 for user in user_arr as! [AnyObject] {
                     var oneUser : [String: Any] = [
                         "name" : user["fullName"],
-                        "age" : 69,
                         "subjects" : ["STAT", "CS"],
                         "tutorEmail" : user["email"],
-                        "rating" : "4.5/5",
-                        "description" : "lets have fun",
+                        "rating" : user["rating"],
+                        "description" : user["description"],
                         "picture" : UIImage(named: "Harsha")!,
                         "userid" : user["userid"],
-                        "charge" : 45.98,
-                        "schedule": "FRI 11:00 AM to 1:00 PM,THURS 6:00 PM to 11:00 PM"
+                        "charge" : user["rating"],
+                        "schedule": user["schedule"]
                     ]
                     let match = Tutor(dictionary: oneUser)
                     self.matches.append(match)
