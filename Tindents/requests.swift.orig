@@ -393,6 +393,27 @@ class requests {
         task.resume()
     }
     
+<<<<<<< HEAD
+    /*func updateProfileRequest(name:String, username:String, email:String, profileImage: completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/login")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        
+        var params = ["email":email, "password":password] as! Dictionary<String, Any>
+        
+        do {
+            //try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            request.httpBody = createBody(parameters: params,
+                                    boundary: boundary,
+                                    data: UIImageJPEGRepresentation(chosenImage, 0.7)!,
+                                    mimeType: "image/jpg",
+                                    filename: "hello.jpg")
+=======
    func getMatches(completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {
         let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/matchesPage")! as URL)
         let session = URLSession.shared
@@ -442,14 +463,23 @@ class requests {
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+>>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
             print(request.httpBody)
         } catch {
             print("???")
         }
+<<<<<<< HEAD
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error in
+=======
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+>>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
             //print("Response: \(response)")
             var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("Body: \(strData)")
@@ -476,8 +506,14 @@ class requests {
             
         })
         
+<<<<<<< HEAD
+        
+        task.resume()
+    }*/
+=======
         task.resume()
     }
+>>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
 }
 
 //func feedRequest(completionBlock: @escaping ([String:AnyObject]?) -> () ) -> Void {

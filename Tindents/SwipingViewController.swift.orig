@@ -58,7 +58,12 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         "rating" : "4.5/5",
                         "description" : "lets have fun",
                         "picture" : UIImage(named: "Harsha")!,
+<<<<<<< HEAD
+                        "userId" : user["userid"]
+
+=======
                         "userid" : user["userid"]
+>>>>>>> 7666ff8e47b326127c885ae426528cb3558fa6d5
                     ]
                     print(user)
                     let oneTutor = Tutor(dictionary: oneUser)
@@ -121,7 +126,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                 let directoryContents = try fm.contentsOfDirectory(at: destPath, includingPropertiesForKeys: nil, options: [])
                 
                 for imageurl in directoryContents {
-                    
                     var fileName = imageurl.lastPathComponent
                     let index = fileName.index(of: ".")!
                     fileName = String(fileName[..<index])
@@ -129,7 +133,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     let imagedata = try! Data(contentsOf: imageurl)
                     let thisimage = UIImage(data: imagedata)
                     
-                    if let obj = self.tutors.first(where: {$0.userid == Int(fileName)}) {
+                    if let obj = self.tutors.first(where: {$0.id == Int(fileName)}) {
                         print("name: \(obj.name)")
                         obj.picture = thisimage
                     }

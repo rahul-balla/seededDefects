@@ -10,13 +10,217 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tindents/SwipingViewController.swift"
-            timestampString = "573608048.927457"
+            timestampString = "575071994.672925"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tindents/signupViewController.swift"
+            timestampString = "575071439.119481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "signupViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.signupViewController.emailLbl.getter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/signupViewController.swift"
+                  timestampString = "574555323.33767"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.signupViewController.emailLbl.setter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/signupViewController.swift"
+                  timestampString = "574555323.34029"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.signupViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Tindents.signupViewController"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/signupViewController.swift"
+                  timestampString = "574555323.342675"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.signupViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Tindents.signupViewController&gt;"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/signupViewController.swift"
+                  timestampString = "574555323.345204"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tindents/SwipingViewController.swift"
+            timestampString = "575071994.673456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "onSwipe(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tindents/SwipingViewController.swift"
+            timestampString = "575071994.673787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "onSwipe(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tindents/SwipingViewController.swift"
+            timestampString = "575071994.674105"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "onSwipe(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tindents/SwipingViewController.swift"
+            timestampString = "575071994.674418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "SwipingViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.SwipingViewController.i.getter : Swift.Int"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/SwipingViewController.swift"
+                  timestampString = "574910702.422443"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.SwipingViewController.i.setter : Swift.Int"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/SwipingViewController.swift"
+                  timestampString = "574910702.425238"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.SwipingViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Tindents.SwipingViewController"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/SwipingViewController.swift"
+                  timestampString = "574910702.4274991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "486">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tindents.SwipingViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Tindents.SwipingViewController&gt;"
+                  moduleName = "Tindents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rahulballa/Tindents/Tindents/SwipingViewController.swift"
+                  timestampString = "574910702.429741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "457">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

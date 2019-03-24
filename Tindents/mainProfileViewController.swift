@@ -149,16 +149,6 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             
             let params = ["email":self.emailTxtField.text, "name":self.fullNameTxtField.text, "username:":self.usernameTxtField.text] as! Dictionary<String, String>
             
-            /*let boundary = UUID().uuidString
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            var data = Data()
-            
-            data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-            data.append("Content-Disposition: form-data; name=\"\(params)\"; filename=\"what\"\r\n".data(using: .utf8)!)
-            data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-            data.append((profileImage.image?.pngData())!)
-            data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)*/
-            
             let bstring = self.generateBoundaryString()
             do {
                 //try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
@@ -205,16 +195,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             })
             
             task.resume()
-            
-            // Send a POST request to the URL, with the data we created earlier
-            /*session.uploadTask(with: request as URLRequest, from: data, completionHandler: { responseData, response, error in
-                if error == nil {
-                    let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
-                    if let json = jsonData as? [String: Any] {
-                        print(json)
-                    }
-                }
-            }).resume()*/
+        
         }
     }
     

@@ -10,6 +10,16 @@ import UIKit
 
 class matchesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var userDescription: UILabel!
+    
+    var tutor: Tutor! {
+        didSet{
+            name.text = tutor.name
+            userDescription.text = tutor.description
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
