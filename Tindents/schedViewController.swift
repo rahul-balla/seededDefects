@@ -47,8 +47,7 @@ class schedViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textField_Date.delegate = self
-        textField2.delegate = self
+        
         textField3.delegate = self
         textField4.delegate = self
         textField5.delegate = self
@@ -66,8 +65,6 @@ class schedViewController: UIViewController, UITextFieldDelegate{
         textField2.isHidden = true
         textField3.isHidden = true
         textField4.isHidden = true
-        textField5.isHidden = true
-        textField6.isHidden = true
         textField7.isHidden = true
         textField8.isHidden = true
         textField9.isHidden = true
@@ -103,16 +100,7 @@ class schedViewController: UIViewController, UITextFieldDelegate{
             textField4.isHidden = true
         }
     }
-    @IBAction func tToggle(_ sender: Any) {
-        if(tSwitch.isOn){
-            textField5.isHidden = false
-            textField6.isHidden = false
-        }
-        else{
-            textField5.isHidden = true
-            textField6.isHidden = true
-        }
-    }
+    @IBAction func tToggle(_ sender: Any) {}
     @IBAction func wToggle(_ sender: Any) {
         if(wSwitch.isOn){
             textField7.isHidden = false
@@ -184,12 +172,12 @@ class schedViewController: UIViewController, UITextFieldDelegate{
             self.pickUpDate(self.textField6)
         }
         else if(textField.tag == 7){
-            temptf = textField7
-            self.pickUpDate(self.textField7)
-        }
-        else if(textField.tag == 8){
             temptf = textField8
             self.pickUpDate(self.textField8)
+        }
+        else if(textField.tag == 8){
+            temptf = textField7
+            self.pickUpDate(self.textField7)
         }
         else if(textField.tag == 9){
             temptf = textField9
@@ -255,16 +243,13 @@ class schedViewController: UIViewController, UITextFieldDelegate{
         if((temptf.tag == 2 && textField_Date.text != "") || (temptf.tag==1 && textField2.text != "")){
             isValid = checkTime(textField_Date, textField2)
         }
-        else if((temptf.tag==3 && textField4.text != "") || (temptf.tag==4 && textField3.text != "")){
-            isValid = checkTime(textField3, textField4)
-        }
         else if((temptf.tag==5 && textField6.text != "") || (temptf.tag==6 && textField5.text != "")){
             isValid = checkTime(textField5,  textField6)
         }
         else if((temptf.tag==7 && textField8.text != "") || (temptf.tag==8 && textField7.text != "")){
             isValid = checkTime(textField7,  textField8)
         }
-        else if((temptf.tag==9 && textField10.text != "") || (temptf.tag==10 && textField9.text != "")){
+        else if((temptf.tag==10 && textField9.text != "")){
             isValid = checkTime(textField9, textField10)
         }
         else if((temptf.tag==11 && textField12.text != "") || (temptf.tag==12 && textField11.text != "")){
