@@ -35,9 +35,14 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     
     var currUserId = 0
     var editToggle = 0
+    var imageChanged = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("VIEWWILLAPPEAR")
         
         //hide text fields until edit is pressed
         fullNameTxtField.isHidden = true
@@ -50,6 +55,33 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
         chargeLbl.isHidden = true
         descriptionTxtView.isHidden = true
         
+        // request to update profile pic
+        var picrequest = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/retreiveProfilePic")! as URL)
+        picrequest.httpMethod = "POST"
+        
+        picrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        picrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let pictask = URLSession.shared.dataTask(with: picrequest as URLRequest) {(data, response, error) in
+            
+            do {
+                
+                DispatchQueue.main.async {
+                    if (self.imageChanged == 0) {
+                        let thisimage = UIImage(data: data!)
+                        self.profileImage.image = thisimage
+                    } else {
+                        self.imageChanged = 0
+                    }
+                }
+                
+            } catch {
+                print("retreiveProfilePic failed")
+            }
+        }
+        pictask.resume()
+        
+        // request to get other info for profile
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
         
@@ -65,15 +97,18 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
                 print("JSON: \(json)")
                 
                 DispatchQueue.main.async {
-                    var account_type = json!["account_type"] as? String
+                    let account_type = json!["account_type"] as? String
+                    let chargeInt: Int
                     if (account_type == "tutor") {
                         self.chargeTitleLbl.isHidden = false
                         self.chargeLbl.isHidden = false
                         self.descriptionTxtView.isHidden = false
+                        
+                        chargeInt = (json!["charge"] as? Int)!
+                    } else {
+                        chargeInt = 0
                     }
                     
-                    //Only for tutors
-                    let chargeInt: Int = (json!["charge"] as? Int)!
                     self.chargeLbl.text = String(chargeInt) as! String
                     self.chargeTxtField.text = String(chargeInt) as! String
                     self.descriptionTxtView.text = json!["description"] as? String
@@ -89,7 +124,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
                     self.usernameTxtField.text = json!["username"] as? String
                     self.emailTxtField.text = json!["email"] as? String
                 }
-            
+                
                 
             } catch {
                 print("???")
@@ -261,7 +296,9 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            print("why isnt this changing?")
             profileImage.image = image
+            imageChanged = 1
         } else {
             // error message
             print("ERROR with uploading image")
