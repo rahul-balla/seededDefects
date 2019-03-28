@@ -498,7 +498,9 @@ def updateProfileInfo():
     usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
     emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
 
-    currUser = users.query.filter_by(id = userid)
+    currUser = users.query.filter_by(id = userid).first()
+
+    print("in update profile info")
 
     if usernameCheck > 0 and currUser.username != content["username"] :
         print("hello")
