@@ -208,6 +208,10 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             emailTxtField.isHidden = true
             editImageBtn.isHidden = true
             
+            let alertController = UIAlertController(title: "", message: "Please enter a non-empty name", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
             
             if (accountTypeLbl.text == "tutor") {
                 chargeTxtField.isHidden = false

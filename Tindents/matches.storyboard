@@ -27,36 +27,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gha-XW-EFr">
-                                            <rect key="frame" x="16" y="11" width="76" height="76"/>
-                                            <color key="backgroundColor" red="0.87843137250000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="76" id="2ww-SX-jw8"/>
-                                                <constraint firstAttribute="height" constant="76" id="h4N-3g-FHc"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Harsha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdY-5w-BFG">
-                                            <rect key="frame" x="100" y="11" width="59" height="20.5"/>
+                                            <rect key="frame" x="10" y="10" width="59" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ9-df-OAs">
-                                            <rect key="frame" x="100" y="39.5" width="259" height="47.5"/>
+                                            <rect key="frame" x="10" y="40.5" width="355" height="47"/>
                                             <string key="text">Likes long walks by the beach, works at expedia, lives in jubilee hills with shahrukh khan his best friend as well as his long time wife disha patani.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="MdY-5w-BFG" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="G5K-Lh-oO1"/>
-                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="PKu-Mv-Lu8"/>
-                                        <constraint firstItem="gha-XW-EFr" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="topMargin" id="SLM-9K-m1Q"/>
-                                        <constraint firstItem="gha-XW-EFr" firstAttribute="bottom" secondItem="dns-2S-w6D" secondAttribute="bottomMargin" id="VLq-B9-sPW"/>
-                                        <constraint firstAttribute="trailing" secondItem="vQ9-df-OAs" secondAttribute="trailing" constant="16" id="eCx-Wx-FMN"/>
-                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="leading" secondItem="gha-XW-EFr" secondAttribute="trailing" constant="8" id="eTW-i2-viS"/>
-                                        <constraint firstItem="MdY-5w-BFG" firstAttribute="leading" secondItem="gha-XW-EFr" secondAttribute="trailing" constant="8" id="krF-P2-rxA"/>
-                                        <constraint firstItem="gha-XW-EFr" firstAttribute="leading" secondItem="dns-2S-w6D" secondAttribute="leadingMargin" id="x5x-FC-DUf"/>
-                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="top" secondItem="MdY-5w-BFG" secondAttribute="bottom" constant="8" id="zsz-OL-f1H"/>
+                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="top" secondItem="MdY-5w-BFG" secondAttribute="bottom" constant="10" id="1ZD-P7-UZQ"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vQ9-df-OAs" secondAttribute="bottom" constant="10" id="3Fz-Ni-pda"/>
+                                        <constraint firstAttribute="trailing" secondItem="vQ9-df-OAs" secondAttribute="trailing" constant="10" id="SxP-QV-bH3"/>
+                                        <constraint firstItem="MdY-5w-BFG" firstAttribute="top" secondItem="dns-2S-w6D" secondAttribute="top" constant="10" id="Xe1-5a-JOm"/>
+                                        <constraint firstItem="MdY-5w-BFG" firstAttribute="leading" secondItem="dns-2S-w6D" secondAttribute="leading" constant="10" id="mSO-HC-lCV"/>
+                                        <constraint firstItem="vQ9-df-OAs" firstAttribute="leading" secondItem="MdY-5w-BFG" secondAttribute="leading" id="xR9-7v-7Er"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

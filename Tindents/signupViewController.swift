@@ -31,7 +31,21 @@ class signupViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
-        } else if (userLbl.text == "") {
+        } else if (emailLbl.text != "") {
+            
+            let charset = CharacterSet(charactersIn: "@")
+            let s = emailLbl.text as String!
+            
+            if s!.rangeOfCharacter(from: charset) == nil{
+                let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(alertAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+
+        }
+        
+        if (userLbl.text == "") {
             
             let alertController = UIAlertController(title: "Invalid Username", message: "Please enter a non-empty username", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -100,6 +114,26 @@ class signupViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "createSuccess", sender: self)
                         }
+                    } else if success == 2 {
+                        
+                        let alertController = UIAlertController(title: "Invalid username", message: "The username you entered already exists", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(alertAction)
+                        
+                        DispatchQueue.main.async {
+                           self.present(alertController, animated: true, completion: nil)
+                        }
+//                        self.present(alertController, animated: true, completion: nil)
+                        
+                    } else if success == 3 {
+                        
+                        let alertController = UIAlertController(title: "Invalid email", message: "The email you entered already exists", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(alertAction)
+                        DispatchQueue.main.async {
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        //self.present(alertController, animated: true, completion: nil)
                     }
                     
                 } catch {
