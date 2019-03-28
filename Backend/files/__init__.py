@@ -495,13 +495,23 @@ def updateProfile():
 def updateProfileInfo():
     content = request.json
 
+    usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
+    emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
+
+    if usernameCheck > 0 :
+        print("hello")
+        return jsonify({'success' : 2})
+        
+    if emailCheck > 0 :
+        print("hello")
+        return jsonify({'success' : 3})
+
     print("CONTENT:", content)
 
     db.engine.execute("UPDATE users SET username = %s, fullName = %s, description = %s, price = %s, email = %s WHERE id = %s", content["username"], content["name"], content["description"], content["charge"], content["email"], userid)
 
-    #print("hmmm:", request.files['file'])
     
-    return jsonify({'updateProfileInfo Success' : 1})
+    return jsonify({'success' : 1})
 
 @app.route("/retreiveProfilePic", methods=['GET', 'POST'])
 def retreiveProfilePic():
