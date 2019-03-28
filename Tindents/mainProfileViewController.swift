@@ -43,17 +43,23 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         print("VIEWWILLAPPEAR")
-        
-        //hide text fields until edit is pressed
-        fullNameTxtField.isHidden = true
-        usernameTxtField.isHidden = true
-        emailTxtField.isHidden = true
-        editImageBtn.isHidden = true
-        
-        chargeTxtField.isHidden = true
-        chargeTitleLbl.isHidden = true
-        chargeLbl.isHidden = true
-        descriptionTxtView.isHidden = true
+        loadingStuff()
+    }
+    
+    func loadingStuff() {
+        // load everything
+        if (self.imageChanged == 0) {
+            //hide text fields until edit is pressed
+            fullNameTxtField.isHidden = true
+            usernameTxtField.isHidden = true
+            emailTxtField.isHidden = true
+            editImageBtn.isHidden = true
+            
+            chargeTxtField.isHidden = true
+            chargeTitleLbl.isHidden = true
+            chargeLbl.isHidden = true
+            descriptionTxtView.isHidden = true
+        }
         
         // request to update profile pic
         var picrequest = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/retreiveProfilePic")! as URL)
@@ -212,71 +218,75 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             
             /********** SEND STUFF TO SERVER ************/
             
-            let group = DispatchGroup()
+            //let group = DispatchGroup()
+            //group.enter()
             
-            group.enter()
             //For updating text information
             requests().updateProfileInfoRequest(email: self.emailTxtField.text!, name: self.fullNameTxtField.text!, username: self.usernameTxtField.text!, charge: Int(self.chargeTxtField!.text!)!, description: self.descriptionTxtView.text) { (response) in
                 print("update profile info request response: \(response)")
-                group.wait()
-            }
-            group.leave()
-            
-            //For updating profile pic
-            let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/updateProfile")! as URL)
-            let session = URLSession.shared
-            
-            request.httpMethod = "POST"
-            
-            let params = ["email":self.emailTxtField.text, "name":self.fullNameTxtField.text, "username:":self.usernameTxtField.text] as! Dictionary<String, String>
-            
-            let bstring = self.generateBoundaryString()
-            do {
-                //try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-                try request.httpBody = self.createRequestBodyWith(parameters:params, filePathKey:"file", boundary:bstring) as Data
-                request.addValue("multipart/form-data; boundary=" + bstring, forHTTPHeaderField: "Content-Type")
-                
-
-                /*try request.httpBody = createBody(parameters: params,
-                                              boundary: boundary,
-                                              data: profileImage.image!.jpegData(compressionQuality: 0.75)!,
-                                              //data: UIImageJPEGRepresentation(profileImage.image!, 0.7)!,
-                                              mimeType: "image/jpg",
-                                              filename: "hello.jpg")*/
-                //print(request.httpBody!)
-            } catch {
-                print("error with preparing data as json for sending to server")
-            }
-            
-            //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            //request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error in
-                //print("Response: \(response)")
-                var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                print("Body: \(strData)")
-                
-                if let error = error {
-                    // handle the transport error
-                    return
+                DispatchQueue.main.async {
+                    self.loadingStuff()
                 }
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    // handle the server error
-                    print("server error")
-                    return
-                }
+                //group.wait()
+            }
+            //group.leave()
+            
+            if (profileImage.image != nil) {
+                //For updating profile pic
+                let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/updateProfile")! as URL)
+                let session = URLSession.shared
                 
+                request.httpMethod = "POST"
+                
+                let params = ["email":self.emailTxtField.text, "name":self.fullNameTxtField.text, "username:":self.usernameTxtField.text] as! Dictionary<String, String>
+                
+                let bstring = self.generateBoundaryString()
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                    //try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+                    try request.httpBody = self.createRequestBodyWith(parameters:params, filePathKey:"file", boundary:bstring) as Data
+                    request.addValue("multipart/form-data; boundary=" + bstring, forHTTPHeaderField: "Content-Type")
                     
+
+                    /*try request.httpBody = createBody(parameters: params,
+                                                  boundary: boundary,
+                                                  data: profileImage.image!.jpegData(compressionQuality: 0.75)!,
+                                                  //data: UIImageJPEGRepresentation(profileImage.image!, 0.7)!,
+                                                  mimeType: "image/jpg",
+                                                  filename: "hello.jpg")*/
+                    //print(request.httpBody!)
                 } catch {
-                    
+                    print("error with preparing data as json for sending to server")
                 }
                 
-            })
-            
-            task.resume()
-        
+                //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                //request.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error in
+                    //print("Response: \(response)")
+                    var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                    print("Body: \(strData)")
+                    
+                    if let error = error {
+                        // handle the transport error
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                        // handle the server error
+                        print("server error")
+                        return
+                    }
+                    
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+                        
+                    } catch {
+                        
+                    }
+                    
+                })
+                
+                task.resume()
+            }
         }
         
     }
@@ -296,7 +306,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            print("why isnt this changing?")
+            //print("why isnt this changing?")
             profileImage.image = image
             imageChanged = 1
         } else {
