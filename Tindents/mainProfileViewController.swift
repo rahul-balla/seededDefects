@@ -61,7 +61,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             descriptionTxtView.isHidden = true
         }
         
-        // request to update profile pic
+        // request to get profile pic
         var picrequest = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/retreiveProfilePic")! as URL)
         picrequest.httpMethod = "POST"
         

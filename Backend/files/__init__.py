@@ -523,5 +523,84 @@ def retreiveProfilePic():
 
     return send_file(BytesIO(pic.picture), attachment_filename='picture.zip', as_attachment=True)
 
+@app.route("/retreiveMatchesPic", methods=['GET', 'POST'])
+def retreiveMatchesPic():
 
+    memory_file = BytesIO()
+
+    #print("current account type", accountType)
+    if accountType == "student" : 
+        matchess = matches.query.filter_by(student_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matchess != None:
+            with zipfile.ZipFile(memory_file, 'w') as zf:
+                for x in matchess:
+                    matchInfo = users.query.filter_by(id = x.tutor_id).first()
+                    print("match info = ", x.tutor_id)
+
+                    #write blob into file
+                    eachFileName = str(matchInfo.id) + ".jpg"
+					
+                    eachFile = open(eachFileName,'wb')
+					
+                    eachFile.write(matchInfo.picture)
+					#eachFile.write(x.picture.decode('base64'))
+					
+                    eachFile.close()
+
+					#putting files into zip
+					
+                    f=open(eachFileName, "r")
+					# img = Image.open(BytesIO(f.read()))
+					# img.show()
+					
+                    print("one file name: ", eachFileName)
+					
+                    data = zipfile.ZipInfo(eachFileName)
+					#data.date_time = time.localtime(time.time())[:6]
+					
+                    data.compress_type = zipfile.ZIP_DEFLATED
+					
+                    zf.writestr(data, f.read())
+					
+                    f.close()
+    # Tutor
+    else:
+        matchess = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
+        if matchess != None:
+            with zipfile.ZipFile(memory_file, 'w') as zf:
+                for x in matchess:
+                    matchInfo = users.query.filter_by(id = x.student_id).first()
+                    print("match info = ", x.student_id)
+
+                    #write blob into file
+					
+                    eachFileName = str(matchInfo.id) + ".jpg"
+					
+                    eachFile = open(eachFileName,'wb')
+					
+                    eachFile.write(matchInfo.picture)
+					#eachFile.write(x.picture.decode('base64'))
+					
+                    eachFile.close()
+
+					#putting files into zip
+					
+                    f=open(eachFileName, "r")
+					# img = Image.open(BytesIO(f.read()))
+					# img.show()
+					
+                    print("one file name: ", eachFileName)
+					
+                    data = zipfile.ZipInfo(eachFileName)
+					
+                    #data.date_time = time.localtime(time.time())[:6]
+					
+                    data.compress_type = zipfile.ZIP_DEFLATED
+					
+                    zf.writestr(data, f.read())
+					
+                    f.close()
+
+    memory_file.seek(0)
+    return send_file(memory_file, attachment_filename='pictures.zip', as_attachment=True)
 
