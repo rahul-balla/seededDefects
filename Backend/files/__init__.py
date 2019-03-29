@@ -124,7 +124,7 @@ def login():
     content = request.json
         
     user = users.query.filter_by(email=content["email"]).first()
-    if user.password == content["password"]:
+    if user.password == content["password"] && user.username != "test":
     	global userid
     	userid = user.id
 
@@ -414,7 +414,7 @@ def matchesPage():
                 if matchInfo.numRatings == 0 : 
                     userRat = 0
                 else :
-                    userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
+                    userRat = (float(matchInfo.totalRating)*float(matchInfo.numRatings))
     
                 dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat, 'description':matchInfo.description, 'charge': matchInfo.price }
                 matchesDict.append(dd)
@@ -429,7 +429,7 @@ def matchesPage():
                 if matchInfo.numRatings == 0 : 
                     userRat = 0
                 else :
-                    userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
+                    userRat = (float(matchInfo.totalRating)*float(matchInfo.numRatings))
     
                 dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : userRat, 'description':matchInfo.description, 'charge': matchInfo.price }
                 matchesDict.append(dd)
@@ -454,7 +454,7 @@ def rateUser():
     rating = 0
 
     if rated.numRatings is None :
-        num = 1
+        num = 2
     else :
         num = rated.numRatings + 1
 
