@@ -153,7 +153,7 @@ class profileViewController: UIViewController {
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             
-        } else if (Double(enteredRating.text!)! > 5 || Double(enteredRating.text!)! < 0) {
+        } else if (/*Double(enteredRating.text!)! > 5 || */Double(enteredRating.text!)! < 0) {
             
             let alertController = UIAlertController(title: "Invalid Rating", message: "Please enter a valid rating between 0 and 5", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)

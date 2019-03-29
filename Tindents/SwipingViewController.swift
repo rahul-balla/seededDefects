@@ -16,7 +16,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
 
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var nameText: UILabel!
-    @IBOutlet weak var ageNum: UILabel!
     @IBOutlet weak var subjectArray: UILabel!
     
     var i = 0
@@ -192,7 +191,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     i = i + 1
                     UIView.animate(withDuration: 1) {
                         self.card.center = self.view.center
-                        self.card.transform = .identity
+//                        self.card.transform = .identity
                         card.alpha = 1
                         
                         if (self.i == self.tutors.count) {
@@ -215,12 +214,12 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     requests().rightSwipe(swipedUserId: self.tutors[i].userid) { (response) in
                         let success = response?["success"] as? Int
                         
-                        if (success == 5) {
-                            let alertController = UIAlertController(title: "Match!", message: "You have a new match!!", preferredStyle: .alert)
-                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alertController.addAction(alertAction)
-                            self.present(alertController, animated: true, completion: nil)
-                        }
+//                        if (success == 5) {
+//                            let alertController = UIAlertController(title: "Match!", message: "You have a new match!!", preferredStyle: .alert)
+//                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                            alertController.addAction(alertAction)
+//                            self.present(alertController, animated: true, completion: nil)
+//                        }
                         
                         print("right swipe request response: \(response)")
                     }
@@ -232,7 +231,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     i = i + 1
                     UIView.animate(withDuration: 1) {
                         self.card.center = self.view.center
-                        self.card.transform = .identity
+//                        self.card.transform = .identity
                         card.alpha = 1
     
                         if (self.i == self.tutors.count) {
@@ -246,9 +245,10 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                     return
                 }
                 else {
-//                    UIView.animate(withDuration: 0.3) {
-//                        card.center = self.view.center
-//                    }
+                    UIView.animate(withDuration: 0.3) {
+                        card.center = self.view.center
+                        self.card.transform = .identity
+                    }
                     
                 }
             }
@@ -274,7 +274,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func setDefaultImageDetails() {
         nameText.text = ""
-        ageNum.text = ""
         subjectArray.text = ""
     }
     
@@ -282,7 +281,6 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
         //SET PIC HERE!!!!
         card.backgroundColor = UIColor(patternImage: tutors[i].picture!)
         nameText.text = tutors[index].name
-        ageNum.text = String(tutors[index].age)
         let arr : [String] = tutors[index].subjects
         var subString : String = ""
         for j in arr.indices {

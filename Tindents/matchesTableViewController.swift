@@ -134,7 +134,12 @@ class matchesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return matches.count
+        if (matches.count - 1 < 1) {
+            return 0
+        } else {
+            return matches.count - 1
+        }
+//        return matches.count
     }
 
     
