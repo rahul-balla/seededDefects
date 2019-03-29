@@ -498,11 +498,15 @@ def updateProfileInfo():
     usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
     emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
 
-    if usernameCheck > 0 :
+    currUser = users.query.filter_by(id = userid).first()
+
+    print("in update profile info")
+
+    if usernameCheck > 0 and currUser.username != content["username"] :
         print("hello")
         return jsonify({'success' : 2})
         
-    if emailCheck > 0 :
+    if emailCheck > 0 and currUser.email != content["email"] :
         print("hello")
         return jsonify({'success' : 3})
 
