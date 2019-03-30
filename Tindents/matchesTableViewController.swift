@@ -77,7 +77,7 @@ class matchesTableViewController: UITableViewController {
                         "description" : user["description"],
                         "picture" : UIImage(named: "Harsha")!,
                         "userid" : user["userid"],
-                        "charge" : user["rating"],
+                        "charge" : user["charge"],
                         "schedule": user["schedule"]
                     ]
                     let match = Tutor(dictionary: oneUser)
