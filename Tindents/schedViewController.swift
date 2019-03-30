@@ -243,6 +243,9 @@ class schedViewController: UIViewController, UITextFieldDelegate{
         if((temptf.tag == 2 && textField_Date.text != "") || (temptf.tag==1 && textField2.text != "")){
             isValid = checkTime(textField_Date, textField2)
         }
+        if((temptf.tag == 3 && textField4.text != "") || (temptf.tag==4 && textField3.text != "")){
+            isValid = checkTime(textField3, textField4)
+        }
         else if((temptf.tag==5 && textField6.text != "") || (temptf.tag==6 && textField5.text != "")){
             isValid = checkTime(textField5,  textField6)
         }
