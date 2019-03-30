@@ -38,8 +38,8 @@ class profileViewController: UIViewController {
             email.text = tutor.tutorEmail
             userDescription.text = tutor.description
             charge.text = String(tutor.charge)
-            userRating.text = tutor.rating
-            numRating.text = tutor.numRating
+            userRating.text = String(tutor.rating)
+            numRating.text = String(tutor.numRatings)
             print("the schedule is \(tutor.schedule)")
             
             rawSchedule = tutor.schedule.components(separatedBy: ",")
