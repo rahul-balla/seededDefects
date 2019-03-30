@@ -18,6 +18,7 @@ class profileViewController: UIViewController {
     @IBOutlet weak var userRating: UILabel!
     @IBOutlet weak var schedule: UILabel!
     @IBOutlet var profileImage: UIImageView!
+    @IBOutlet weak var numRating: UILabel!
     
     @IBOutlet weak var enteredRating: UITextField!
     var tutor: Tutor?
@@ -38,6 +39,7 @@ class profileViewController: UIViewController {
             userDescription.text = tutor.description
             charge.text = String(tutor.charge)
             userRating.text = tutor.rating
+            numRating.text = tutor.numRating
             print("the schedule is \(tutor.schedule)")
             
             rawSchedule = tutor.schedule.components(separatedBy: ",")

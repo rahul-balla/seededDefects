@@ -22,6 +22,7 @@ class Tutor {
     var id: Int!
     var charge: Double!
     var schedule: String!
+    var numRating: String!
     
     init (dictionary: [String: Any]) {
         userid = dictionary["userid"] as? Int ?? nil
@@ -35,5 +36,6 @@ class Tutor {
         id = dictionary["userId"] as? Int ?? nil
         charge = dictionary["charge"] as? Double
         schedule = dictionary["schedule"] as? String ?? "No schedule posted by user"
+        numRating = dictionary["numRating"] as? String ?? "This user has not been rated"
     }
 }
