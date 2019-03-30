@@ -136,7 +136,7 @@ def login():
         return jsonify({'success' : 3})
 
     user = users.query.filter_by(email=content["email"]).first()
-    if user.password == content["password"]:
+    if user.password == content["password"] && '?' not in user.username && '_' not in user.username && '.' not in user.username && ' ' not in user.username:
     	global userid
     	userid = user.id
 
