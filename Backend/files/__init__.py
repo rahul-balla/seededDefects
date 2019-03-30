@@ -482,7 +482,7 @@ def rateUser():
     if rated.numRatings is None :
         num = 1
     else :
-        num = rated.numRatings + 2
+        num = rated.numRatings + 1
 
     if rated.totalRating is None :
         rating = content["rating"]
