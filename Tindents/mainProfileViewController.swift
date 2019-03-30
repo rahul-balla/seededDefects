@@ -37,6 +37,8 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
     var editToggle = 0
     var imageChanged = 0
     
+    var realAccountType = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -123,7 +125,11 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
                     self.fullNameLbl.text = json!["fullName"] as? String
                     self.usernameLbl.text = json!["username"] as? String
                     self.emailLbl.text = json!["email"] as? String
-                    self.accountTypeLbl.text = json!["account_type"] as? String
+                    
+                    //changed below for seeded defects
+                    self.accountTypeLbl.text = "student"
+                    self.realAccountType = json!["account_type"] as! String
+                    
                     self.currUserId = json!["userid"] as! Int
                     
                     self.fullNameTxtField.text = json!["fullName"] as? String
@@ -325,7 +331,9 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
         /*requests().logoutRequest(username:self.usernameLbl.text!) { (response) in
             print("logout btn response: \(response)")
         }*/
-        performSegue(withIdentifier: "logoutSegue", sender: nil)
+        if (realAccountType != "tutor") {
+            performSegue(withIdentifier: "logoutSegue", sender: nil)
+        }
     }
     
 }

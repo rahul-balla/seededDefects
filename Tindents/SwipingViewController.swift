@@ -56,7 +56,7 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
                         "tutorEmail" : user["email"],
                         "rating" : "4.5/5",
                         "description" : "lets have fun",
-                        "picture" : UIImage(named: "Harsha")!,
+                        "picture" : UIImage(named: "ryan")!,
                         "userid" : user["userid"]
                     ]
                     print(user)
