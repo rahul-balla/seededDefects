@@ -11,6 +11,8 @@ import UIKit
 class settingsViewController: UIViewController {
     var settingsArr = ["oncSwitchOn":0, "offcSwitchOn":0, "fsSwitchOn":0, "jsSwitchOn":0, "cheapSwitchOn":0, "medSwitchOn":0, "expensiveSwitchOn":0, "comSwitchOn":0, "csSwitchOn":0, "bioSwitchOn":0, "econSwitchOn":0, "chemSwitchOn":0, "englishSwitchOn":0, "physicsSwitchOn":0, "mathSwitchOn":0,]
     
+    @IBOutlet var bioSwitch: UISwitch!
+    
     var oncSwitchOn = false;
     var offcSwitchOn = false;
     var fsSwitchOn = false;
@@ -179,6 +181,8 @@ class settingsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bioSwitch.isEnabled = false
     }
 
     @IBAction func updateBtn(_ sender: Any) {
