@@ -116,7 +116,7 @@ def createAccount():
             return jsonify({'success' : 4})
 
         if content["account_type"] == "student":
-            user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0)
+            user = users(username = content["username"], password = content["password"], email = content["email"], account_type = content["account_type"], fullName = content["name"], numRatings = 0, totalRating = 0,)
             db.session.add(user)
     	    db.session.commit()
         else :
@@ -261,7 +261,7 @@ def feed():
             userRat2 = (float(currUser.totalRating)/float(currUser.numRatings))
 
 
-        mm = {'username' : currUser.username, 'userid' : currUser.id, 'email':currUser.email, 'fullName':currUser.fullName, 'schedule' : currUser.schedule, 'rating' : round(userRat2,1), 'description':currUser.description, 'charge': currUser.price }
+        mm = {'username' : currUser.username, 'userid' : currUser.id, 'email':currUser.email, 'fullName':currUser.fullName, 'schedule' : currUser.schedule, 'rating' : round(userRat2,1), 'description':currUser.description, 'charge': currUser.price,'numRatings': currUser.numRatings }
 
         userDict.append(mm) 
 
@@ -283,7 +283,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price }
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price, 'numRatings': x.numRatings}
                     userDict.append(dd)
                     print("In the first if statement\n")   
                 elif ((currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None))) :
@@ -298,7 +298,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
 
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price }
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price, 'numRatings': x.numRatings }
                     userDict.append(dd)
 
     else:
@@ -319,7 +319,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
     
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price }
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price, 'numRatings': x.numRatings }
                     userDict.append(dd)
                 
                 elif ((currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None))) :
@@ -333,7 +333,7 @@ def feed():
                     else :
                         userRat = (float(x.totalRating)/float(x.numRatings))
     
-                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price }
+                    dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : round(userRat,1), 'description':x.description, 'charge': x.price, 'numRatings': x.numRatings }
                     userDict.append(dd)
 
     print("userDict : ",userDict)
@@ -442,7 +442,7 @@ def matchesPage():
                 else :
                     userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
     
-                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : round(userRat,1), 'description':matchInfo.description, 'charge': matchInfo.price }
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : round(userRat,1), 'description':matchInfo.description, 'charge': matchInfo.price,'numRatings': matchInfo.numRatings }
                 matchesDict.append(dd)
     else:
         matchess = matches.query.filter_by(tutor_id = userid, student_swipe = 1, tutor_swipe = 1)
@@ -457,7 +457,7 @@ def matchesPage():
                 else :
                     userRat = (float(matchInfo.totalRating)/float(matchInfo.numRatings))
     
-                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : round(userRat,1), 'description':matchInfo.description, 'charge': matchInfo.price }
+                dd = {'username' : matchInfo.username, 'userid' : matchInfo.id, 'email':matchInfo.email, 'fullName':matchInfo.fullName, 'schedule' : matchInfo.schedule, 'rating' : round(userRat,1), 'description':matchInfo.description, 'charge': matchInfo.price, 'numRatings': matchInfo.numRatings }
                 matchesDict.append(dd)
 
     print("matchesDics = ", matchesDict)
