@@ -235,7 +235,8 @@ def picFeed():
 def feed():
     userDict = []
 
-    
+    print("hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
+
     if accountType == "student" :
         print("student")
 

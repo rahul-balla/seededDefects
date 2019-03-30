@@ -857,8 +857,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQX-BS-PXA">
-                                <rect key="frame" x="168" y="40" width="39" height="30"/>
-                                <state key="normal" title="Reset"/>
+                                <rect key="frame" x="162" y="40" width="51" height="30"/>
+                                <state key="normal" title="Update"/>
                                 <connections>
                                     <action selector="resetPicture:" destination="3zr-cu-6At" eventType="touchUpInside" id="vWT-8P-orT"/>
                                 </connections>

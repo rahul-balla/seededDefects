@@ -158,6 +158,22 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
             setImageDetails(index: self.i)
         } else {
             print("No one to swipe on")
+            //            print ("other condition")
+            nameText.text = ""
+            subjectArray.text = ""
+            self.card.backgroundColor = UIColor(patternImage: UIImage(named: "Harsha")!)
+            self.card.frame.size.width = self.view.bounds.width * 0.8
+            self.card.frame.size.height = self.view.bounds.height * 0.6
+            self.card.layer.cornerRadius = 10
+            //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
+            self.card.center.x = self.view.center.x
+            self.card.center.y = self.view.center.y - 20
+
+            
+//            let alertController = UIAlertController(title: "No more users", message: "There are no more users to swipe through", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
         }
         // Do any additional setup after loading the view.
     }
@@ -256,8 +272,155 @@ class SwipingViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     @IBAction func resetPicture(_ sender: UIButton) {
-        print("I commented out the function bc reset is not supposed to exist")
-        //resetCard()
+        self.tutors = []
+        self.card.frame.size.width = self.view.bounds.width * 0.8
+        self.card.frame.size.height = self.view.bounds.height * 0.6
+        self.card.layer.cornerRadius = 10
+        //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
+        self.card.center.x = self.view.center.x
+        self.card.center.y = self.view.center.y - 20
+        
+        card.alpha = 1
+        divisor = view.frame.width / 2 / 0.61
+        
+        let group = DispatchGroup()
+        let group_cpy = DispatchGroup()
+        
+        print("the users are: ")
+        group.enter()
+        requests().feedRequest { (response) in
+            if let response = response {
+                //list of users to be added
+                
+                var user_arr = response["feed"]
+                for user in user_arr as! [AnyObject] {
+                    
+                    var oneUser : [String: Any] = [
+                        "name" : user["fullName"],
+                        "age" : 69,
+                        "subjects" : ["STAT", "CS"],
+                        "tutorEmail" : user["email"],
+                        "rating" : "4.5/5",
+                        "description" : "lets have fun",
+                        "picture" : UIImage(named: "Harsha")!,
+                        "userid" : user["userid"]
+                    ]
+                    print(user)
+                    let oneTutor = Tutor(dictionary: oneUser)
+                    self.tutors.append(oneTutor)
+                }
+                
+                group.leave()
+                
+            }
+        }
+        group.wait()
+        
+        group_cpy.enter()
+        //request for getting profile pictures
+        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/picFeed")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
+        
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            
+            if let error = error {
+                // handle the transport error
+                print("transport error")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                // handle the server error
+                print("server error")
+                return
+            }
+            
+            var destPath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            destPath.appendPathComponent("pictures")
+            
+            var srcPath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            srcPath.appendPathComponent("pictures.zip")
+            
+            //Write the zip file to the Documents folder of simulator
+            do {
+                try data?.write(to: srcPath)
+            } catch {
+                print("error writing zip file to simulator directory")
+            }
+            
+            let fm = FileManager()
+            
+            //unzip file
+            do {
+                try fm.createDirectory(at: destPath, withIntermediateDirectories: true, attributes: nil)
+                try fm.unzipItem(at: srcPath, to: destPath)
+            } catch {
+                print("error unzipping file")
+            }
+            
+            //update all the tutors with profile pics
+            do {
+                let directoryContents = try fm.contentsOfDirectory(at: destPath, includingPropertiesForKeys: nil, options: [])
+                
+                for imageurl in directoryContents {
+                    
+                    var fileName = imageurl.lastPathComponent
+                    let index = fileName.index(of: ".")!
+                    fileName = String(fileName[..<index])
+                    
+                    let imagedata = try! Data(contentsOf: imageurl)
+                    let thisimage = UIImage(data: imagedata)
+                    
+                    if let obj = self.tutors.first(where: {$0.userid == Int(fileName)}) {
+                        print("name: \(obj.name)")
+                        obj.picture = thisimage
+                    }
+                }
+                group_cpy.leave()
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            //remove the zip file from that place
+            do {
+                try fm.removeItem(at: destPath)
+                try fm.removeItem(at: srcPath)
+            } catch let error as NSError {
+                print("error deleting zip file: \(error)")
+            }
+            
+        })
+        task.resume()
+        
+        group_cpy.wait()
+        
+        print("number of swipable ppls: \(tutors.count)")
+        
+        if (tutors.count > 0) {
+            setImageDetails(index: self.i)
+        } else {
+            print("No one to swipe on")
+//            print ("other condition")
+            nameText.text = ""
+            subjectArray.text = ""
+            self.card.backgroundColor = UIColor(patternImage: UIImage(named: "Harsha")!)
+            self.card.frame.size.width = self.view.bounds.width * 0.8
+            self.card.frame.size.height = self.view.bounds.height * 0.6
+            self.card.layer.cornerRadius = 10
+            //self.card.backgroundColor = UIColor(patternImage: UIImage (named: "ryan")!)
+            self.card.center.x = self.view.center.x
+            self.card.center.y = self.view.center.y - 20
+            
+//            let alertController = UIAlertController(title: "No more users", message: "There are no more users to swipe through", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
+
+        }
     }
     
     func resetCard() {
