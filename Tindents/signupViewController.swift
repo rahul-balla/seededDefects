@@ -25,60 +25,60 @@ class signupViewController: UIViewController {
     @IBAction func createBtnPressed(_ sender: Any) {
         
         if (emailLbl.text == "") {
-            
-            let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//
+//            let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else if (emailLbl.text != "") {
             
-            let charset = CharacterSet(charactersIn: "@")
-            let s = emailLbl.text as String!
-            
-            if s!.rangeOfCharacter(from: charset) == nil{
-                let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alertController.addAction(alertAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+//            let charset = CharacterSet(charactersIn: "@")
+//            let s = emailLbl.text as String!
+//
+//            if s!.rangeOfCharacter(from: charset) == nil{
+//                let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email", preferredStyle: .alert)
+//                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                alertController.addAction(alertAction)
+//                self.present(alertController, animated: true, completion: nil)
+//            }
 
         }
         
         if (userLbl.text == "") {
-            
-            let alertController = UIAlertController(title: "Invalid Username", message: "Please enter a non-empty username", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//
+//            let alertController = UIAlertController(title: "Invalid Username", message: "Please enter a non-empty username", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else if (nameLbl.text == "") {
             
-            let alertController = UIAlertController(title: "Invalid Name", message: "Please enter a non-empty name", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController(title: "Invalid Name", message: "Please enter a non-empty name", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else if (passLbl.text == "") {
             
-            let alertController = UIAlertController(title: "Invalid password", message: "Please enter a non-empty password", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController(title: "Invalid password", message: "Please enter a non-empty password", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else if (copyPassLbl.text == "") {
             
-            let alertController = UIAlertController(title: "Invalid password", message: "Please retype your password", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController(title: "Invalid password", message: "Please retype your password", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else if (passLbl.text != copyPassLbl.text) {
             
-            let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter same passwords in both fields", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController(title: "Passwords do not match", message: "Please enter same passwords in both fields", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
         } else {
             var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
@@ -116,23 +116,23 @@ class signupViewController: UIViewController {
                         }
                     } else if success == 2 {
                         
-                        let alertController = UIAlertController(title: "Invalid username", message: "The username you entered already exists", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alertController.addAction(alertAction)
-                        
-                        DispatchQueue.main.async {
-                           self.present(alertController, animated: true, completion: nil)
-                        }
+//                        let alertController = UIAlertController(title: "Invalid username", message: "The username you entered already exists", preferredStyle: .alert)
+//                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertController.addAction(alertAction)
+//
+//                        DispatchQueue.main.async {
+//                           self.present(alertController, animated: true, completion: nil)
+//                        }
 //                        self.present(alertController, animated: true, completion: nil)
                         
                     } else if success == 3 {
                         
-                        let alertController = UIAlertController(title: "Invalid email", message: "The email you entered already exists", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alertController.addAction(alertAction)
-                        DispatchQueue.main.async {
-                            self.present(alertController, animated: true, completion: nil)
-                        }
+//                        let alertController = UIAlertController(title: "Invalid email", message: "The email you entered already exists", preferredStyle: .alert)
+//                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertController.addAction(alertAction)
+//                        DispatchQueue.main.async {
+//                            self.present(alertController, animated: true, completion: nil)
+//                        }
                         //self.present(alertController, animated: true, completion: nil)
                     }
                     

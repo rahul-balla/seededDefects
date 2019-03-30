@@ -208,10 +208,10 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             emailTxtField.isHidden = true
             editImageBtn.isHidden = true
             
-            let alertController = UIAlertController(title: "", message: "Please enter a non-empty name", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController(title: "", message: "Please enter a non-empty name", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alertController.addAction(alertAction)
+//            self.present(alertController, animated: true, completion: nil)
             
             if (accountTypeLbl.text == "tutor") {
                 chargeTxtField.isHidden = false
@@ -229,7 +229,7 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
             requests().updateProfileInfoRequest(email: self.emailTxtField.text!, name: self.fullNameTxtField.text!, username: self.usernameTxtField.text!, charge: Int(self.chargeTxtField!.text!)!, description: self.descriptionTxtView.text) { (response) in
                 print("update profile info request response: \(response)")
                 DispatchQueue.main.async {
-                    self.loadingStuff()
+                    //self.loadingStuff()
                 }
                 //group.wait()
             }

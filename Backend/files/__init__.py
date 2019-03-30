@@ -102,6 +102,10 @@ def createAccount():
         usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
         emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
 
+        if content["username"] == 'test':
+            return jsonify({'success' : 5})
+
+
         if usernameCheck > 0 :
             return jsonify({'success' : 2})
         
@@ -260,7 +264,7 @@ def feed():
                     dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
                     print("In the first if statement\n")   
-                elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
+                elif ((currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None))) :
                     print("In the second if statement\n")
                 else:
                     print("in the else statement")
@@ -296,7 +300,7 @@ def feed():
                     dd = {'username' : x.username, 'userid' : x.id, 'email':x.email, 'fullName':x.fullName, 'schedule' : x.schedule, 'rating' : userRat, 'description':x.description, 'charge': x.price }
                     userDict.append(dd)
                 
-                elif (currUser.onCampus == 1 and (x.onCampus == 0 or x.onCampus == None)) or (currUser.offCampus == 1 and (x.offCampus == 0 or x.offCampus == None)) or (currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None)) or (currUser.math == 1 and (x.math == 0 or x.math == None)) :
+                elif ((currUser.fs == 1 and (x.fs == 0 or x.fs == None)) or (currUser.js == 1 and (x.js == 0 or x.js == None)) or (currUser.cheap == 1 and (x.cheap == 0 or x.cheap == None)) or (currUser.medium == 1 and (x.medium == 0 or x.medium == None)) or (currUser.expensive == 1 and (x.expensive == 0 or x.expensive == None)) or (currUser.com == 1 and (x.com == 0 or x.com == None)) or (currUser.cs == 1 and (x.cs == 0 or x.cs == None)) or (currUser.bio == 1 and (x.bio == 0 or x.bio == None))  or (currUser.econ == 1 and (x.econ == 0 or x.econ == None)) or (currUser.chem == 1 and (x.chem == 0 or x.chem == None)) or (currUser.english == 1 and (x.english == 0 or x.english == None)) or (currUser.physics == 1 and (x.physics == 0 or x.physics == None))) :
                     print("In the if statement\n")
                 else:
 
@@ -456,7 +460,7 @@ def rateUser():
     if rated.numRatings is None :
         num = 1
     else :
-        num = rated.numRatings + 1
+        num = rated.numRatings + 2
 
     if rated.totalRating is None :
         rating = content["rating"]
@@ -494,22 +498,6 @@ def updateProfile():
 @app.route("/updateProfileInfo", methods=['GET', 'POST'])
 def updateProfileInfo():
     content = request.json
-
-    usernameCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE username = %s", content["username"]).scalar()
-    emailCheck = db.engine.execute("SELECT COUNT(id) FROM users WHERE email = %s", content["email"]).scalar()
-
-    currUser = users.query.filter_by(id = userid).first()
-
-    print("in update profile info")
-
-    if usernameCheck > 0 and currUser.username != content["username"] :
-        print("hello")
-        return jsonify({'success' : 2})
-        
-    if emailCheck > 0 and currUser.email != content["email"] :
-        print("hello")
-        return jsonify({'success' : 3})
-
     print("CONTENT:", content)
 
     db.engine.execute("UPDATE users SET username = %s, fullName = %s, description = %s, price = %s, email = %s WHERE id = %s", content["username"], content["name"], content["description"], content["charge"], content["email"], userid)
