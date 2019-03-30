@@ -123,7 +123,10 @@ class mainProfileViewController: UIViewController, UINavigationControllerDelegat
                     self.fullNameLbl.text = json!["fullName"] as? String
                     self.usernameLbl.text = json!["username"] as? String
                     self.emailLbl.text = json!["email"] as? String
-                    self.accountTypeLbl.text = json!["account_type"] as? String
+                    
+                    //changed below for seeded defects
+                    self.accountTypeLbl.text = "student"
+                    
                     self.currUserId = json!["userid"] as! Int
                     
                     self.fullNameTxtField.text = json!["fullName"] as? String
