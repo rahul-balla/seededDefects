@@ -92,12 +92,12 @@ class schedViewController: UIViewController, UITextFieldDelegate{
     }
     @IBAction func mToggle(_ sender: Any) {
         if(mSwitch.isOn){
-            textField3.isHidden = false
-            textField4.isHidden = false
-        }
-        else{
             textField3.isHidden = true
             textField4.isHidden = true
+        }
+        else{
+            textField3.isHidden = false
+            textField4.isHidden = false
         }
     }
     @IBAction func tToggle(_ sender: Any) {}

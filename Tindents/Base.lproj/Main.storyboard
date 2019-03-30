@@ -1278,14 +1278,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="25" height="25"/>
-        <image name="Matches" width="25" height="25"/>
-        <image name="Profile" width="25" height="25"/>
-        <image name="Settings" width="25" height="25"/>
-        <image name="editImage" width="160" height="160"/>
+        <image name="Feed" width="37.5" height="37.5"/>
+        <image name="Matches" width="37.5" height="37.5"/>
+        <image name="Profile" width="37.5" height="37.5"/>
+        <image name="Settings" width="37.5" height="37.5"/>
+        <image name="editImage" width="360" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OyD-C3-erh"/>
+        <segue reference="Ns4-hA-KYy"/>
         <segue reference="4qD-hP-08X"/>
     </inferredMetricsTieBreakers>
 </document>
